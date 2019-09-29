@@ -1,0 +1,18 @@
+tr th{
+	text-align: center;
+}
+tr td{
+	text-align: center;
+	width: 200px
+}
+
+#menuHome ul li{
+	float: left;
+}
+#menuHome{
+	list-style-type: none;
+}
+
+#tableDKL tr td{
+	padding: 30px;
+}
