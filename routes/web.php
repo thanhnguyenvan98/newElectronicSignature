@@ -11,71 +11,275 @@
 |
 */
 
-Route::get('/home', function () {
-    return view('home');
+Route::get('home', function () {
+	if (Session::has('login') && Session::get('login') == false) {
+    # code...
+    return view('login');
+    }
+    else if (!Session::has('login')) {
+        return view('login');
+    }
+    else return view('home');
+})->name('homeView');
+
+Route::get('logout', function () {
+    
+    Session()->flush();
+    return redirect()->route('loginView');
+    
 });
 
+route::get('/',function(){
+    if (Session::has('login') && Session::get('login') == true) {
+        if (Session::get('category') == 0) {
+            return  redirect()->route('homeView');
+        }elseif (Session::get('category') == 1) {
+            # code...
+            return redirect()->route('homeLeaderView');
+        }elseif (Session::get('category') == 2) {
+            # code...
+            return redirect()->route('homeDeanView');
+        }elseif (Session::get('category') == 3) {
+            # code...
+            return redirect()->route('homeManagerView');
+        }elseif (Session::get('category') == 4) {
+            # code...
+            return redirect()->route('homeAdminView');
+        }
+    }
+    else
+	   return view('login');
+})->name('loginView');
 
-route::get('/','loginController@getView');
 
 Route::post('postLogin',['as'=>'postLogin','uses'=>'loginController@check']);
 
+
+
 route::get('calendar',function(){
-	return view('calendar');
-});
+	if (Session::has('login') && Session::get('login') == false) {
+    # code...
+    return view('login');
+    }
+    else if (!Session::has('login')) {
+        return view('login');
+    }
+    else 
+		return view('calendar');
+})->name('calendarView');
 
 route::get('editCalendar',function(){
-	return view('editCalendar');
-});
+	if (Session::has('login') && Session::get('login') == false) {
+    # code...
+    return view('login');
+    }
+    else if (!Session::has('login')) {
+        return view('login');
+    }
+    else 
+		return view('editCalendar');
+})->name('editCalendarView');
 
 route::get('signatureCalendar',function(){
-	return view('signatureCalendar');
-});
+	if (Session::has('login') && Session::get('login') == false) {
+    # code...
+    return view('login');
+    }
+    else if (!Session::has('login')) {
+        return view('login');
+    }
+    else 
+		return view('signatureCalendar');
+})->name('signatureCalendarView');
 
 route::get('notification',function(){
-	return view('notification');
-});
+	if (Session::has('login') && Session::get('login') == false) {
+    # code...
+    return view('login');
+    }
+    else if (!Session::has('login')) {
+        return view('login');
+    }
+    else 
+		return view('notification');
+})->name('notificationView');
 
 route::get('homeLeader',function(){
-	return view('homeLeader');
-});
+	if (Session::has('login') && Session::get('login') == false) {
+    # code...
+    return view('login');
+    }
+    else if (!Session::has('login')) {
+        return view('login');
+    }
+    else 
+		return view('homeLeader');
+})->name('homeLeaderView');
 
 route::get('signatureCalendarLeader',function(){
-	return view('signatureCalendarLeader');
-});
+	if (Session::has('login') && Session::get('login') == false) {
+    # code...
+    return view('login');
+    }
+    else if (!Session::has('login')) {
+        return view('login');
+    }
+    else 
+		return view('signatureCalendarLeader');
+})->name('signatureCalendarLeaderView');
 
 route::get('inforUser',function(){
-	return view('inforUser');
-});
+	if (Session::has('login') && Session::get('login') == false) {
+    # code...
+    return view('login');
+    }
+    else if (!Session::has('login')) {
+        return view('login');
+    }
+    else 
+		return view('inforUser');
+})->name('inforUserView');
 
 route::get('settingAcount',function(){
-	return view('settingAcount');
-});
+	if (Session::has('login') && Session::get('login') == false) {
+    # code...
+    return view('login');
+    }
+    else if (!Session::has('login')) {
+        return view('login');
+    }
+    else 
+		return view('settingAcount');
+})->name('settingAcountView');
 
 route::get('homeDean',function(){
-	return view('homeDean');
-});
+	if (Session::has('login') && Session::get('login') == false) {
+    # code...
+    return view('login');
+    }
+    else if (!Session::has('login')) {
+        return view('login');
+    }
+    else 
+		return view('homeDean');
+})->name('homeDeanView');
+
+route::get('homeAdmin',function(){
+	if (Session::has('login') && Session::get('login') == false) {
+    # code...
+    return view('login');
+    }
+    else if (!Session::has('login')) {
+        return view('login');
+    }
+    else 
+		return view('homeAdmin');
+})->name('homeAdminView');
 
 route::get('signatureCalendarDean',function(){
-	return view('signatureCalendarDean');
-});
+	if (Session::has('login') && Session::get('login') == false) {
+    # code...
+    return view('login');
+    }
+    else if (!Session::has('login')) {
+        return view('login');
+    }
+    else 
+		return view('signatureCalendarDean');
+})->name('signatureCalendarDeanView');
 
 route::get('homeManage',function(){
-	return view('homeManage');
-});
+	if (Session::has('login') && Session::get('login') == false) {
+    # code...
+    return view('login');
+    }
+    else if (!Session::has('login')) {
+        return view('login');
+    }
+    else 
+		return view('homeManage');
+})->name('homeManagerView');
 
 route::get('calendarManagement',function(){
-	return view('calendarManagement');
-});
+	if (Session::has('login') && Session::get('login') == false) {
+    # code...
+    return view('login');
+    }
+    else if (!Session::has('login')) {
+        return view('login');
+    }
+    else 
+		return view('calendarManagement');
+})->name('calendarManegementView');
+
+route::get('calendarManagementAdmin',function(){
+	if (Session::has('login') && Session::get('login') == false) {
+    # code...
+    return view('login');
+    }
+    else if (!Session::has('login')) {
+        return view('login');
+    }
+    else 
+		return view('calendarManagementAdmin');
+})->name('calendarManegermentAdminView');
 
 route::get('userManagement',function(){
-	return view('userManagement');
-});
+	if (Session::has('login') && Session::get('login') == false) {
+    # code...
+    return view('login');
+    }
+    else if (!Session::has('login')) {
+        return view('login');
+    }
+    else 
+		return view('userManagement');
+})->name('userManagementView');
+
+route::get('userManagementAdmin',function(){
+	if (Session::has('login') && Session::get('login') == false) {
+    # code...
+    return view('login');
+    }
+    else if (!Session::has('login')) {
+        return view('login');
+    }
+    else 
+		return view('userManagementAdmin');
+})->name('userManagementAdminView');
 
 route::get('createCalendar',function(){
-	return view('createCalendar');
-});
+	if (Session::has('login') && Session::get('login') == false) {
+    # code...
+    return view('login');
+    }
+    else if (!Session::has('login')) {
+        return view('login');
+    }
+    else 
+		return view('createCalendar');
+})->name('createCalendarView');
 
 route::get('editCalendar',function(){
-	return view('editCalendar');
-});
+	if (Session::has('login') && Session::get('login') == false) {
+    # code...
+    return view('login');
+    }
+    else if (!Session::has('login')) {
+        return view('login');
+    }
+    else 
+		return view('editCalendar');
+})->name('editCalendarView');
+
+route::get('bank',function(){
+	if (Session::has('login') && Session::get('login') == false) {
+    # code...
+    return view('login');
+    }
+    else if (!Session::has('login')) {
+        return view('login');
+    }
+    else 
+		return view('bank');
+})->name('bankView');

@@ -43,6 +43,7 @@
                                 <th>Tài khoản</th>
                                 <th>Mật khẩu</th>
                                 <th>Chức vụ</th>
+                                <th>Trạng thái</th>
                                 <th>Tác vụ</th>
                             </tr>
                             </thead>
@@ -53,6 +54,9 @@
                                 <td>NguyenThanh131</td>
                                 <td>anhboyvip9x</td>
                                 <td>Giáo viên</td>
+                                <td class="text-center">
+                                    <div class="badge badge-success">Kích hoạt/div>
+                                </td>
                                 <td>
                                     <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg" style="float: left; width: 50px">Sửa</button>
                                     <button type="button" class="btn mr-2 mb-2 btn-secondary" data-toggle="modal" data-target=".bd-example-modal-sm " style="float: left;">Xóa</button>
@@ -64,6 +68,9 @@
                                 <td>NguyenThanh131</td>
                                 <td>anhboyvip9x</td>
                                 <td>Giáo viên</td>
+                                <td class="text-center">
+                                    <div class="badge badge-success">Kích hoạt/div>
+                                </td>
                                 <td>
                                     <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg" style="float: left; width: 50px">Sửa</button>
                                     <button type="button" class="btn mr-2 mb-2 btn-secondary" data-toggle="modal" data-target=".bd-example-modal-sm " style="float: left;">Xóa</button>
@@ -75,6 +82,9 @@
                                 <td>NguyenThanh131</td>
                                 <td>anhboyvip9x</td>
                                 <td>Giáo viên</td>
+                                <td class="text-center">
+                                    <div class="badge badge-success">Kích hoạt/div>
+                                </td>
                                 <td>
                                     <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg" style="float: left; width: 50px">Sửa</button>
                                     <button type="button" class="btn mr-2 mb-2 btn-secondary" data-toggle="modal" data-target=".bd-example-modal-sm " style="float: left;">Xóa</button>
@@ -86,6 +96,9 @@
                                 <td>NguyenThanh131</td>
                                 <td>anhboyvip9x</td>
                                 <td>Giáo viên</td>
+                                <td class="text-center">
+                                    <div class="badge badge-danger">Hủy kích hoạt</div>
+                                </td>
                                 <td>
                                     <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg" style="float: left; width: 50px">Sửa</button>
                                     <button type="button" class="btn mr-2 mb-2 btn-secondary" data-toggle="modal" data-target=".bd-example-modal-sm" style="float: left;">Xóa</button>
@@ -97,6 +110,9 @@
                                 <td>NguyenThanh131</td>
                                 <td>anhboyvip9x</td>
                                 <td>Giáo viên</td>
+                                <td class="text-center">
+                                    <div class="badge badge-success">Kích hoạt/div>
+                                </td>
                                 <td>
                                     <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg" style="float: left; width: 50px">Sửa</button>
                                     <button type="button" class="btn mr-2 mb-2 btn-secondary" data-toggle="modal" data-target=".bd-example-modal-sm" style="float: left;">Xóa</button>
@@ -108,6 +124,9 @@
                                 <td>NguyenThanh131</td>
                                 <td>anhboyvip9x</td>
                                 <td>Giáo viên</td>
+                                <td class="text-center">
+                                    <div class="badge badge-success">Kích hoạt/div>
+                                </td>
                                 <td>
                                     <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg" style="float: left; width: 50px">Sửa</button>
                                     <button type="button" class="btn mr-2 mb-2 btn-secondary" data-toggle="modal" data-target=".bd-example-modal-sm" style="float: left;">Xóa</button>
@@ -119,6 +138,9 @@
                                 <td>NguyenThanh131</td>
                                 <td>anhboyvip9x</td>
                                 <td>Giáo viên</td>
+                                <td class="text-center">
+                                    <div class="badge badge-success">Kích hoạt/div>
+                                </td>
                                 <td>
                                     <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg" style="float: left; width: 50px">Sửa</button>
                                     <button type="button" class="btn mr-2 mb-2 btn-secondary" data-toggle="modal" data-target=".bd-example-modal-sm" style="float: left;">Xóa</button>
@@ -130,6 +152,9 @@
                                 <td>NguyenThanh131</td>
                                 <td>anhboyvip9x</td>
                                 <td>Giáo viên</td>
+                                <td class="text-center">
+                                    <div class="badge badge-success">Kích hoạt/div>
+                                </td>
                                 <td>
                                     <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg" style="float: left; width: 50px">Sửa</button>
                                     <button type="button" class="btn mr-2 mb-2 btn-secondary" data-toggle="modal" data-target=".bd-example-modal-sm " style="float: left;">Xóa</button>
@@ -141,6 +166,9 @@
                                 <td>NguyenThanh131</td>
                                 <td>anhboyvip9x</td>
                                 <td>Giáo viên</td>
+                                <td class="text-center">
+                                    <div class="badge badge-danger">Hủy kích hoạt</div>
+                                </td>
                                 <td>
                                     <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg" style="float: left; width: 50px">Sửa</button>
                                     <button type="button" class="btn mr-2 mb-2 btn-secondary" data-toggle="modal" data-target=".bd-example-modal-sm " style="float: left;">Xóa</button>

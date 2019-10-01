@@ -1,6 +1,6 @@
 @extends('master.master')
 
-@section('title','Tổng quan')
+@section('title','Signature Calendar')
 
 @section('content')
 	<div class="app-main__inner">
@@ -21,7 +21,7 @@
                 <div class="main-card mb-3 card">
                     <div class="card-body">
                         <h5 class="card-title">Lịch giảng dạy</h5>
-                        <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Ký & Gửi</button>
+                        
                         <table class="mb-0 table">
                             <thead>
                             <tr>
@@ -31,6 +31,7 @@
                                 <th>Ngày hoàn thành ký gửi</th>
                                 <th>Chữ ký của tổ trưởng</th>
                                 <th>Chữ ký của trưởng khoa</th>
+                                <th>Tác vụ</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -41,6 +42,7 @@
                                 <td></td>
                                 <td><div class="badge badge-info">Đã ký</div></td>
                                 <td><div class="badge badge-danger">Chưa ký</div></td>
+                                <td><div class="badge badge-info">Đã ký</div></td>
                             </tr>
                             <tr>
                                 <th scope="row">2</th>
@@ -49,6 +51,16 @@
                                 <td>03-10-2019</td>
                                 <td><div class="badge badge-info">Đã ký</div></td>
                                 <td><div class="badge badge-info">Đã ký</div></td>
+                                <td><div class="badge badge-info">Đã ký</div></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Phát triển phần mềm hướng dịch vụ</td>
+                                <td>01-10-2019</td>
+                                <td>03-10-2019</td>
+                                <td><div class="badge badge-info">Đã ký</div></td>
+                                <td><div class="badge badge-info">Đã ký</div></td>
+                                <td><button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Ký & Gửi</button></td>
                             </tr>
                             
                             </tbody>
@@ -75,17 +87,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Nhập tiêu đề</h5>
                         <textarea name="text" id="exampleText" class="form-control"></textarea>
-                        <h5 class="card-title" style="margin-top: 30px">Nhập file lịch học</h5>
-                        <div>
-                            <div class="input-group">
-
-                                <div class="input-group-append">
-                                    <span class="input-group-text">
-                                        <input name="file" id="exampleFile" type="file" class="form-control-file">
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
+                        
 
                         <h5 class="card-title" style="margin-top: 30px">Nhập khóa</h5>
                         <div>

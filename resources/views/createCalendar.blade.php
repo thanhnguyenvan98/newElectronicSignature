@@ -1,6 +1,6 @@
 @extends('master.master')
 
-@section('title','Calendar')
+@section('title','Create Calendar')
 
 @section('content')
 	<div class="app-main__inner">

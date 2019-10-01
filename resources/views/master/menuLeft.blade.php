@@ -31,69 +31,126 @@
     </div>    <div class="scrollbar-sidebar">
         <div class="app-sidebar__inner">
             <ul class="vertical-nav-menu">
+                @if(Session::has('category')&&Session::get('category') == 4)
+                <li class="app-sidebar__heading ">
+                    <a href="homeAdmin" class="mm-active bg-midnight-bloom" style="color: white">
+                        Tổng quan
+                    </a>
+                </li>
+                @endif
+
+                @if(Session::has('category')&&Session::get('category') == 0)
                 <li class="app-sidebar__heading ">
                     <a href="home" class="mm-active bg-midnight-bloom" style="color: white">
+                        Tổng quan
+                    </a>
+                </li>
+                @endif
+                @if(Session::has('category')&&Session::get('category') == 1)
+                <li class="app-sidebar__heading ">
+                    <a href="homeLeader" class="mm-active bg-midnight-bloom" style="color: white">
                         
                         Tổng quan
                     </a>
                 </li>
-                <li class="app-sidebar__heading ">
-                    <a href="homeLeader" class="mm-active bg-midnight-bloom" style="color: white">
-                        
-                        Tổng quan (Leader)
-                    </a>
-                </li>
+                @endif
+                @if(Session::has('category')&&Session::get('category') == 2)
                 <li class="app-sidebar__heading ">
                     <a href="homeDean" class="mm-active bg-midnight-bloom" style="color: white">
                         
-                        Tổng quan (Dean)
+                        Tổng quan
                     </a>
                 </li>
+                @endif
+                @if(Session::has('category')&&Session::get('category') == 3)                
                 <li class="app-sidebar__heading ">
                     <a href="homeManage" class="mm-active bg-midnight-bloom" style="color: white">
                         
-                        Tổng quan (Manage)
+                        Tổng quan
                     </a>
                 </li>
+                @endif
+
+                @if(Session::has('category')&&Session::get('category') == 0)
                 <li class="app-sidebar__heading ">
                     <a href="calendar" class="bg-grow-early" style="color: white">
                         
                         Lịch trình giảng dạy
                     </a>
                 </li>
+                @endif
                 
+                @if(Session::has('category')&&Session::get('category') == 0)
                 <li class="app-sidebar__heading ">
                     <a href="signatureCalendar" class="bg-love-kiss" style="color: white">
                         
                         Ký & gửi lịch giảng dạy
                     </a>
                 </li>
+                @endif
+
+                @if(Session::has('category')&&Session::get('category') == 1)
                 <li class="app-sidebar__heading ">
                     <a href="signatureCalendarLeader" class="bg-love-kiss" style="color: white">
-                        Ký & gửi lịch (leader)
+                        Ký & gửi lịch
                     </a>
                 </li>
+                @endif
+                @if(Session::has('category')&&Session::get('category') == 2)
                 <li class="app-sidebar__heading ">
                     <a href="signatureCalendarDean" class="bg-love-kiss" style="color: white">
-                        Ký & gửi lịch (Dean)
+                        Ký & gửi lịch
                     </a>
                 </li>
+                @endif
+
+                @if(Session::has('login') && Session::get('login') == true)
                 <li class="app-sidebar__heading ">
                     <a href="notification" class="bg-plum-plate" style="color: white">
                         
                         Tin nhắn
                     </a>
                 </li>
+                @endif
+
+                @if(Session::has('category') && Session::get('category') != 0 && Session::get('category') != 4 )
                 <li class="app-sidebar__heading ">
                     <a href="userManagement" class="bg-plum-plate" style="color: white">
                         Quản lý tài khoản
                     </a>
                 </li>
+                @endif
+
+                @if(Session::has('category') && Session::get('category') == 4)
+                <li class="app-sidebar__heading ">
+                    <a href="userManagementAdmin" class="bg-plum-plate" style="color: white">
+                        Quản lý tài khoản
+                    </a>
+                </li>
+                @endif
+
+                @if(Session::has('category') && Session::get('category') != 1 && Session::get('category') != 4)
                 <li class="app-sidebar__heading ">
                     <a href="calendarManagement" class="bg-plum-plate" style="color: white">
                         Quản lý lịch giảng dạy
                     </a>
                 </li>
+                @endif
+
+                @if(Session::has('category') && Session::get('category') == 4)
+                <li class="app-sidebar__heading ">
+                    <a href="calendarManagementAdmin" class="bg-plum-plate" style="color: white">
+                        Quản lý lịch giảng dạy
+                    </a>
+                </li>
+                @endif
+                @if(Session::has('category') && Session::get('category') == 4)
+                <li class="app-sidebar__heading ">
+                    <a href="bank" class="bg-plum-plate" style="color: white">
+                        Quản lý liên kết ngân hàng
+                    </a>
+                </li>
+                @endif
             </ul>
         </div>
     </div>
