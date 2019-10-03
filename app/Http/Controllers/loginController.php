@@ -29,7 +29,8 @@ class loginController extends Controller
     		}
     	}
     	if ($dem == 1) {
-    		return view('home');
+			return view('home');
+			
     	}
     	else{
     		# code...

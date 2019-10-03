@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/home', function () {
+Route::get('home', function () {
     return view('home');
 });
 
@@ -68,13 +68,9 @@ route::get('calendarManagement',function(){
 	return view('calendarManagement');
 });
 
-route::get('userManagement',function(){
-	return view('userManagement');
-});
+route::get('userManagement','TeacherController@index');
 
-route::get('createCalendar',function(){
-	return view('createCalendar');
-});
+route::get('createCalendar','TeacherController@index');
 
 route::get('editCalendar',function(){
 	return view('editCalendar');
