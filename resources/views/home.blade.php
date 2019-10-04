@@ -126,7 +126,7 @@
                         <button type="button" data-toggle="collapse" href="#collapseExample1" class="btn btn-primary">Chi tiết</button>
                     </div>
                 </div>
-                <div class="main-card mb-12 card">
+                <!-- <div class="main-card mb-12 card">
                     <div class="card-body">
                         <h5 class="card-title">Phat triển phần mềm hướng dịch vụ</h5>
                         <div class="collapse" id="collapseExample2">
@@ -185,7 +185,7 @@
                     <div class="card-footer">
                         <button type="button" data-toggle="collapse" href="#collapseExample5" class="btn btn-primary">Chi tiết</button>
                     </div>
-                </div>
+                </div> -->
             </div>
 
             <div class="col-md-6">

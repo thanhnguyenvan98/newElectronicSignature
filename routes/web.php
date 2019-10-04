@@ -27,6 +27,7 @@ Route::get('logout', function () {
     Session()->flush();
     return redirect()->route('loginView');
     
+    return view('home');
 });
 
 route::get('/',function(){
@@ -259,6 +260,11 @@ route::get('createCalendar',function(){
     else 
 		return view('createCalendar');
 })->name('createCalendarView');
+
+route::get('userManagement','TeacherController@index');
+
+route::get('createCalendar','TeacherController@index');
+
 
 route::get('editCalendar',function(){
 	if (Session::has('login') && Session::get('login') == false) {

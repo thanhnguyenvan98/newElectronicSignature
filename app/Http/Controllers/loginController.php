@@ -32,6 +32,7 @@ class loginController extends Controller
     		}
     	}
 
+
     	if ($dem == 1 && $category == 0) {
     		return  redirect()->route('homeView');
     	}elseif ($dem == 1 && $category == 1) {
@@ -47,6 +48,11 @@ class loginController extends Controller
             # code...
             return redirect()->route('homeAdminView');
         }
+    	if ($dem == 1) {
+			return view('home');
+			
+    	}
+        
     	else{
     		# code...
     		$error = "Tài khoản hoặc mật khẩu không chính xác";

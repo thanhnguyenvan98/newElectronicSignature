@@ -60,6 +60,23 @@
                             </tr>
                             <tr>
                                 <td scope="row">1</td>
+
+                            <?php $i = 1 ?>
+                            @foreach($users as $user)
+                                <tr>
+                                    <th scope="row"> {{$i}} </th>
+                                    <td>{{$user->teacher_userName}}</td>
+                                    <td>{{$user->teacher_password}}</td>
+                                    <td>{{$user->teacher_userName}}</td>
+                                    <td>
+                                        <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg" style="float: left; width: 50px">Sửa</button>
+                                        <button type="button" class="btn mr-2 mb-2 btn-secondary" data-toggle="modal" data-target=".bd-example-modal-sm " style="float: left;">Xóa</button>
+                                    </td>
+                                </tr>
+                                <?php $i++; ?>
+                            @endforeach
+                            <!-- <tr>
+                                <th scope="row">1</th>
                                 
                                 <td>NguyenThanh131</td>
                                 <td>anhboyvip9x</td>
@@ -145,7 +162,7 @@
                                     <button type="button" class="btn mr-2 mb-2 btn-primary col-md-3" data-toggle="modal" data-target=".bd-example-modal-lg" style="">Sửa</button>
                                     <button type="button" class="btn mr-2 mb-2 btn-secondary col-md-3" data-toggle="modal" data-target=".bd-example-modal-sm " style="">Xóa</button>
                                 </td>
-                            </tr>
+                            </tr> -->
                             </tbody>
                         </table>
                     </div>

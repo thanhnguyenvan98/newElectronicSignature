@@ -35,7 +35,12 @@
 				<span class="login100-form-title p-b-41">
 					Login
 				</span>
-				
+				<center><?php 
+					if (isset($error)) {
+						# code...
+						echo $error;
+					}
+				?></center>
 				<form class="login100-form validate-form p-b-33 p-t-5" action="postLogin" method="post" >
 					@csrf
 					<div class="wrap-input100 validate-input" data-validate = "Không được để trống">
