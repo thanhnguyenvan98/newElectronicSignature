@@ -35,24 +35,19 @@
 				<span class="login100-form-title p-b-41">
 					Login
 				</span>
-				<center><?php 
-					if (isset($error)) {
-						# code...
-						echo $error;
-					}
-				?></center>
+				
 				<form class="login100-form validate-form p-b-33 p-t-5" action="postLogin" method="post" >
 					@csrf
 					<div class="wrap-input100 validate-input" data-validate = "Không được để trống">
 						<input class="input100" type="text" name="username" placeholder="Tên đăng nhập">
-						<span class="focus-input100" data-placeholder="&#xe82a;"></span>
+						<span class="focus-input100" data-placeholder=""></span>
 					</div>
 
 					
 
 					<div class="wrap-input100 validate-input" data-validate="Không được để trống">
 						<input class="input100" type="password" name="pass" placeholder="Mật khẩu">
-						<span class="focus-input100" data-placeholder="&#xe80f;"></span>
+						<span class="focus-input100" data-placeholder=""></span>
 					</div>
 					@if(isset($data))
 						<div class="container-login100-form-btn m-t-32" style="color: red">

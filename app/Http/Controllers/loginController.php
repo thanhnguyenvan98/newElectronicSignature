@@ -52,12 +52,12 @@ class loginController extends Controller
 			return view('home');
 			
     	}
-        
+
     	else{
     		# code...
     		$error = "Tài khoản hoặc mật khẩu không chính xác";
             $data['error'] = $error;
-    		return redirect()->route('loginView');
+    		return view('login',compact('data'));
     	}
     }
 }
