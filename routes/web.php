@@ -55,7 +55,11 @@ route::get('/',function(){
 
 Route::post('postLogin',['as'=>'postLogin','uses'=>'loginController@check']);
 
+Route::post('createUser',['as'=>'createUser','uses'=>'UserController@create']);
 
+Route::post('editUser',['as'=>'editUser','uses'=>'UserController@edit']);
+
+Route::get('destroyUser/{id}','UserController@destroy')->name('destroy');
 
 route::get('calendar',function(){
 	if (Session::has('login') && Session::get('login') == false) {
@@ -225,17 +229,9 @@ route::get('calendarManagementAdmin',function(){
 		return view('calendarManagementAdmin');
 })->name('calendarManegermentAdminView');
 
-route::get('userManagement',function(){
-	if (Session::has('login') && Session::get('login') == false) {
-    # code...
-    return view('login');
-    }
-    else if (!Session::has('login')) {
-        return view('login');
-    }
-    else 
-		return view('userManagement');
-})->name('userManagementView');
+route::get('userManagement','UserController@index')->name('userManagementView');
+
+
 
 route::get('userManagementAdmin',function(){
 	if (Session::has('login') && Session::get('login') == false) {
@@ -261,7 +257,6 @@ route::get('createCalendar',function(){
 		return view('createCalendar');
 })->name('createCalendarView');
 
-route::get('userManagement','TeacherController@index');
 
 route::get('createCalendar','TeacherController@index');
 
