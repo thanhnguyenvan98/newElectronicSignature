@@ -32,16 +32,18 @@
                             @endif
                             <li>
                             <li style="float: right; padding-bottom:10px">
-                                <div class="search-wrapper">
-                                    <div class="input-holder">
-                                        <input type="text" class="search-input" placeholder="điền tên tài khoản">
-                                        <button class="search-icon"><span></span></button>
+                                <form action="showUser" method="post">
+                                    @csrf
+                                    <div class="input-group">
+                                        <input type="text" name="name" class="form-control" placeholder="Tìm kiếm theo tên">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-secondary" type="submit">Tìm kiếm</button>
+                                        </div>
                                     </div>
-                                    <button class="close"></button>
-                                </div>
+                                </form>
                             </li>
-                            <li style="padding-right: 20px; float: right;padding-top: 10px">Tìm kiếm tài khoản</li>
                         </ul>
+
                         <table class="mb-0 table">
                             <thead>
                             <tr>

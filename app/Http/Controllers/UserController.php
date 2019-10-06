@@ -98,9 +98,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
         //
+        $users = User::Where('user_userName','like','%'.$request->name.'%')->Where('user_category','<','3')->get();
+        return view('userManagement',compact('users'));
     }
 
     /**

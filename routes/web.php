@@ -59,7 +59,9 @@ Route::post('createUser',['as'=>'createUser','uses'=>'UserController@create']);
 
 Route::post('editUser',['as'=>'editUser','uses'=>'UserController@edit']);
 
-Route::get('destroyUser/{id}','UserController@destroy')->name('destroy');
+Route::get('destroyUser/{id}','UserController@destroy')->name('destroyUser');
+
+Route::post('showUser',['as'=>'editUser','uses'=>'UserController@show']);
 
 route::get('calendar',function(){
 	if (Session::has('login') && Session::get('login') == false) {
