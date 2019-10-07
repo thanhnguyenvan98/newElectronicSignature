@@ -63,35 +63,7 @@
                             @foreach($users as $user)
                                 <tr>
                                     <td scope="row"> {{$i}} </td>
-                                    <td>{{ $user->user_userName}}</td>
-                                    <td>{{md5($user->user_password)}}</td>
-                                    <td>
-                                        <?php 
-                                            switch ($user->user_category) {
-                                                case '0':
-                                                    echo "Giao vien";
-                                                    break;
-                                                case '1':
-                                                    echo "To truong";
-                                                    break;
-                                                case '3':
-                                                    echo "Quan ly";
-                                                    break;
-                                                case '2':
-                                                    echo "Truong khoa";
-                                                    break;
-                                                case '4':
-                                                    echo "Admin";
-                                                    break;
-                                                default:
-                                                    # code...
-                                                    break;
-                                            }
-                                         ?>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn mr-2 mb-2 btn-primary " data-toggle="modal" data-target=".bd-example-modal-lg" style="">Sửa</button>
-                                        <button type="button" class="btn mr-2 mb-2 btn-secondary " data-toggle="modal" data-target=".bd-example-modal-sm " style="">Xóa</button>
+                                    
                                     <td>{{$user->user_userName}}</td>
                                     <td>{{md5($user->user_password)}}</td>
                                     <td>

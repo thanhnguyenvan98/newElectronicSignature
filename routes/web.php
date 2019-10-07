@@ -253,7 +253,6 @@ route::get('createCalendar',function(){
 })->name('createCalendarView');
 
 
-route::get('userManagement','TeacherController@index');
 
 
 route::get('editCalendar',function(){
