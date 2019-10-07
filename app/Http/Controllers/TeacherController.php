@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\teacher;
+use App\User;
 
 class TeacherController extends Controller
 {
@@ -14,7 +14,7 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        $users = teacher::all();
+        $users = User::all();
         return view('userManagement',compact('users'));
     }
 

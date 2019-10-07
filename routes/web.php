@@ -250,20 +250,12 @@ route::get('userManagementAdmin',function(){
 })->name('userManagementAdminView');
 
 route::get('createCalendar',function(){
-	if (Session::has('login') && Session::get('login') == false) {
-    # code...
-    return view('login');
-    }
-    else if (!Session::has('login')) {
-        return view('login');
-    }
-    else 
+
 		return view('createCalendar');
 })->name('createCalendarView');
 
-route::get('userManagement','TeacherController@index');
 
-route::get('createCalendar','TeacherController@index');
+route::get('userManagement','TeacherController@index');
 
 
 route::get('editCalendar',function(){
@@ -289,3 +281,6 @@ route::get('bank',function(){
     else 
 		return view('bank');
 })->name('bankView');
+
+//RSA
+route::get('RSA','RSAController@createKey');
