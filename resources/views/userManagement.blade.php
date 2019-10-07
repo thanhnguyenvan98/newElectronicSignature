@@ -23,19 +23,27 @@
                         <h5 class="card-title">Danh sách tài khoản</h5>
                         
                         <ul id="menuHome" style="list-style-type: none;">
-                            <li style="float: left;padding-top: 5px"><button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg1">Thêm tài khoản</button></li>
-                            
+                            <li style="float: left;padding-top: 5px"><button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Thêm tài khoản</button></li>
+
+                            @if(Session::has('notice'))
+                                <li style="color: red;padding-left: 100px; float: left; padding-top: 10px">
+                                    {{Session::pull('notice')}}
+                                </li>
+                            @endif
+                            <li>
                             <li style="float: right; padding-bottom:10px">
-                                <div class="search-wrapper">
-                                    <div class="input-holder">
-                                        <input type="text" class="search-input" placeholder="điền tên tài khoản">
-                                        <button class="search-icon"><span></span></button>
+                                <form action="showUser" method="post">
+                                    @csrf
+                                    <div class="input-group">
+                                        <input type="text" name="name" class="form-control" placeholder="Tìm kiếm theo tên">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-secondary" type="submit">Tìm kiếm</button>
+                                        </div>
                                     </div>
-                                    <button class="close"></button>
-                                </div>
+                                </form>
                             </li>
-                            <li style="padding-right: 20px; float: right;padding-top: 10px">Tìm kiếm tài khoản</li>
                         </ul>
+
                         <table class="mb-0 table">
                             <thead>
                             <tr>
@@ -84,9 +92,39 @@
                                     <td>
                                         <button type="button" class="btn mr-2 mb-2 btn-primary " data-toggle="modal" data-target=".bd-example-modal-lg" style="">Sửa</button>
                                         <button type="button" class="btn mr-2 mb-2 btn-secondary " data-toggle="modal" data-target=".bd-example-modal-sm " style="">Xóa</button>
+                                    <td>{{$user->user_userName}}</td>
+                                    <td>{{md5($user->user_password)}}</td>
+                                    <td>
+                                        <?php
+                                            switch ($user->user_category) {
+                                                case '0':
+                                                    # code...
+                                                    echo "Giáo viên";
+                                                    break;
+                                                case '1':
+                                                    # code...
+                                                    echo "Tổ trưởng";
+                                                    break;
+                                                case '2':
+                                                    # code...
+                                                    echo "Trưởng khoa";
+                                                    break;
+
+                                                default:
+
+                                                    break;
+                                            }
+
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg{{$user->user_id}}" style="">Sửa</button>
+                                        <button type="button" class="btn mr-2 mb-2 btn-secondary" data-toggle="modal" data-target=".bd-example-modal-sm{{$user->user_id}}" style="">Xóa</button>
                                     </td>
                                 </tr>
                                 <?php $i++; ?>
+
+                                
                             @endforeach
                             
                             </tbody>
@@ -98,100 +136,109 @@
     </div>
 @endSection
 
+
+
 @section('LargeModal')
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Chỉnh sửa tài khoản</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
+    @foreach ($users as $user)
+    <div class="modal fade bd-example-modal-lg{{$user->user_id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Chỉnh sửa tài khoản</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
 
-                <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
-                    <div class="row">
-                        
-                        <div class="col-md-12">
-                            <div class="main-card mb-3 card">
-                                <div class="card-body">
-                                    
-                                    <form class="">
-                                        <h5 class="card-title">Thông tin tài khoản</h5>
-
-                                        <div class="position-relative form-group">
-                                            <label for="exampleSelect" class="">Tên đăng nhập</label>
-                                            <input type="text"  name=""id="exampleSelect" class="form-control">
-                                        </div>
-                                        <div class="position-relative form-group">
-                                            <label for="exampleSelect" class="">Mật khẩu cũ</label>
-                                            <input type="text"  name=""id="exampleSelect" class="form-control">
-                                        </div>
-                                        <div class="position-relative form-group">
-                                            <label for="exampleSelect" class="">Mật khẩu mới</label>
-                                            <input type="password"  name=""id="exampleSelect" class="form-control">
-                                        </div>
-                                        <div class="position-relative form-group">
-                                            <label for="exampleSelect" class="">Xác nhận mật khẩu</label>
-                                            <input type="password"  name=""id="exampleSelect" class="form-control">
-                                        </div>
-                                        <label for="exampleSelect" class="">Chọn chức vụ</label>
-                                            <select name="select" id="exampleSelect" class="form-control">
-                                                <option></option>
-                                                <option>Giáo viên</option>
-                                                <option>Tổ trưởng</option>
-                                                <option>Trưởng khoa</option>
-                                            </select>
+                    <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
+                        <div class="row">
+                            
+                            <div class="col-md-12">
+                                <div class="main-card mb-3 card">
+                                    <div class="card-body">
                                         
+                                        <form class="" method="post" action="editUser">
+                                            @csrf
+                                            <h5 class="card-title">Thông tin tài khoản</h5>
 
-                                        <div class="modal-footer" style="background-color: white ">
-                                            <button type="button" class="btn btn-primary">Đặt lại</button>
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                                            <button type="button" class="btn btn-primary">Lưu</button>
-                                        </div>
+                                            <div class="position-relative form-group">
+                                                <label for="exampleSelect" class="">Tên đăng nhập</label>
+                                                <input type="text"  name="userName"id="exampleSelect" class="form-control" value="{{$user->user_userName}}">
+                                            </div>
+                                            <div class="position-relative form-group">
+                                                <label for="exampleSelect" class="">Mật khẩu mới</label>
+                                                <input type="password"  name="newPassword"id="exampleSelect" class="form-control">
+                                            </div>
+                                            <div class="position-relative form-group">
+                                                <label for="exampleSelect" class="">Xác nhận mật khẩu</label>
+                                                <input type="password"  name="reNewPassword"id="exampleSelect" class="form-control">
+                                            </div>
+                                            <label for="exampleSelect" class="">Chọn chức vụ</label>
+                                                <select name="category" id="exampleSelect" class="form-control">
+                                                    <option value="0" <?php if ($user->user_category == 0) {
+                                                        # code...
+                                                        echo 'selected="selected"';
+                                                    } ?>>Giáo viên</option>
+                                                    <option value="1"<?php if ($user->user_category == 1) {
+                                                        # code...
+                                                        echo 'selected="selected"';
+                                                    } ?>>Tổ trưởng</option>
+                                                    <option value="2"<?php if ($user->user_category == 2) {
+                                                        # code...
+                                                        echo 'selected="selected"';
+                                                    } ?>>Trưởng khoa</option>
+                                                </select>
+                                            
 
-                                    </form>
+                                            <div class="modal-footer" style="background-color: white ">
+                                                <button type="button" class="btn btn-primary">Đặt lại</button>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                                                <button type="submit" class="btn btn-primary">Lưu</button>
+                                            </div>
+
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
+                </div>
+                
             </div>
-            
         </div>
     </div>
-</div>
+    @endforeach
 @endSection
 
 @section('SmallModal')
 <!-- Small modal -->
-
-<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Thông báo</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Bạn có chắc chắn muốn xóa</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                <button type="button" class="btn btn-primary">Xóa</button>
+    @foreach($users as $user)
+    <div class="modal fade bd-example-modal-sm{{$user->user_id}}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Thông báo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Bạn có chắc chắn muốn xóa</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                    <a href="destroyUser/{{$user->user_id}}"class="btn btn-primary">Xóa</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
+    @endforeach
 @endSection
 
 @section('LargeModal1')
-<div class="modal fade bd-example-modal-lg1" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -209,34 +256,34 @@
                             <div class="main-card mb-3 card">
                                 <div class="card-body">
                                     
-                                    <form class="">
+                                    <form class="" method="post" action="createUser">
+                                        @csrf
                                         <h5 class="card-title">Thông tin tài khoản</h5>
 
                                         <div class="position-relative form-group">
                                             <label for="exampleSelect" class="">Tên đăng nhập</label>
-                                            <input type="text"  name=""id="exampleSelect" class="form-control">
+                                            <input type="text"  name="userName"id="exampleSelect" class="form-control">
                                         </div>
                                         
                                         <div class="position-relative form-group">
                                             <label for="exampleSelect" class="">Mật khẩu</label>
-                                            <input type="password"  name=""id="exampleSelect" class="form-control">
+                                            <input type="password"  name="password"id="exampleSelect" class="form-control">
                                         </div>
                                         <div class="position-relative form-group">
                                             <label for="exampleSelect" class="">Xác nhận mật khẩu</label>
-                                            <input type="password"  name=""id="exampleSelect" class="form-control">
+                                            <input type="password"  name="rePassword"id="exampleSelect" class="form-control">
                                         </div>
                                         <label for="exampleSelect" class="">Chọn chức vụ</label>
-                                            <select name="select" id="exampleSelect" class="form-control">
-                                                <option></option>
-                                                <option>Giáo viên</option>
-                                                <option>Tổ trưởng</option>
-                                                <option>Trưởng khoa</option>
+                                            <select name="category" id="exampleSelect" class="form-control">
+                                                <option value="0">Giáo viên</option>
+                                                <option value="1">Tổ trưởng</option>
+                                                <option value="2">Trưởng khoa</option>
                                             </select>
                                         
 
                                         <div class="modal-footer" style="background-color: white ">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                                            <button type="button" class="btn btn-primary">Lưu</button>
+                                            <button type="submit" class="btn btn-primary">Lưu</button>
                                         </div>
 
                                     </form>

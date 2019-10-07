@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class UserController extends Controller
 {
@@ -11,9 +12,20 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+        if ($request->session()->has('login') && $request->session()->get('login') == false) {
+        # code..
+        return view('login');
+        }
+        else if (!$request->session()->has('login')) {
+            return view('login');
+        }
+        else{
+            $users = User::Where('user_category','<','3')->get();
+            return view('userManagement',compact('users'));
+        }
     }
 
     /**
@@ -21,10 +33,53 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //
+        $userName = $request->userName;
+        $password = $request->password;
+        $rePassword = $request->rePassword;
+        $category = $request->category;
+
+        $users = User::all();
+        $kt = 0;
+
+        foreach ($users as $user) {
+            if ($user->user_userName == $userName) {
+                # code...
+                $kt = 1;
+            }
+        }
+
+        if ($userName == "") {
+            $error = 'Tên đăng nhập không được bỏ trống';
+        }
+        else if ($password == "") {
+            $error = 'Mật khẩu không được bỏ trống';
+        }  
+        else if ($rePassword == "") {
+            $error = 'Xác nhận mật khẩu';
+        }
+        else if ($password != $rePassword) {
+            $error = 'Xác nhận lại mật khẩu';
+        }else if ($kt == 1) {
+            $error = 'Tên đăng nhập đã tồn tại';
+        }else{
+            $userNew = new User;
+            $userNew->timestamps = false;
+            $userNew->user_userName = $userName;
+            $userNew->user_password = $password;
+            $userNew->user_category = $category;
+            $userNew->save();
+
+            $request->session()->put('notice', 'thêm thành công');
+            return redirect()->route('userManagementView');
+        }
+        $request->session()->put('notice',$error);
+        return redirect()->route('userManagementView');
+        
     }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -43,9 +98,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
         //
+        $users = User::Where('user_userName','like','%'.$request->name.'%')->Where('user_category','<','3')->get();
+        return view('userManagement',compact('users'));
     }
 
     /**
@@ -54,9 +111,46 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
         //
+        $userName = $request->userName;
+        $newPassword = $request->newPassword;
+        $reNewPassword = $request->reNewPassword;
+        $category = $request->category;
+        $id = User::where('user_userName','=',$userName)->get('user_id');
+
+        //var_dump($id);
+        $users = User::all();
+        $kt = 0;
+
+        foreach ($users as $user) {
+            if ($user->user_userName == $userName) {
+                # code...
+                $kt = 1;
+            }
+        }
+
+        if ($userName == "") {
+            $error = 'Tên đăng nhập không được bỏ trống';
+        }
+        else if ($newPassword == "") {
+            $error = 'Mật khẩu mới không được bỏ trống';
+        }  
+        else if ($reNewPassword == "") {
+            $error = 'Xác nhận mật khẩu mới';
+        }
+        else if ($newPassword != $reNewPassword) {
+            $error = 'Xác nhận lại mật khẩu';
+        }else if ($kt == 0) {
+            $error = 'Tài khoản không tồn tại';
+        }else{
+            $userNew = User::where('user_id','=',$id[0]['user_id'])->update(['user_userName'=>$userName,'user_password'=>$newPassword,'user_category'=>$category,]);
+            $request->session()->put('notice', 'Sửa thành công');
+            return redirect()->route('userManagementView');
+        }
+        $request->session()->put('notice',$error);
+        return redirect()->route('userManagementView');
     }
 
     /**
@@ -77,8 +171,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
         //
+        $userNew = User::where('user_id','=',$id)->delete();
+        $request->session()->put('notice', 'Xóa thành công');
+        return redirect()->route('userManagementView');
     }
 }

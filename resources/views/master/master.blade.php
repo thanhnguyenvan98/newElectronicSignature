@@ -26,7 +26,7 @@
     <link href="{{asset('css/main.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
-    
+    @yield('script')
 </head>
 <body>
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
@@ -57,8 +57,15 @@
 
         </div>
     </div>
-<script type="text/javascript" src="{{asset('assets/scripts/main.js')}}"></script></body>
+<script type="text/javascript" src="{{asset('assets/scripts/main.js')}}"></script>
+
+
+
+
+</body>
 </html>
+
+
 
 {{--code phan mo rong LargeModal--}}
 @yield('LargeModal')
@@ -66,3 +73,4 @@
 
 {{--code phan mo rong SmallModal--}}
 @yield('SmallModal')
+
