@@ -13,10 +13,30 @@
                     </div>
                     <div>Tổng quan
                     </div>
+                    
+                   
                 </div>    
             </div>
         </div>            
         <div class="row">
+            @if(Session::has('notice'))
+                <div class="col-md-12">
+                    <div class="main-card mb-3 card">
+                        <div class="card-header">{{Session::pull('notice')}}
+                        </div>
+                    </div>
+                </div>
+            @endif
+            @if(Session::has('feedBackSendEmail'))
+                <div class="col-md-12">
+                    <div class="main-card mb-3 card">
+                        <div class="card-header">{{Session::pull('feedBackSendEmail')}}
+                        </div>
+                    </div>
+                </div>
+            @endif
+            
+
             <div class="col-md-6 col-xl-4">
                 <a href="" style="text-decoration: none;">
                     <div class="card mb-3 widget-content bg-midnight-bloom">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\teacher;
 
 class loginController extends Controller
 {
@@ -25,6 +26,8 @@ class loginController extends Controller
                 if($dem = 1){
                     $userId = $value['user_id'];
                     $category = $value['user_category'];
+
+                    //tao session luu thong tin cua tai khoan vua dang nhap vao he thong
                     session()->put('login', true);
                     session()->put('userId',$userId);
                     session()->put('category', $category);
@@ -34,7 +37,17 @@ class loginController extends Controller
 
 
     	if ($dem == 1 && $category == 0) {
-    		return  redirect()->route('homeView');
+            //kiem tra xem tai khoan nay da cap rnhap thong tin tai khoan hay chua
+            //neu chua chuyen den trang cap nhap tai khoan thong tin ca nhan
+            $teachers = teacher::all();
+            $kt = 0;
+            foreach ($teachers as $teacher) {
+                if ($userId == $teacher->user_id) {
+                    return  redirect()->route('homeView');
+                }
+            }
+            return redirect()->route('inforView');
+    		
     	}elseif ($dem == 1 && $category == 1) {
             # code...
             return redirect()->route('homeLeaderView');

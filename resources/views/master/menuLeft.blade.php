@@ -129,7 +129,7 @@
                 </li>
                 @endif
 
-                @if(Session::has('category') && Session::get('category') != 1 && Session::get('category') != 4)
+                @if(Session::has('category') && Session::get('category') == 3)
                 <li class="app-sidebar__heading ">
                     <a href="calendarManagement" class="bg-plum-plate" style="color: white">
                         Quản lý lịch giảng dạy

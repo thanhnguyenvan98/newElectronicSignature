@@ -61,7 +61,11 @@ Route::post('editUser',['as'=>'editUser','uses'=>'UserController@edit']);
 
 Route::get('destroyUser/{id}','UserController@destroy')->name('destroyUser');
 
-Route::post('showUser',['as'=>'editUser','uses'=>'UserController@show']);
+Route::post('showUser',['as'=>'showUser','uses'=>'UserController@show']);
+
+Route::get('infor', 'TeacherController@showInforBeforLogin')->name('inforView');
+
+Route::post('editInforTeacher',['as'=>'editInforTeacher','uses'=>'TeacherController@create']);
 
 route::get('calendar',function(){
 	if (Session::has('login') && Session::get('login') == false) {
@@ -281,3 +285,14 @@ route::get('bank',function(){
 
 //RSA
 route::get('RSA','RSAController@createKey');
+
+
+
+//Gmail
+Route::get('/gmail', function () {
+    return view('testGmail');
+});
+
+Route::post('testGmail', ['uses' => 'emailController@addFeedback', 'as' => 'front.fb'])->name('testGmail');
+
+Route::get('sendMail','emailController@sendMail');

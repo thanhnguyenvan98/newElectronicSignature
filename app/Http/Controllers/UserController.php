@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\signature;
+use App\teacher;
+use phpseclib\Crypt\RSA;
 
 class UserController extends Controller
 {
@@ -72,6 +75,25 @@ class UserController extends Controller
             $userNew->user_category = $category;
             $userNew->save();
 
+            //lay ra id cua tai khoan vua them
+            $idUserNew = User::where('user_userName','=',$userName)->where('user_password','=',$password)->get()->toArray();
+            $id = $idUserNew[0]['user_id'];
+
+            //tao publicKey & privateKey
+            $rsa = new RSA();
+            $array = $rsa->createKey(1024);
+            $publicKey = $array['publickey'];
+            $privateKey = $array['privatekey'];
+
+            //them ban ghi vao bang signature cho tai khoan vua duoc tao
+            $signature = new signature;
+            $signature->timestamps = false;
+            $signature->signature_publicKey = $publicKey;
+            $signature->signature_privateKey = $privateKey;
+            $signature->user_id = $id;
+            $signature->save();
+
+            //quay tro lai giao dien voi thong bao thanh cong
             $request->session()->put('notice', 'thêm thành công');
             return redirect()->route('userManagementView');
         }
@@ -174,7 +196,10 @@ class UserController extends Controller
     public function destroy(Request $request,$id)
     {
         //
+        $signature = signature::where('user_id','=',$id)->delete();
+        $teacher = teacher::where('user_id','=',$id)->delete();
         $userNew = User::where('user_id','=',$id)->delete();
+
         $request->session()->put('notice', 'Xóa thành công');
         return redirect()->route('userManagementView');
     }
