@@ -2,6 +2,10 @@
 
 return [
 
+    'Maatwebsite\Excel\ExcelServiceProvider',
+
+    'Excel' => 'Maatwebsite\Excel\Facades\Excel',
+
     /*
     |--------------------------------------------------------------------------
     | Application Name

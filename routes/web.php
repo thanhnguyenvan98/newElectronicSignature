@@ -11,6 +11,8 @@
 |
 */
 
+// Route::resource('specializeds','SpecializedController');
+
 Route::get('home', function () {
 	if (Session::has('login') && Session::get('login') == false) {
     # code...
@@ -55,6 +57,10 @@ route::get('/',function(){
 
 Route::post('postLogin',['as'=>'postLogin','uses'=>'loginController@check']);
 
+//user
+
+route::get('userManagement','UserController@index')->name('userManagementView');
+
 Route::post('createUser',['as'=>'createUser','uses'=>'UserController@create']);
 
 Route::post('editUser',['as'=>'editUser','uses'=>'UserController@edit']);
@@ -62,6 +68,20 @@ Route::post('editUser',['as'=>'editUser','uses'=>'UserController@edit']);
 Route::get('destroyUser/{id}','UserController@destroy')->name('destroyUser');
 
 Route::post('showUser',['as'=>'showUser','uses'=>'UserController@show']);
+
+// Specialized
+
+route::get('SpecializedManagement','SpecializedController@index')->name('SpecializedManagementView');
+
+Route::post('createSpecialized',['as'=>'createSpecialized','uses'=>'SpecializedController@create']);
+
+Route::post('editSpecialized',['as'=>'editSpecialized','uses'=>'SpecializedController@edit']);
+
+Route::get('destroySpecialized/{id}','SpecializedController@destroy')->name('destroySpecialized');
+
+Route::post('showSpecialized',['as'=>'showSpecialized','uses'=>'SpecializedController@show']);
+
+// Teacher
 
 Route::get('infor', 'TeacherController@showInforBeforLogin')->name('inforView');
 
@@ -235,7 +255,6 @@ route::get('calendarManagementAdmin',function(){
 		return view('calendarManagementAdmin');
 })->name('calendarManegermentAdminView');
 
-route::get('userManagement','UserController@index')->name('userManagementView');
 
 
 
