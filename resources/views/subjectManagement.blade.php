@@ -1,6 +1,6 @@
 @extends('master.master')
 
-@section('title','Subjecct Management')
+@section('title','Subject Management')
 
 @section('content')
 	<div class="app-main__inner">
@@ -42,107 +42,24 @@
                                 <th>STT</th>
                                 <th>Tên</th>
                                 <th>Số tín chỉ</th>
-                                <th>Số tiết trong ngày</th>
-                                <th>Môn thực hành</th>
                                 <th>Tác vụ</th>
                             </tr>
                             </thead>
                             <tbody id="tableDKL">
-                            <tr>
-                                <th scope="row">1</th>
-                                
-                                <td>Lập trình java</td>
-                                <td>3</td>
-                                <td>3</td>
-                                <td>Có</td>
-                                <td>
-                                    <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg" style="float: left; width: 50px">Sửa</button>
-                                    <button type="button" class="btn mr-2 mb-2 btn-secondary" data-toggle="modal" data-target=".bd-example-modal-sm " style="float: left;">Xóa</button>
-                                </td>
-                            	<tr>
-	                                <th scope="row">1</th>
-	                                
-	                                <td>Lập trình java</td>
-	                                <td>3</td>
-	                                <td>3</td>
-	                                <td>Có</td>
-	                                <td>
-	                                    <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg" style="float: left; width: 50px">Sửa</button>
-	                                    <button type="button" class="btn mr-2 mb-2 btn-secondary" data-toggle="modal" data-target=".bd-example-modal-sm " style="float: left;">Xóa</button>
-	                                </td>
-	                            </tr>
-	                            <tr>
-	                                <th scope="row">1</th>
-	                                
-	                                <td>Lập trình java</td>
-	                                <td>3</td>
-	                                <td>3</td>
-	                                <td>Có</td>
-	                                <td>
-	                                    <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg" style="float: left; width: 50px">Sửa</button>
-	                                    <button type="button" class="btn mr-2 mb-2 btn-secondary" data-toggle="modal" data-target=".bd-example-modal-sm " style="float: left;">Xóa</button>
-	                                </td>
-	                            </tr>
-	                            <tr>
-	                                <th scope="row">1</th>
-	                                
-	                                <td>Lập trình java</td>
-	                                <td>3</td>
-	                                <td>3</td>
-	                                <td>Có</td>
-	                                <td>
-	                                    <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg" style="float: left; width: 50px">Sửa</button>
-	                                    <button type="button" class="btn mr-2 mb-2 btn-secondary" data-toggle="modal" data-target=".bd-example-modal-sm " style="float: left;">Xóa</button>
-	                                </td>
-	                            </tr>
-	                            <tr>
-	                                <th scope="row">1</th>
-	                                
-	                                <td>Lập trình java</td>
-	                                <td>3</td>
-	                                <td>3</td>
-	                                <td>Có</td>
-	                                <td>
-	                                    <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg" style="float: left; width: 50px">Sửa</button>
-	                                    <button type="button" class="btn mr-2 mb-2 btn-secondary" data-toggle="modal" data-target=".bd-example-modal-sm " style="float: left;">Xóa</button>
-	                                </td>
-	                            </tr>
-	                            <tr>
-	                                <th scope="row">1</th>
-	                                
-	                                <td>Lập trình java</td>
-	                                <td>3</td>
-	                                <td>3</td>
-	                                <td>Có</td>
-	                                <td>
-	                                    <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg" style="float: left; width: 50px">Sửa</button>
-	                                    <button type="button" class="btn mr-2 mb-2 btn-secondary" data-toggle="modal" data-target=".bd-example-modal-sm " style="float: left;">Xóa</button>
-	                                </td>
-	                            </tr>
-	                            <tr>
-	                                <th scope="row">1</th>
-	                                
-	                                <td>Lập trình java</td>
-	                                <td>3</td>
-	                                <td>3</td>
-	                                <td>Có</td>
-	                                <td>
-	                                    <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg" style="float: left; width: 50px">Sửa</button>
-	                                    <button type="button" class="btn mr-2 mb-2 btn-secondary" data-toggle="modal" data-target=".bd-example-modal-sm " style="float: left;">Xóa</button>
-	                                </td>
-	                            </tr>
-	                            <tr>
-	                                <th scope="row">1</th>
-	                                
-	                                <td>Lập trình java</td>
-	                                <td>3</td>
-	                                <td>3</td>
-	                                <td>Có</td>
-	                                <td>
-	                                    <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg" style="float: left; width: 50px">Sửa</button>
-	                                    <button type="button" class="btn mr-2 mb-2 btn-secondary" data-toggle="modal" data-target=".bd-example-modal-sm " style="float: left;">Xóa</button>
-	                                </td>
-	                            </tr>
+                                <?php $i = 1; ?>
+                                @foreach($Subjects as $subject)
+                                <tr>
+                                    <td scope="row" style="width: 20px">{{$i}}</td>
+                                    
+                                    <td>{{$subject->subject_name}}</td>
+                                    <td>{{$subject->subject_numberCredit}}</td>
+                                    <td>
+                                        <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg{{$subject->subbject_id}}" style="">Sửa</button>
+                                        <button type="button" class="btn mr-2 mb-2 btn-secondary" data-toggle="modal" data-target=".bd-example-modal-sm{{$subject->subbject_id}}" style="">Xóa</button>
+                                    </td>
+                                </tr>
+                            	@endforeach
+	                         
                             </tbody>
                         </table>
                     </div>
@@ -182,19 +99,6 @@
                                             <label for="exampleSelect" class="">Số tín chỉ</label>
                                             <input type="number"  name=""id="exampleSelect" class="form-control">
                                         </div>
-                                        <div class="position-relative form-group">
-                                            <label for="exampleSelect" class="">Số tiết trong ngày</label>
-                                            <input type="number"  name=""id="exampleSelect" class="form-control">
-                                        </div>
-                                        
-                                        <label for="exampleSelect" class="">Loại học phần</label>
-                                            <select name="select" id="exampleSelect" class="form-control">
-                                                
-                                                <option>Có thực hành</option>
-                                                <option>Không có thực hành</option>
-                                            </select>
-                                        
-
                                         <div class="modal-footer" style="background-color: white ">
                                             <button type="button" class="btn btn-primary">Đặt lại</button>
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
@@ -270,17 +174,6 @@
                                             <label for="exampleSelect" class="">Số tín chỉ</label>
                                             <input type="number"  name=""id="exampleSelect" class="form-control">
                                         </div>
-                                        <div class="position-relative form-group">
-                                            <label for="exampleSelect" class="">Số tiết trong ngày</label>
-                                            <input type="number"  name=""id="exampleSelect" class="form-control">
-                                        </div>
-                                        
-                                        <label for="exampleSelect" class="">Loại học phần</label>
-                                            <select name="select" id="exampleSelect" class="form-control">
-                                                
-                                                <option>Có thực hành</option>
-                                                <option>Không có thực hành</option>
-                                            </select>
                                         
 
                                         <div class="modal-footer" style="background-color: white ">

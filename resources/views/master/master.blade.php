@@ -40,7 +40,7 @@
             @include('master.menuLeft')
 
 
-            <div class="app-main__outer">
+            <div class="app-main__outer" >
 
                 
                 {{--code content thay đổi theo từng controler--}}
@@ -57,10 +57,9 @@
 
         </div>
     </div>
+<script type="text/javascript" src="{{asset('assets/scripts/jquery-3.4.1.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('assets/scripts/main.js')}}"></script>
-
-
-
+<script type="text/javascript" src="{{asset('assets/scripts/myScript.js')}}"></script>
 
 </body>
 </html>

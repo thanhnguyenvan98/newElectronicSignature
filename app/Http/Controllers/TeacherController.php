@@ -41,7 +41,7 @@ class TeacherController extends Controller
         $brithday = $request->brithday;
         $telephoneNumber = $request->telephoneNumber;
         $email = $request->email;
-        $image = $request->file('image')->getClientOriginalExtension();
+        $image = $request->image;
         $gender = $request->gender;
         $specialized_id = $request->specialized_id;
         $salary = $request->salary;
@@ -59,8 +59,8 @@ class TeacherController extends Controller
         if ($request->hasFile('image')) {
             if($request->file('image')->getClientOriginalExtension() == 'PNG' || $request->file('image')->getClientOriginalExtension() == 'jpg' || $request->file('image')->getClientOriginalExtension() == 'png' || $request->file('image')->getClientOriginalExtension() == 'JPG') {
                 
-                //$request->file('image')->move('image',$userId.'Avata.png');
-                $request->file('image')->store('image');
+                $request->file('image')->move('image',$userId.'Avata.png');
+                //$request->file('image')->store('image');
             
             }else{
                 $request->session()->put('notice','file ảnh đại diện không đúng định dạng');
@@ -85,8 +85,6 @@ class TeacherController extends Controller
             $msg->to(session()->pull('email'),session()->pull('name'))->subject('privateKey');
         });
         session()->put('feedBackSendEmail', 'Khóa cá nhân của bạn đã được gửi về Gmail');
-
-
         $request->session()->put('notice', 'Đã cập nhập thông tin cá nhân');
         return redirect()->route('homeView');
                

@@ -143,15 +143,6 @@ class UserController extends Controller
         $id = User::where('user_userName','=',$userName)->get('user_id');
 
         //var_dump($id);
-        $users = User::all();
-        $kt = 0;
-
-        foreach ($users as $user) {
-            if ($user->user_userName == $userName) {
-                # code...
-                $kt = 1;
-            }
-        }
 
         if ($userName == "") {
             $error = 'Tên đăng nhập không được bỏ trống';
@@ -164,10 +155,8 @@ class UserController extends Controller
         }
         else if ($newPassword != $reNewPassword) {
             $error = 'Xác nhận lại mật khẩu';
-        }else if ($kt == 0) {
-            $error = 'Tài khoản không tồn tại';
         }else{
-            $userNew = User::where('user_id','=',$id[0]['user_id'])->update(['user_userName'=>$userName,'user_password'=>$newPassword,'user_category'=>$category,]);
+            $userNew = User::where('user_id','=',$id[0]['user_id'])->update(['user_password'=>$newPassword,'user_category'=>$category,]);
             $request->session()->put('notice', 'Sửa thành công');
             return redirect()->route('userManagementView');
         }
@@ -196,10 +185,15 @@ class UserController extends Controller
     public function destroy(Request $request,$id)
     {
         //
-        $signature = signature::where('user_id','=',$id)->delete();
-        $teacher = teacher::where('user_id','=',$id)->delete();
-        $userNew = User::where('user_id','=',$id)->delete();
-
+        try {
+            $signature = signature::where('user_id','=',$id)->delete();
+            $teacher = teacher::where('user_id','=',$id)->delete();
+            $userNew = User::where('user_id','=',$id)->delete();
+        } catch (Exception $e) {
+            $request->session()->put('notice', 'Lỗi không thể xóa được vì giáo viên này đang có lịch giảng dạy');
+            return redirect()->route('userManagementView');
+        }
+        
         $request->session()->put('notice', 'Xóa thành công');
         return redirect()->route('userManagementView');
     }

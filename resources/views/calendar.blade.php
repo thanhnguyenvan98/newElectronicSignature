@@ -19,7 +19,7 @@
         </div>            
         <div class="row">
             <div class="col-md-12" style="height: 60px">
-                <a href="createCalendar" class="btn-transition btn btn-outline-primary" style="margin-left: 40px;"><h4>Thêm Lịch</h4></a>
+                <a href="createCalendarView" class="btn-transition btn btn-outline-primary" style="margin-left: 40px;"><h4>Thêm Lịch</h4></a>
             </div>
             <div class="col-md-12">
                 <div class="main-card mb-12 card" style="margin-top: 20px">

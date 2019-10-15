@@ -22,197 +22,47 @@
                 <div class="main-card mb-3 card">
                     <div class="card-body">
                         <h5 class="card-title">Nhập thông tin lịch học</h5>
-                        <form  class="needs-validation" novalidate>
-                            <div class="col-md-12 mb-12">
+                        <form  class="needs-validation" action="createCalendar" method="post">
+                            @csrf
+                            <div class="col-md-6 mb-6" style="float: left;">
                                 <label for="validationCustom02" style="float: left;margin-top: 20px">Chọn môn học</label>
                                 
-                                <select class="form-control" id="validationCustom02">
-                                    <option>Lập trình Windown</option>
-                                    <option>Phát triển phần mềm hướng dịch vụ</option>
+                                <select class="form-control" id="Subject" onchange="">
+                                    @foreach ($Subjects as $Subject)
+                                    <option value="{{$Subject->subject_numberCredit}}">{{$Subject->subject_name}}</option>
+                                    
+                                    @endforeach
                                 </select>
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>
                             </div>
+
+                            <div class="col-md-6 mb-6" style="float: left; margin-bottom: 40px">
+                                <label for="validationCustom02" style="float: left;margin-top: 20px">Chọn số tiết học / 1 buổi</label>
+                                
+                                <select class="form-control" id="soTietHoc" onchange="test()">
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="6">6</option>
+                                </select>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+
                             <table class="mb-0 table" style="margin-top: 40px">
 
                                 <thead>
                                 <tr>
-                                    <th>Buổi</th>
+                                    <th style="width: 20px !important">Buổi</th>
                                     <th>Bài giảng</th>
                                     <th>Dự kiến tiến độ</th>
                                     <th>Ghi chú</th>
                                 </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>
-                                            <div class="col-md-12 mb-12">
-                                                <textarea name="text" id="exampleText" class="form-control"></textarea>
-                                                <div class="valid-feedback">
-                                                    Looks good!
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-md-12 mb-12">
-                                                
-                                                <input type="date" class="form-control" id="validationCustom02" value="" required>
-                                                <div class="valid-feedback">
-                                                    Looks good!
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-md-12 mb-12">
-                                                <textarea name="text" id="exampleText" class="form-control"></textarea>
-                                                <div class="valid-feedback">
-                                                    Looks good!
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>
-                                            <div class="col-md-12 mb-12">
-                                                <textarea name="text" id="exampleText" class="form-control"></textarea>
-                                                <div class="valid-feedback">
-                                                    Looks good!
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-md-12 mb-12">
-                                                
-                                                <input type="date" class="form-control" id="validationCustom02" value="" required>
-                                                <div class="valid-feedback">
-                                                    Looks good!
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-md-12 mb-12">
-                                                <textarea name="text" id="exampleText" class="form-control"></textarea>
-                                                <div class="valid-feedback">
-                                                    Looks good!
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td scope="row">3</td>
-                                        <td>
-                                            <div class="col-md-12 mb-12">
-                                                <textarea name="text" id="exampleText" class="form-control"></textarea>
-                                                <div class="valid-feedback">
-                                                    Looks good!
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-md-12 mb-12">
-                                                
-                                                <input type="date" class="form-control" id="validationCustom02" value="" required>
-                                                <div class="valid-feedback">
-                                                    Looks good!
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-md-12 mb-12">
-                                                <textarea name="text" id="exampleText" class="form-control"></textarea>
-                                                <div class="valid-feedback">
-                                                    Looks good!
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td scope="row">4</td>
-                                        <td>
-                                            <div class="col-md-12 mb-12">
-                                                <textarea name="text" id="exampleText" class="form-control"></textarea>
-                                                <div class="valid-feedback">
-                                                    Looks good!
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-md-12 mb-12">
-                                                
-                                                <input type="date" class="form-control" id="validationCustom02" value="" required>
-                                                <div class="valid-feedback">
-                                                    Looks good!
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-md-12 mb-12">
-                                                <textarea name="text" id="exampleText" class="form-control"></textarea>
-                                                <div class="valid-feedback">
-                                                    Looks good!
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td scope="row">5</td>
-                                        <td>
-                                            <div class="col-md-12 mb-12">
-                                                <textarea name="text" id="exampleText" class="form-control"></textarea>
-                                                <div class="valid-feedback">
-                                                    Looks good!
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-md-12 mb-12">
-                                                
-                                                <input type="date" class="form-control" id="validationCustom02" value="" required>
-                                                <div class="valid-feedback">
-                                                    Looks good!
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-md-12 mb-12">
-                                                <textarea name="text" id="exampleText" class="form-control"></textarea>
-                                                <div class="valid-feedback">
-                                                    Looks good!
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td scope="row">6</td>
-                                        <td>
-                                            <div class="col-md-12 mb-12">
-                                                <textarea name="text" id="exampleText" class="form-control"></textarea>
-                                                <div class="valid-feedback">
-                                                    Looks good!
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-md-12 mb-12">
-                                                
-                                                <input type="date" class="form-control" id="validationCustom02" value="" required>
-                                                <div class="valid-feedback">
-                                                    Looks good!
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="col-md-12 mb-12">
-                                                <textarea name="text" id="exampleText" class="form-control"></textarea>
-                                                <div class="valid-feedback">
-                                                    Looks good!
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                <tbody id="tbody">
                                     
                                 </tbody>
                             </table>

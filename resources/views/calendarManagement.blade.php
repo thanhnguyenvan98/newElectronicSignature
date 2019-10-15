@@ -21,7 +21,27 @@
                 <div class="main-card mb-3 card">
                     <div class="card-body">
                         <h5 class="card-title">Lịch giảng dạy</h5>
-                        
+                        <ul id="menuHome" style="list-style-type: none;">
+                            <li style="float: left;padding-top: 5px"><button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg1">Phân bổ môn học</button></li>
+
+                            @if(Session::has('notice'))
+                                <li style="color: red;padding-left: 100px; float: left; padding-top: 10px">
+                                    {{Session::pull('notice')}}
+                                </li>
+                            @endif
+                            <li>
+                            <li style="float: right; padding-bottom:10px">
+                                <form action="showUser" method="post">
+                                    @csrf
+                                    <div class="input-group">
+                                        <input type="text" name="name" class="form-control" placeholder="Tìm kiếm theo tên GV">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-secondary" type="submit">Tìm kiếm</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </li>
+                        </ul>
                         <table class="mb-0 table">
                             <thead>
                             <tr>
@@ -89,6 +109,7 @@
                         	 <button class="mb-2 mr-2 btn-transition btn btn-outline-danger" style="float: right;">Download lịch giảng dạy</button>
                         	 <p>Tiêu đề: </p>
                         	 <p>Lịch giảng dạy mông lập trình Java lớp KTPM2 Kỳ học thứ 3</p>
+
                             
                             <table class="mb-0 table" style="margin-top: 30px">
                                 <thead>
@@ -159,6 +180,72 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endSection
+
+@section('LargeModal1')
+<div class="modal fade bd-example-modal-lg1" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Phân bổ môn học</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form>
+                <div class="modal-body">
+                    <div class="card-body">
+                    
+                        <form class="" method="post" action="createUser">
+                            @csrf
+
+                            <div class="position-relative form-group col-md-6" style="float: left;">
+                                <label for="exampleSelect" class="">Trường</label>
+                                <input type="text"  name="userName"id="exampleSelect" class="form-control">
+                            </div>
+                            
+                            <div class="position-relative form-group col-md-6" style="float: left;">
+                                <label for="exampleSelect" class="">Hệ khóa</label>
+                                <input type="text"  name="password"id="exampleSelect" class="form-control">
+                            </div>
+                            <div class="position-relative form-group col-md-6" style="float: left;">
+                                <label for="exampleSelect" class="">Học kỳ</label>
+                                <input type="text"  name="rePassword"id="exampleSelect" class="form-control">
+                            </div>
+                            <div class="position-relative form-group col-md-6" style="float: left;">
+                                <label for="exampleSelect" class="">Năm học</label>
+                                <input type="text"  name="userName"id="exampleSelect" class="form-control">
+                            </div>
+                            <div class="position-relative form-group col-md-6" style="float: left;">
+                                <label for="exampleSelect" class="">Chọn Giáo viên</label>
+                                <select name="category" id="exampleSelect" class="form-control">
+                                    <option value="0">Nguyễn Văn A</option>
+                                    <option value="1">Nguyễn Văn B</option>
+                                    <option value="2">Nguyễn Văn C</option>
+                                </select>
+                            </div>
+                            <div class="position-relative form-group col-md-6" style="float: left;">
+                                <label for="exampleSelect" class="">Chọn môn học</label>
+                                <select name="category" id="exampleSelect" class="form-control">
+                                    <option value="0">lập trtình Java</option>
+                                    <option value="1">lập trình hướng đối tượng</option>
+                                    <option value="2">Phát triển phần mềm hướng dịch vụ</option>
+                                </select>
+                            </div>
+
+                            <div class="modal-footer" style="background-color: white ">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                                <button type="submit" class="btn btn-primary">Lưu</button>
+                            </div>
+
+                        </form>
+                        
+                    </div>
                 </div>
             </form>
         </div>

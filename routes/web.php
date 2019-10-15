@@ -67,6 +67,9 @@ Route::get('infor', 'TeacherController@showInforBeforLogin')->name('inforView');
 
 Route::post('editInforTeacher',['as'=>'editInforTeacher','uses'=>'TeacherController@create']);
 
+Route::get('subjectManagement', 'subjectController@index');
+
+
 route::get('calendar',function(){
 	if (Session::has('login') && Session::get('login') == false) {
     # code...
@@ -79,8 +82,14 @@ route::get('calendar',function(){
 		return view('calendar');
 })->name('calendarView');
 
+route::get('createCalendarView','CalendarController@index')->name('createCalendarView');
+
+route::get('ajaxCreateCalendar','CalendarController@ajax');
+
+route::post('createCalendar','CalendarController@create')->name('createCalendar');
+
 route::get('editCalendar',function(){
-	if (Session::has('login') && Session::get('login') == false) {
+    if (Session::has('login') && Session::get('login') == false) {
     # code...
     return view('login');
     }
@@ -88,8 +97,35 @@ route::get('editCalendar',function(){
         return view('login');
     }
     else 
-		return view('editCalendar');
+        return view('editCalendar');
 })->name('editCalendarView');
+
+route::get('calendarManagement',function(){
+    if (Session::has('login') && Session::get('login') == false) {
+    # code...
+    return view('login');
+    }
+    else if (!Session::has('login')) {
+        return view('login');
+    }
+    else 
+        return view('calendarManagement');
+})->name('calendarManegementView');
+
+route::get('calendarManagementAdmin',function(){
+    if (Session::has('login') && Session::get('login') == false) {
+    # code...
+    return view('login');
+    }
+    else if (!Session::has('login')) {
+        return view('login');
+    }
+    else 
+        return view('calendarManagementAdmin');
+})->name('calendarManegermentAdminView');
+
+
+
 
 route::get('signatureCalendar',function(){
 	if (Session::has('login') && Session::get('login') == false) {
@@ -211,29 +247,6 @@ route::get('homeManage',function(){
 		return view('homeManage');
 })->name('homeManagerView');
 
-route::get('calendarManagement',function(){
-	if (Session::has('login') && Session::get('login') == false) {
-    # code...
-    return view('login');
-    }
-    else if (!Session::has('login')) {
-        return view('login');
-    }
-    else 
-		return view('calendarManagement');
-})->name('calendarManegementView');
-
-route::get('calendarManagementAdmin',function(){
-	if (Session::has('login') && Session::get('login') == false) {
-    # code...
-    return view('login');
-    }
-    else if (!Session::has('login')) {
-        return view('login');
-    }
-    else 
-		return view('calendarManagementAdmin');
-})->name('calendarManegermentAdminView');
 
 route::get('userManagement','UserController@index')->name('userManagementView');
 
@@ -251,25 +264,12 @@ route::get('userManagementAdmin',function(){
 		return view('userManagementAdmin');
 })->name('userManagementAdminView');
 
-route::get('createCalendar',function(){
-
-		return view('createCalendar');
-})->name('createCalendarView');
 
 
 
 
-route::get('editCalendar',function(){
-	if (Session::has('login') && Session::get('login') == false) {
-    # code...
-    return view('login');
-    }
-    else if (!Session::has('login')) {
-        return view('login');
-    }
-    else 
-		return view('editCalendar');
-})->name('editCalendarView');
+
+
 
 route::get('bank',function(){
 	if (Session::has('login') && Session::get('login') == false) {

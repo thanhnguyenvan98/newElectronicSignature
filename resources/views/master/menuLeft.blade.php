@@ -121,6 +121,14 @@
                 </li>
                 @endif
 
+                @if(Session::has('category') && Session::get('category') != 0 && Session::get('category') != 4 )
+                <li class="app-sidebar__heading ">
+                    <a href="subjectManagement" class="bg-plum-plate" style="color: white">
+                        Quản lý môn học
+                    </a>
+                </li>
+                @endif
+
                 @if(Session::has('category') && Session::get('category') == 4)
                 <li class="app-sidebar__heading ">
                     <a href="userManagementAdmin" class="bg-plum-plate" style="color: white">
@@ -136,6 +144,8 @@
                     </a>
                 </li>
                 @endif
+
+                
 
                 @if(Session::has('category') && Session::get('category') == 4)
                 <li class="app-sidebar__heading ">

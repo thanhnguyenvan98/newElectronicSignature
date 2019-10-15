@@ -136,7 +136,7 @@
 
                                             <div class="position-relative form-group">
                                                 <label for="exampleSelect" class="">Tên đăng nhập</label>
-                                                <input type="text"  name="userName"id="exampleSelect" class="form-control" value="{{$user->user_userName}}">
+                                                <input type="text"  name="userName"id="exampleSelect" class="form-control" value="{{$user->user_userName}}" readonly >
                                             </div>
                                             <div class="position-relative form-group">
                                                 <label for="exampleSelect" class="">Mật khẩu mới</label>
