@@ -42,7 +42,7 @@
                 @if(Session::has('category')&&Session::get('category') == 0)
                 <li class="app-sidebar__heading ">
                     <a href="home" class="mm-active bg-midnight-bloom" style="color: white">
-                        Tổng quan
+                        Tổng quan 
                     </a>
                 </li>
                 @endif
@@ -123,8 +123,12 @@
 
                 @if(Session::has('category') && Session::get('category') != 0 && Session::get('category') != 4 )
                 <li class="app-sidebar__heading ">
+<!-- <<<<<< HEAD
                     <a href="subjectManagement" class="bg-plum-plate" style="color: white">
                         Quản lý môn học
+=======-->
+                    <a href="SpecializedManagement" class="bg-plum-plate" style="color: white">
+                        Quản lý khoa
                     </a>
                 </li>
                 @endif
