@@ -54,10 +54,13 @@ route::get('/',function(){
 	   return view('login');
 })->name('loginView');
 
+//login
 
 Route::post('postLogin',['as'=>'postLogin','uses'=>'loginController@check']);
 
 //user
+    //Edit informaion user
+    route::get('EditInformation','EditInformationController@edit');
 
 route::get('userManagement','UserController@index')->name('userManagementView');
 
@@ -87,7 +90,19 @@ Route::get('infor', 'TeacherController@showInforBeforLogin')->name('inforView');
 
 Route::post('editInforTeacher',['as'=>'editInforTeacher','uses'=>'TeacherController@create']);
 
-Route::get('subjectManagement', 'subjectController@index');
+// Subject
+
+Route::get('SubjectManagement', 'SubjectController@index')->name('SubjectMangementView');
+
+Route::post('CreateSubject',['as'=>'CreateSubject','uses'=>'SubjectController@create']);
+
+Route::post('EditSubject',['as'=>'EditSpecialized','uses'=>'SpecializedController@edit']);
+
+Route::get('DestroySubject/{id}','SubjectController@destroy')->name('destroySubject');
+
+Route::post('ShowSubject',['as'=>'ShowSubject','uses'=>'SubjectController@show']);
+
+
 
 
 route::get('calendar',function(){
@@ -102,11 +117,17 @@ route::get('calendar',function(){
 		return view('calendar');
 })->name('calendarView');
 
+
+// Calendar
+
 route::get('createCalendarView','CalendarController@index')->name('createCalendarView');
 
 route::get('ajaxCreateCalendar','CalendarController@ajax');
 
 route::post('createCalendar','CalendarController@create')->name('createCalendar');
+
+
+
 
 route::get('editCalendar',function(){
     if (Session::has('login') && Session::get('login') == false) {

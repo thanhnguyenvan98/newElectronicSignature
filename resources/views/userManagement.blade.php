@@ -108,7 +108,7 @@
     </div>
 @endSection
 
-
+<!-- sua -->
 
 @section('LargeModal')
     @foreach ($users as $user)
@@ -184,6 +184,8 @@
     @endforeach
 @endSection
 
+<!-- Xoa -->
+
 @section('SmallModal')
 <!-- Small modal -->
     @foreach($users as $user)
@@ -208,6 +210,8 @@
     </div>
     @endforeach
 @endSection
+
+<!-- Them -->
 
 @section('LargeModal1')
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
