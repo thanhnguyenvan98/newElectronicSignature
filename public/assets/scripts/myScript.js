@@ -24,6 +24,8 @@ $(document).ready(function(){
             $('#tbody').html(result);
         }
     });
+
+
 });
 
 function test(){
@@ -53,4 +55,10 @@ function test(){
         }
     });
 
+}
+
+function change(){
+    alert('hahaha');
+    var textPrivateKey = document.getElementById("textPrivateKey");
+    textPrivateKey.innerHTML = 'Demo thay đổi nội dung thẻ div bằn';
 }

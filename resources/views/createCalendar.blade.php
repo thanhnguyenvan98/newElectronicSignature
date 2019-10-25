@@ -22,14 +22,19 @@
                 <div class="main-card mb-3 card">
                     <div class="card-body">
                         <h5 class="card-title">Nhập thông tin lịch học</h5>
+                        @if(Session::has('notice'))
+                                <div class="col-md-12 mb-6" style="color: red;padding-left: 100px; float: left; padding-top: 10px">
+                                    {{Session::pull('notice')}}
+                                </div>
+                            @endif
                         <form  class="needs-validation" action="createCalendar" method="post">
                             @csrf
                             <div class="col-md-6 mb-6" style="float: left;">
                                 <label for="validationCustom02" style="float: left;margin-top: 20px">Chọn môn học</label>
                                 
-                                <select class="form-control" id="Subject" onchange="">
+                                <select class="form-control" name="Subject" id="Subject" onchange="test()">
                                     @foreach ($Subjects as $Subject)
-                                    <option value="{{$Subject->subject_numberCredit}}">{{$Subject->subject_name}}</option>
+                                    <option value="{{$Subject->subject_id}}">{{$Subject->subject_name}}</option>
                                     
                                     @endforeach
                                 </select>
@@ -41,7 +46,7 @@
                             <div class="col-md-6 mb-6" style="float: left; margin-bottom: 40px">
                                 <label for="validationCustom02" style="float: left;margin-top: 20px">Chọn số tiết học / 1 buổi</label>
                                 
-                                <select class="form-control" id="soTietHoc" onchange="test()">
+                                <select class="form-control" name="soTietHoc" id="soTietHoc" onchange="test()">
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                     <option value="4">4</option>
@@ -74,5 +79,4 @@
                 
         </div>
     </div>
-
 @endSection

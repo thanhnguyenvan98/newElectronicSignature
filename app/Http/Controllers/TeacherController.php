@@ -76,7 +76,7 @@ class TeacherController extends Controller
 
         //gửi email về email mà người dùng nhập
         $signature = signature::where('user_id','=',$userId)->get()->toArray();
-        session()->put('privateKeyEmail', $signature[0]['signature_privateKey']);
+        session()->put('privateKeyEmail', $signature[0]['signature_publicKey']);
         $data = [];
         session()->put('email', $email);
         session()->put('name', $name);
