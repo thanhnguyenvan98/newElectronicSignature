@@ -25,7 +25,7 @@
         			<div class="col-md-8"> 
 						<div class="card-body">
 				            <h5 class="card-title">Thông tin</h5>
-				            <form class="needs-validation" novalidate>
+				            <form class="needs-validation" novalidate action='EditInformation'>
 				                <div class="form-row">
 				                    <div class="col-md-12 mb-12">
 				                        <label for="validationCustom01" style="float: left; margin-top: 20px">Họ tên</label>

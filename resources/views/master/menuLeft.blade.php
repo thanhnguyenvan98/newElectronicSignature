@@ -122,12 +122,16 @@
 
                 @if(Session::has('category') && Session::get('category') != 0 && Session::get('category') != 4 )
                 <li class="app-sidebar__heading ">
-<!-- <<<<<< HEAD
-                    <a href="subjectManagement" class="bg-plum-plate" style="color: white">
-                        Quản lý môn học
-=======-->
                     <a href="SpecializedManagement" class="bg-plum-plate" style="color: white">
                         Quản lý khoa
+                    </a>
+                </li>
+                @endif
+
+                @if(Session::has('category') && Session::get('category') != 0 && Session::get('category') != 4 )
+                <li class="app-sidebar__heading ">
+                    <a href="SubjectManagement" class="bg-plum-plate" style="color: white">
+                        Quản lý môn học
                     </a>
                 </li>
                 @endif
@@ -150,20 +154,20 @@
 
                 
 
-                @if(Session::has('category') && Session::get('category') == 4)
+                <!-- @if(Session::has('category') && Session::get('category') == 4)
                 <li class="app-sidebar__heading ">
                     <a href="calendarManagementAdmin" class="bg-plum-plate" style="color: white">
                         Quản lý lịch giảng dạy
                     </a>
                 </li>
-                @endif
-                @if(Session::has('category') && Session::get('category') == 4)
+                @endif -->
+                <!-- @if(Session::has('category') && Session::get('category') == 4)
                 <li class="app-sidebar__heading ">
                     <a href="bank" class="bg-plum-plate" style="color: white">
                         Quản lý liên kết ngân hàng
                     </a>
                 </li>
-                @endif
+                @endif -->
             </ul>
         </div>
     </div>

@@ -26,6 +26,8 @@
     <link href="{{asset('css/main.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+    <script type="text/javascript" src="{{asset('assets/scripts/jquery-3.4.1.min.js')}}"></script>
+    
     @yield('script')
 </head>
 <body>
@@ -57,7 +59,7 @@
 
         </div>
     </div>
-<script type="text/javascript" src="{{asset('assets/scripts/jquery-3.4.1.min.js')}}"></script>
+
 <script type="text/javascript" src="{{asset('assets/scripts/main.js')}}"></script>
 <script type="text/javascript" src="{{asset('assets/scripts/myScript.js')}}"></script>
 
