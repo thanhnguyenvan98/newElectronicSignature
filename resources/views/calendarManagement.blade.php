@@ -197,44 +197,45 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form>
                 <div class="modal-body">
                     <div class="card-body">
                     
-                        <form class="" method="post" action="createUser">
+                        <form class="" method="post" action="createCalendarManagement">
                             @csrf
 
                             <div class="position-relative form-group col-md-6" style="float: left;">
                                 <label for="exampleSelect" class="">Trường</label>
-                                <input type="text"  name="userName"id="exampleSelect" class="form-control">
+                                <input type="text"  name="nameUniversity" id="exampleSelect" class="form-control">
                             </div>
                             
                             <div class="position-relative form-group col-md-6" style="float: left;">
                                 <label for="exampleSelect" class="">Hệ khóa</label>
-                                <input type="text"  name="password"id="exampleSelect" class="form-control">
+                                <input type="text"  name="heKhoa" id="exampleSelect" class="form-control">
                             </div>
                             <div class="position-relative form-group col-md-6" style="float: left;">
                                 <label for="exampleSelect" class="">Học kỳ</label>
-                                <input type="text"  name="rePassword"id="exampleSelect" class="form-control">
+                                <input type="text"  name="session"id="exampleSelect" class="form-control">
                             </div>
                             <div class="position-relative form-group col-md-6" style="float: left;">
                                 <label for="exampleSelect" class="">Năm học</label>
-                                <input type="text"  name="userName"id="exampleSelect" class="form-control">
+                                <input type="number"  name="year" id="exampleSelect" class="form-control">
                             </div>
                             <div class="position-relative form-group col-md-6" style="float: left;">
                                 <label for="exampleSelect" class="">Chọn Giáo viên</label>
-                                <select name="category" id="exampleSelect" class="form-control">
-                                    <option value="0">Nguyễn Văn A</option>
-                                    <option value="1">Nguyễn Văn B</option>
-                                    <option value="2">Nguyễn Văn C</option>
+                                <select name="teacher" id="exampleSelect" class="form-control">
+                                    <option value="null"></option>
+                                    @foreach($teachers as $teacher)
+                                        <option value="{{$teacher->teacher_id}}">{{$teacher->teacher_name}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="position-relative form-group col-md-6" style="float: left;">
                                 <label for="exampleSelect" class="">Chọn môn học</label>
-                                <select name="category" id="exampleSelect" class="form-control">
-                                    <option value="0">lập trtình Java</option>
-                                    <option value="1">lập trình hướng đối tượng</option>
-                                    <option value="2">Phát triển phần mềm hướng dịch vụ</option>
+                                <select name="subject" id="exampleSelect" class="form-control">
+                                    <option value="null"></option>
+                                    @foreach($subjects as $subject)
+                                        <option value="{{$subject->subject_id}}">{{$subject->subject_name}}</option>
+                                    @endforeach
                                 </select>
                             </div>
 
@@ -247,7 +248,6 @@
                         
                     </div>
                 </div>
-            </form>
         </div>
     </div>
 </div>

@@ -106,8 +106,7 @@
 
                 @if(Session::has('login') && Session::get('login') == true)
                 <li class="app-sidebar__heading ">
-                    <a href="notification" class="bg-plum-plate" style="color: white">
-                        
+                    <a href="message" class="bg-plum-plate" style="color: white">
                         Tin nhắn
                     </a>
                 </li>

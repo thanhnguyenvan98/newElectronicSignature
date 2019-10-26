@@ -105,18 +105,9 @@ Route::post('ShowSubject',['as'=>'ShowSubject','uses'=>'SubjectController@show']
 
 
 
+route::get('calendar','CalendarController@show')->name('calendarView');
 
-route::get('calendar',function(){
-	if (Session::has('login') && Session::get('login') == false) {
-    # code...
-    return view('login');
-    }
-    else if (!Session::has('login')) {
-        return view('login');
-    }
-    else 
-		return view('calendar');
-})->name('calendarView');
+
 
 
 // Calendar
@@ -142,17 +133,10 @@ route::get('editCalendar',function(){
         return view('editCalendar');
 })->name('editCalendarView');
 
-route::get('calendarManagement',function(){
-    if (Session::has('login') && Session::get('login') == false) {
-    # code...
-    return view('login');
-    }
-    else if (!Session::has('login')) {
-        return view('login');
-    }
-    else 
-        return view('calendarManagement');
-})->name('calendarManegementView');
+route::get('calendarManagement','CalendarManagementController@index')->name('calendarManegementView');
+
+route::post('createCalendarManagement','CalendarManagementController@create');
+
 
 route::get('calendarManagementAdmin',function(){
     if (Session::has('login') && Session::get('login') == false) {
@@ -167,9 +151,11 @@ route::get('calendarManagementAdmin',function(){
 })->name('calendarManegermentAdminView');
 
 
+route::get('signatureCalendar','signatureCalendarController@index')->name('signatureCalendarView');
 
+route::post('postSignatureCalendar/{fileSignaturePath}','signatureCalendarController@signature');
 
-route::get('signatureCalendar',function(){
+route::get('message',function(){
 	if (Session::has('login') && Session::get('login') == false) {
     # code...
     return view('login');
@@ -178,20 +164,8 @@ route::get('signatureCalendar',function(){
         return view('login');
     }
     else 
-		return view('signatureCalendar');
-})->name('signatureCalendarView');
-
-route::get('notification',function(){
-	if (Session::has('login') && Session::get('login') == false) {
-    # code...
-    return view('login');
-    }
-    else if (!Session::has('login')) {
-        return view('login');
-    }
-    else 
-		return view('notification');
-})->name('notificationView');
+		return view('message');
+})->name('messageView');
 
 route::get('homeLeader',function(){
 	if (Session::has('login') && Session::get('login') == false) {
