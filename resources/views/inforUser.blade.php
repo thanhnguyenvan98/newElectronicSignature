@@ -14,14 +14,12 @@
                     <div>Thông tin cá nhân
                     </div>
                 </div>    
-            </div>
         </div>
         <div class="row">
         	
         	<div class="col-md-12">
         		<div class="main-card mb-12 card" >
         			<center>
-        			
         			<div class="col-md-8"> 
 						<div class="card-body">
 				            <h5 class="card-title">Thông tin</h5>
@@ -29,91 +27,99 @@
 				                <div class="form-row">
 				                    <div class="col-md-12 mb-12">
 				                        <label for="validationCustom01" style="float: left; margin-top: 20px">Họ tên</label>
-				                        <input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="Mark" required>
+										<?php $ten = $name[0];?>
+				                        <input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="{{$user->$ten}}" required>
 				                        <div class="valid-feedback">
 				                            Looks good!
 				                        </div>
 				                    </div>
 				                    <div class="col-md-12 mb-12">
 				                        <label for="validationCustom02" style="float: left;margin-top: 20px">CMND</label>
-				                        <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="Otto" required>
+										<?php $SCMT = $name[1];?>
+				                        <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="{{$user->$SCMT}}" required>
 				                        <div class="valid-feedback">
 				                            Looks good!
 				                        </div>
 				                    </div>
 				                    <div class="col-md-12 mb-12">
 				                        <label for="validationCustom02" style="float: left;margin-top: 20px">Địa chỉ</label>
-				                        <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="Otto" required>
+										<?php $diaChi = $name[2];?>
+				                        <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="{{$user->$diaChi}}" required>
 				                        <div class="valid-feedback">
 				                            Looks good!
 				                        </div>
 				                    </div>
 				                    <div class="col-md-12 mb-12">
 				                        <label for="validationCustom02" style="float: left;margin-top: 20px">Ngày sinh</label>
-				                        <input type="date" class="form-control" id="validationCustom02" placeholder="Last name" value="Otto" required>
+										<?php $ngaySinh = $name[3];?>
+				                        <input type="date" class="form-control" id="validationCustom02" placeholder="Last name" value="{{$user->$ngaySinh}}" required>
 				                        <div class="valid-feedback">
 				                            Looks good!
 				                        </div>
 				                    </div>
 				                    <div class="col-md-12 mb-12">
 				                        <label for="validationCustom02" style="float: left;margin-top: 20px">SĐT</label>
-				                        <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="Otto" required>
+										<?php $SDT = $name[4];?>
+				                        <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="{{$user->$SDT}}" required>
 				                        <div class="valid-feedback">
 				                            Looks good!
 				                        </div>
 				                    </div>
 				                    <div class="col-md-12 mb-12">
 				                        <label for="validationCustom02" style="float: left;margin-top: 20px">Email</label>
-				                        <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="Otto" required>
+										<?php $email = $name[5];?>
+				                        <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="{{$user->$email}}" required>
 				                        <div class="valid-feedback">
 				                            Looks good!
 				                        </div>
 				                    </div>
 				                    <div class="col-md-12 mb-12">
 				                        <label for="validationCustom02" style="float: left;margin-top: 20px">Ảnh đại diện</label>
-				                        <input type="file" class="form-control" id="validationCustom02" placeholder="Last name" value="Otto" required>
+										<?php $anh = $name[6];?>
+				                        <input type="file" class="form-control" id="validationCustom02" placeholder="Last name" required>
+										<img src="{{ url('/image/'.$user->$anh) }}" height="100px" width="100px">
 				                        <div class="valid-feedback">
 				                            Looks good!
 				                        </div>
 				                    </div>
 				                    <div class="col-md-12 mb-12">
 				                        <label for="validationCustom02" style="float: left;margin-top: 20px">Giới tính</label>
-				                        
+				                        <?php $gioiTinh = $user[7]?>
 				                        <select class="form-control" id="validationCustom02">
 				                        	<option>Nam</option>
-				                        	<option>Nữ</option>
+				                        	<option 
+												<?php 
+													if ($gioiTinh == 0) {
+														echo('selected = "selected"');
+													}
+												?>>
+												Nữ
+											</option>
 				                        </select>
 				                        <div class="valid-feedback">
 				                            Looks good!
 				                        </div>
 				                    </div>
+									@if(Session::has('category')&&Session::get('category') == 0||Session::get('category') == 1||Session::get('category') == 2)
 				                    <div class="col-md-12 mb-12">
 				                        <label for="validationCustom02" style="float: left;margin-top: 20px">Chuyên ngành</label>
-				                        <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="Otto" required>
+										<?php $chuyenNganh = $name[8];?>
+				                        <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="{{$user->$chuyenNganh}}" required>
 				                        <div class="valid-feedback">
 				                            Looks good!
 				                        </div>
 				                    </div>
+									@endif
+									@if(Session::has('category')&&Session::get('category') == 0||Session::get('category') == 1||Session::get('category') == 2)
 				                    <div class="col-md-12 mb-12">
 				                        <label for="validationCustom02" style="float: left;margin-top: 20px">Lương</label>
-				                        <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="Otto" required>
+										<?php $luong = $name[9];?>
+				                        <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="{{$user->$luong}}" required>
 				                        <div class="valid-feedback">
 				                            Looks good!
 				                        </div>
 				                    </div>
-
-				                 <!--   
-				                <div class="form-group">
-				                    <div class="form-check">
-				                        <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-				                        <label class="form-check-label" for="invalidCheck">
-				                            Agree to terms and conditions
-				                        </label>
-				                        <div class="invalid-feedback">
-				                            You must agree before submitting.
-				                        </div>
-				                    </div>
-				                </div>-->
+									@endif
 				                <button class="btn btn-primary" type="submit" style="margin-top: 20px;">Lưu thay đổi</button>
 
 				            </form>

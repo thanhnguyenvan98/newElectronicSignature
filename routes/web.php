@@ -61,6 +61,7 @@ Route::post('postLogin',['as'=>'postLogin','uses'=>'loginController@check']);
 //user
     //Edit informaion user
     route::get('EditInformation','EditInformationController@edit');
+    route::get('ShowInfor', 'EditInformationController@show');
 
 route::get('userManagement','UserController@index')->name('userManagementView');
 

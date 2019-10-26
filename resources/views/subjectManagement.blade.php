@@ -68,7 +68,6 @@
                                 </tr>
                                 <?php $i++; ?>
                             	@endforeach
-	                         
                             </tbody>
                         </table>
                     </div>
@@ -129,16 +128,13 @@
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
                                                 <button type="submit" class="btn btn-primary">Lưu</button>
                                             </div>
-
                                         </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
-                
             </div>
         </div>
     </div>
@@ -204,16 +200,13 @@
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
                                             <button type="submit" class="btn btn-primary">Lưu</button>
                                         </div>
-
                                     </form>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
-            
         </div>
     </div>
 </div>
