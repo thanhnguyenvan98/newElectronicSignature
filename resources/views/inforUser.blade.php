@@ -22,13 +22,14 @@
         			<center>
         			<div class="col-md-8"> 
 						<div class="card-body">
+					
 				            <h5 class="card-title">Thông tin</h5>
 				            <form class="needs-validation" novalidate action='EditInformation'>
 				                <div class="form-row">
 				                    <div class="col-md-12 mb-12">
 				                        <label for="validationCustom01" style="float: left; margin-top: 20px">Họ tên</label>
 										<?php $ten = $name[0];?>
-				                        <input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="{{$user->$ten}}" required>
+				                        <input type="text" class="form-control" name= "NameUser" id="NameUser" placeholder="First name" value="{{$user->$ten}}" required>
 				                        <div class="valid-feedback">
 				                            Looks good!
 				                        </div>
@@ -36,7 +37,7 @@
 				                    <div class="col-md-12 mb-12">
 				                        <label for="validationCustom02" style="float: left;margin-top: 20px">CMND</label>
 										<?php $SCMT = $name[1];?>
-				                        <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="{{$user->$SCMT}}" required>
+				                        <input type="text" class="form-control" name= "PeopleID" id="PeopleID" placeholder="Last name" value="{{$user->$SCMT}}" required>
 				                        <div class="valid-feedback">
 				                            Looks good!
 				                        </div>
@@ -44,7 +45,7 @@
 				                    <div class="col-md-12 mb-12">
 				                        <label for="validationCustom02" style="float: left;margin-top: 20px">Địa chỉ</label>
 										<?php $diaChi = $name[2];?>
-				                        <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="{{$user->$diaChi}}" required>
+				                        <input type="text" class="form-control" name= "Address" id="Address" placeholder="Last name" value="{{$user->$diaChi}}" required>
 				                        <div class="valid-feedback">
 				                            Looks good!
 				                        </div>
@@ -52,7 +53,7 @@
 				                    <div class="col-md-12 mb-12">
 				                        <label for="validationCustom02" style="float: left;margin-top: 20px">Ngày sinh</label>
 										<?php $ngaySinh = $name[3];?>
-				                        <input type="date" class="form-control" id="validationCustom02" placeholder="Last name" value="{{$user->$ngaySinh}}" required>
+				                        <input type="date" class="form-control" name= "Birth" id="Birth" placeholder="Last name" value="{{$user->$ngaySinh}}" required>
 				                        <div class="valid-feedback">
 				                            Looks good!
 				                        </div>
@@ -60,7 +61,7 @@
 				                    <div class="col-md-12 mb-12">
 				                        <label for="validationCustom02" style="float: left;margin-top: 20px">SĐT</label>
 										<?php $SDT = $name[4];?>
-				                        <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="{{$user->$SDT}}" required>
+				                        <input type="text" class="form-control" name= "Phone" id="Phone" placeholder="Last name" value="{{$user->$SDT}}" required>
 				                        <div class="valid-feedback">
 				                            Looks good!
 				                        </div>
@@ -68,7 +69,7 @@
 				                    <div class="col-md-12 mb-12">
 				                        <label for="validationCustom02" style="float: left;margin-top: 20px">Email</label>
 										<?php $email = $name[5];?>
-				                        <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="{{$user->$email}}" required>
+				                        <input type="text" class="form-control" name= "Email" id="Email" placeholder="Last name" value="{{$user->$email}}" required>
 				                        <div class="valid-feedback">
 				                            Looks good!
 				                        </div>
@@ -76,7 +77,7 @@
 				                    <div class="col-md-12 mb-12">
 				                        <label for="validationCustom02" style="float: left;margin-top: 20px">Ảnh đại diện</label>
 										<?php $anh = $name[6];?>
-				                        <input type="file" class="form-control" id="validationCustom02" placeholder="Last name" required>
+				                        <input type="file" class="form-control" name= "Avata" id="Avata" placeholder="Last name" required>
 										<img src="{{ url('/image/'.$user->$anh) }}" height="100px" width="100px">
 				                        <div class="valid-feedback">
 				                            Looks good!
@@ -85,7 +86,7 @@
 				                    <div class="col-md-12 mb-12">
 				                        <label for="validationCustom02" style="float: left;margin-top: 20px">Giới tính</label>
 				                        <?php $gioiTinh = $user[7]?>
-				                        <select class="form-control" id="validationCustom02">
+				                        <select class="form-control" name= "Gender" id="Gender">
 				                        	<option>Nam</option>
 				                        	<option 
 												<?php 
@@ -104,7 +105,7 @@
 				                    <div class="col-md-12 mb-12">
 				                        <label for="validationCustom02" style="float: left;margin-top: 20px">Chuyên ngành</label>
 										<?php $chuyenNganh = $name[8];?>
-				                        <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="{{$user->$chuyenNganh}}" required>
+				                        <input type="text" class="form-control" name= "Specialized" id="Specialized" placeholder="Last name" value="{{$user->$chuyenNganh}}" required>
 				                        <div class="valid-feedback">
 				                            Looks good!
 				                        </div>
@@ -114,7 +115,7 @@
 				                    <div class="col-md-12 mb-12">
 				                        <label for="validationCustom02" style="float: left;margin-top: 20px">Lương</label>
 										<?php $luong = $name[9];?>
-				                        <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="{{$user->$luong}}" required>
+				                        <input type="text" class="form-control" name= "Salary" id="Salary" placeholder="Last name" value="{{$user->$luong}}" required>
 				                        <div class="valid-feedback">
 				                            Looks good!
 				                        </div>

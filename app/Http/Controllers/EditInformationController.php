@@ -57,7 +57,7 @@ class EditInformationController extends Controller
                 "manager_name",
                 "manager_peopleId",
                 "manage_address",
-                "manage_birthday",
+                "manage_birthDay",
                 "manage_telephoneNumber",
                 "manage_email",
                 "manage_image",
@@ -101,25 +101,59 @@ class EditInformationController extends Controller
 
     public function edit(Request $request)
     {
+        $id = session()->get('userId');
+        $roleID = session()->get('category');
+        $specialized = "";
+        $salary= "";
         //
-        $userName = $request->userName;
-        $newPassword = $request->newPassword;
-        $reNewPassword = $request->reNewPassword;
-        $category = $request->category;
-        $id = User::where('user_userName','=',$userName)->get('user_id');
+        $nameUser = $request->NameUser;
+        $peopleID = $request->PeopleID;
+        $adress = $request->Adress;
+        $brith = $request->Birth;
+        $phone = $request->Phone;
+        $email = $request->Email;
+        $avata = $request->Avata;
+        $gender = $request->Gender;
+        if ($roleID==0||$roleID==1||$roleID==2) {
+            $specialized = $request->Specialized;
+            $salary = $request->Salary;
+        }
+        // $id = User::where('user_userName','=',$userName)->get('user_id');
 
-        if ($userName == "") {
-            $error = 'Tên đăng nhập không được bỏ trống';
+        if ($nameUser == "") {
+            $error = 'Không được bỏ trống tên';
         }
-        else if ($newPassword == "") {
-            $error = 'Mật khẩu mới không được bỏ trống';
+        else if ($peopleID == "") {
+            $error = 'Không được bỏ trống số chứng minh thư (số căn cước)';
         }  
-        else if ($reNewPassword == "") {
-            $error = 'Xác nhận mật khẩu mới';
+        else if ($address == "") {
+            $error = 'không được bỏ trống địa chỉ.';
         }
-        else if ($newPassword != $reNewPassword) {
-            $error = 'Xác nhận lại mật khẩu';
+        else if ($brith == "") {
+            $error = 'không được bỏ trống ngày sinh';
+        }else if ($phone == "") {
+            $error = 'Không được bỏ trống số điện thoại';
+        }else if ($email == "") {
+            $error = 'Không được bỏ trống email';
+        }else if ($gender == "") {
+            $error = 'Không được bỏ trống phần giới tính';
+        }else if ($specialized == "" && $roleID != 3 && $roleID !=4) {
+            $error = 'Không được bỏ trống phần khoa';
+        }else if ($salary == "" && $roleID != 3 && $roleID !=4) {
+            $error = 'Không được bỏ trống phần lương';
         }else{
+            switch ($roleID) {
+                case 0:
+                    $newInfo = teacher::where('user_id','=',$id)->update(['teacher_name'=>$nameUser,'teacher_peopleId'=>$peopleID,'teacher_address'=>$address,'teacher_birthday'=>$brith,'teacher_telephone'=>$phone]);
+                    $request->session()->put('notice', 'Sửa thành công');
+                    return redirect()->route('userManagementView');
+                    break;
+                
+                default:
+                    # code...
+                    break;
+            }
+
             $userNew = User::where('user_id','=',$id[0]['user_id'])->update(['user_password'=>$newPassword,'user_category'=>$category,]);
             $request->session()->put('notice', 'Sửa thành công');
             return redirect()->route('userManagementView');

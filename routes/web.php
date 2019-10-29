@@ -97,7 +97,7 @@ Route::get('SubjectManagement', 'SubjectController@index')->name('SubjectMangeme
 
 Route::post('CreateSubject',['as'=>'CreateSubject','uses'=>'SubjectController@create']);
 
-Route::post('EditSubject',['as'=>'EditSpecialized','uses'=>'SpecializedController@edit']);
+Route::post('EditSubject/{id}',['as'=>'EditSpecialized','uses'=>'SubjectController@edit']);
 
 Route::get('DestroySubject/{id}','SubjectController@destroy')->name('destroySubject');
 
