@@ -53,7 +53,7 @@
                                     
                                     <ul class="vertical-nav-menu">
                                         <li class="app-sidebar__heading ">
-                                            <a href="inforUser" class="" style="color: black">
+                                            <a href="ShowInfor" class="" style="color: black">
                                                 Thông tin cá nhân
                                             </a>
                                         </li>
@@ -67,17 +67,31 @@
                                                 Logout
                                             </a>
                                         </li>
-                                        
                                     </ul>
                                 </div>
                             </div>
                         </div>
                         <div class="widget-content-left  ml-3 header-user-info">
-                            <div class="widget-heading">
-                                Alina Mclourd
-                            </div>
                             <div class="widget-subheading">
-                                VP People Manager
+                                <?php
+                                    switch (session()->get('category')) {
+                                        case 0:
+                                            echo "Giảng viên";
+                                            break;
+                                        case 1:
+                                            echo "Tổ trưởng";
+                                            break;
+                                        case 2:
+                                            echo "Trưởng khoa";
+                                            break;
+                                        case 3: 
+                                            echo "Quản lý viên";
+                                            break;
+                                        default:
+                                            echo "Quản trị viên";
+                                            break;
+                                    } 
+                                ?>
                             </div>
                         </div>
                         

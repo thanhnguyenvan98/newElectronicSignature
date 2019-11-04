@@ -47,7 +47,7 @@ class SubjectController extends Controller
         else if ($numberCredit == "") {
             $error = 'số tín chỉ không được bỏ trống';
         }  
-        else if ($kt == 1) {
+        else if ($kt !=0) {
             $error = 'Tên môn đã tồn tại';
         }else{
             $subjectNew = new Subject;
@@ -100,7 +100,7 @@ class SubjectController extends Controller
         $subjectName = $request->subject_name;
         $numberCredit = $request->number_credit;
 
-        $id = Subject::where('subject_name','=',$subjectName)->get('subject_id');
+        //$id = Subject::where('subject_name','=',$subjectName)->get('subject_id');
 
         $subjects = Subject::all();
         $kt = 0;
@@ -118,10 +118,10 @@ class SubjectController extends Controller
         else if ($numberCredit == "") {
             $error = 'Số tín chỉ không được bỏ trống';
         }  
-        else if ($kt == 0) {
+        else if ($kt != 0) {
             $error = 'Tên môn đã tồn tại';
         }else{
-            $subjectNew = Subject::where('subject_id','=',$id[0]['subject_id'])->update(['subject_name'=>$subjectName,'subject_numberCredit'=>$numberCredit,]);
+            $subjectNew = Subject::where('subject_id','=',$ids)->update(['subject_name'=>$subjectName,'subject_numberCredit'=>$numberCredit,]);
             $request->session()->put('notice', 'Sửa thành công');
             return redirect()->route('SubjectMangementView');
         }

@@ -2,6 +2,7 @@
 
 @section('title','Subject Management')
 
+<!-- view -->
 @section('content')
 	<div class="app-main__inner">
         <div class="app-page-title">
@@ -62,13 +63,12 @@
                                     <td>{{$subject->subject_name}}</td>
                                     <td>{{$subject->subject_numberCredit}}</td>
                                     <td>
-                                        <button type="button" class="btn mr-2 mb-2 btn-primary"  data-number-credit="{{$subject->subject_numberCredit}}" data-subject-name="{{$subject->subject_name}}" onclick="onEditButtonClick(this)" data-toggle="modal" data-target=".bd-example-modal-lg-edit" style="">Sửa</button>
+                                        <button type="button" class="btn mr-2 mb-2 btn-primary"  data-number-credit="{{$subject->subject_numberCredit}}" data-form-action="{{route('EditSpecialized',['id'=>$subject->subject_id])}}" data-subject-name="{{$subject->subject_name}}" onclick="onEditButtonClick(this)" data-toggle="modal" data-target=".bd-example-modal-lg-edit" style="">Sửa</button>
                                         <button type="button" onclick="onDeleteButtonClick(this)" class="btn mr-2 mb-2 btn-secondary" data-id="{{$subject->subject_id}}" data-toggle="modal" data-target=".bd-delete-modal" style="">Xóa</button>
                                     </td>
                                 </tr>
                                 <?php $i++; ?>
                             	@endforeach
-	                         
                             </tbody>
                         </table>
                     </div>
@@ -81,6 +81,7 @@
             console.log(elm);
             $('.bd-example-modal-lg-edit #number_credit').val($(elm).attr('data-number-credit'));
             $('.bd-example-modal-lg-edit #subject_name').val($(elm).attr('data-subject-name'));
+            $('.EditSubject').attr('action', $(elm).attr('data-form-action'))
         }
         function onDeleteButtonClick(elm) {
             console.log(elm);
@@ -90,8 +91,7 @@
     </script>
 @endSection
 
-
-
+<!-- edit -->
 @section('LargeModal')
     <div class="modal fade bd-example-modal-lg-edit" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -111,16 +111,16 @@
                                 <div class="main-card mb-3 card">
                                     <div class="card-body">
                                         
-                                        <form class="" method="post" action="EditSubject">
+                                        <form class="EditSubject" method="post" action="EditSubject">
                                             @csrf
                                             <h5 class="card-title">Thông tin môn học</h5>
 
                                             <div class="position-relative form-group">
-                                                <label for="exampleSelect" class="">Tên khoa</label>
+                                                <label for="exampleSelect" class="">Tên Khoa</label>
                                                 <input type="text"  name="subject_name" id="subject_name" class="form-control" value="">
                                             </div>
                                             <div class="position-relative form-group">
-                                                <label for="exampleSelect" class="">Viết tắt</label>
+                                                <label for="exampleSelect" class="">Số Tín Chỉ</label>
                                                 <input type="text"  name="number_credit" id="number_credit" class="form-control" value="">
                                             </div>
 
@@ -129,21 +129,19 @@
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
                                                 <button type="submit" class="btn btn-primary">Lưu</button>
                                             </div>
-
                                         </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
-                
             </div>
         </div>
     </div>
 @endSection
 
+<!-- delete -->
 @section('SmallModal')
 <!-- Small modal -->
     <div class="modal fade bd-delete-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="dialog">
@@ -167,6 +165,7 @@
     </div>
 @endSection
 
+<!-- add -->
 @section('LargeModal1')
 <div class="modal fade bd-example-modal-lg-add" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -191,12 +190,12 @@
                                         <h5 class="card-title">Thông tin môn học</h5>
 
                                         <div class="position-relative form-group">
-                                            <label for="exampleSelect" class="">Tên môn học</label>
+                                            <label for="exampleSelect" class="">Tên Môn Học</label>
                                             <input type="text"  name="subject_name"id="exampleSelect" class="form-control">
                                         </div>
                                         
                                         <div class="position-relative form-group">
-                                            <label for="exampleSelect" class="">Viết tắt</label>
+                                            <label for="exampleSelect" class="">Số Tín Chỉ</label>
                                             <input type="text"  name="number_credit"id="exampleSelect" class="form-control">
                                         </div>
 
@@ -204,16 +203,13 @@
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
                                             <button type="submit" class="btn btn-primary">Lưu</button>
                                         </div>
-
                                     </form>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
-            
         </div>
     </div>
 </div>

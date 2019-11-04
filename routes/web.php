@@ -61,7 +61,8 @@ Route::post('postLogin',['as'=>'postLogin','uses'=>'loginController@check']);
 
 //user
 //Edit informaion user
-route::get('EditInformation','EditInformationController@edit');
+    route::get('EditInformation','EditInformationController@edit');
+    route::get('ShowInfor', 'EditInformationController@show');
 
 route::get('userManagement','UserController@index')->name('userManagementView');
 
@@ -101,7 +102,7 @@ Route::get('SubjectManagement', 'SubjectController@index')->name('SubjectMangeme
 
 Route::post('CreateSubject',['as'=>'CreateSubject','uses'=>'SubjectController@create']);
 
-Route::post('EditSubject',['as'=>'EditSpecialized','uses'=>'SpecializedController@edit']);
+Route::post('EditSubject/{id}',['as'=>'EditSpecialized','uses'=>'SubjectController@edit']);
 
 Route::get('DestroySubject/{id}','SubjectController@destroy')->name('destroySubject');
 
