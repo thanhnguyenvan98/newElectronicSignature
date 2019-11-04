@@ -309,7 +309,14 @@
 
 							            
 
-							            <form class="needs-validation" action="editInforTeacher" method="post" enctype="multipart/form-data" novalidate>
+							            <form class="needs-validation" action="<?php 
+							            											if(session()->get('category') == 0)
+							            												echo('editInforTeacher');
+							            											elseif(session()->get('category') == 1)
+							            												echo('editInforLeader');
+							            											elseif(session()->get('category') == 2)
+							            												echo('editInforDean');?>" 
+							            method="post" enctype="multipart/form-data" novalidate>
 							            	{!! csrf_field() !!}
 							                <div class="form-row">
 							                    <div class="col-md-12 mb-12">

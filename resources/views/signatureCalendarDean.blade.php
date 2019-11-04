@@ -81,11 +81,11 @@
                     <div class="card-body">
                     
                         <div>
-                        	 <h5 class="card-title" style="margin-top: 20px">Thông tin lịch giảng dạy</h5>
+                            <h5 class="card-title" style="margin-top: 20px">Thông tin lịch giảng dạy</h5>
 
-                        	 <button class="mb-2 mr-2 btn-transition btn btn-outline-danger" style="float: right;">Download lịch giảng dạy</button>
-                        	 <p>Tiêu đề: </p>
-                        	 <p>Lịch giảng dạy mông lập trình Java lớp KTPM2 Kỳ học thứ 3</p>
+                        	<button class="mb-2 mr-2 btn-transition btn btn-outline-danger" style="float: right;">Download lịch giảng dạy</button>
+                        	<p>Tiêu đề: </p>
+                        	<p>Lịch giảng dạy mông lập trình Java lớp KTPM2 Kỳ học thứ 3</p>
                             
                             <table class="mb-0 table" style="margin-top: 30px">
                                 <thead>
@@ -142,10 +142,6 @@
                                     
                                 </tbody>
                             </table>
-                            
-
-                            
-
                         </div>
                         <hr>
                         <h5 class="card-title" style="margin-top: 20px">Giáo viên   : Đã ký</h5>

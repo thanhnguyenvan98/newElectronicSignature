@@ -7,12 +7,11 @@ use App\mail\sendMail;
 use Illuminate\Support\Facades\Session;
 use Mail;
 use App\User;
-use App\Teacher;
+use App\leader;
 use App\Specialized;
 use App\signature;
 
-
-class TeacherController extends Controller
+class LeaderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,7 +20,7 @@ class TeacherController extends Controller
      */
     public function index()
     {
-
+        //
     }
 
     /**
@@ -30,10 +29,17 @@ class TeacherController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    public function showInforBeforLogin()
+    {
+        //
+        $specializeds = Specialized::All();
+        return view('infor',compact('specializeds'));
+    }
 
     public function create(Request $request)
     {
         //
+
         $userId = session()->get('userId');
         $name = $request->name;
         $peopleId = $request->peopleId;
@@ -46,14 +52,14 @@ class TeacherController extends Controller
         $specialized_id = $request->specialized_id;
         $salary = $request->salary;
 
-        $teacherNew = new Teacher; 
-        $teacherNew->teacher_name = $name;
-        $teacherNew->teacher_peopleId = $peopleId;
-        $teacherNew->teacher_address = $address;
-        $teacherNew->teacher_birthday = $brithday;
-        $teacherNew->teacher_telephoneNumber = $telephoneNumber;
-        $teacherNew->teacher_email = $email;
-        $teacherNew->teacher_image = $image;
+        $leaderNew = new leader; 
+        $leaderNew->leader_name = $name;
+        $leaderNew->leader_peopleId = $peopleId;
+        $leaderNew->leader_address = $address;
+        $leaderNew->leader_birthday = $brithday;
+        $leaderNew->leader_telephoneNumber = $telephoneNumber;
+        $leaderNew->leader_email = $email;
+        $leaderNew->leader_image = $image;
         
         //luu anh vao sever
         if ($request->hasFile('image')) {
@@ -68,11 +74,11 @@ class TeacherController extends Controller
             }
         }
 
-        $teacherNew->teacher_gender = $gender;
-        $teacherNew->specialized_id = $specialized_id;
-        $teacherNew->teacher_salary = $salary;
-        $teacherNew->user_id = $userId;
-        $teacherNew->save();
+        $leaderNew->leader_gender = $gender;
+        $leaderNew->specialized_id = $specialized_id;
+        $leaderNew->leader_salary = $salary;
+        $leaderNew->user_id = $userId;
+        $leaderNew->save();
 
         //gửi email về email mà người dùng nhập
         $signature = signature::where('user_id','=',$userId)->get()->toArray();
@@ -86,10 +92,9 @@ class TeacherController extends Controller
         });
         session()->put('feedBackSendEmail', 'Khóa cá nhân của bạn đã được gửi về Gmail');
         $request->session()->put('notice', 'Đã cập nhập thông tin cá nhân');
-        return redirect()->route('homeView');           
-    }
 
-    
+        return redirect()->route('homeLeaderView');
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -113,23 +118,15 @@ class TeacherController extends Controller
         //
     }
 
-    public function showInforBeforLogin()
-    {
-        //
-        $specializeds = Specialized::All();
-        return view('infor',compact('specializeds'));
-    }
-
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request)
+    public function edit($id)
     {
-        
-        
+        //
     }
 
     /**

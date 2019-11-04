@@ -1,14 +1,9 @@
 
 $(document).ready(function(){
+    alert('adsad');
+    
 	var soTietHoc = document.getElementById('soTietHoc').value;
 	var SubjectNumberCredit = document.getElementById('Subject').value;
-	//var tbody = document.getElementById('tbody');
-	//alert('haha');
-	/*$.get("ajaxCreateCalendar/"+SubjectNumberCredit+"/"+soTietHoc,function(data){
-		alert('haha');
-		tbody.innerHTML = data;
-	});
-	*/
 	$.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
 	$.ajax({
         url : "ajaxCreateCalendar", // gửi ajax đến file result.php
@@ -24,7 +19,6 @@ $(document).ready(function(){
             $('#tbody').html(result);
         }
     });
-
 
 });
 
@@ -32,13 +26,6 @@ function test(){
 
 	var soTietHoc = document.getElementById('soTietHoc').value;
 	var SubjectNumberCredit = document.getElementById('Subject').value;
-	//var tbody = document.getElementById('tbody');
-	//alert('haha');
-	/*$.get("ajaxCreateCalendar/"+SubjectNumberCredit+"/"+soTietHoc,function(data){
-		alert('haha');
-		tbody.innerHTML = data;
-	});
-	*/
 	$.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
 	$.ajax({
         url : "ajaxCreateCalendar", // gửi ajax đến file result.php
@@ -55,10 +42,4 @@ function test(){
         }
     });
 
-}
-
-function change(){
-    alert('hahaha');
-    var textPrivateKey = document.getElementById("textPrivateKey");
-    textPrivateKey.innerHTML = 'Demo thay đổi nội dung thẻ div bằn';
 }
