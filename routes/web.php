@@ -60,10 +60,20 @@ route::get('/',function(){
 Route::post('postLogin',['as'=>'postLogin','uses'=>'loginController@check']);
 
 //user
+//<<<<<<< HEAD
+    //Edit informaion user
+    route::get('ShowInfor', 'EditInformationController@show')->name('Information');
+    route::post('EditInformation','EditInformationController@edit');
+
+    //Edit password
+    route::get('ShowEditPassword','SettingAccountController@show')->name('ShowPassword');
+    route::get('EditPassword','SettingAccountController@edit');
+//=======
 //Edit informaion user
 
     route::get('EditInformation','EditInformationController@edit');
     route::get('ShowInfor', 'EditInformationController@show');
+//>>>>>>> 46667360e2b6216f73ce68b9198e2616144f4c09
 
 route::get('userManagement','UserController@index')->name('userManagementView');
 
