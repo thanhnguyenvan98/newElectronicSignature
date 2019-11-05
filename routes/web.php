@@ -61,6 +61,7 @@ Route::post('postLogin',['as'=>'postLogin','uses'=>'loginController@check']);
 
 //user
 //Edit informaion user
+
     route::get('EditInformation','EditInformationController@edit');
     route::get('ShowInfor', 'EditInformationController@show');
 
@@ -158,17 +159,6 @@ route::get('signatureCalendarTest/{theFileSignatured_path}','signatureCalendarCo
 
 route::post('postSignatureCalendar/{fileSignaturePath}','signatureCalendarController@signature');
 
-route::get('message',function(){
-	if (Session::has('login') && Session::get('login') == false) {
-    # code...
-    return view('login');
-    }
-    else if (!Session::has('login')) {
-        return view('login');
-    }
-    else 
-		return view('message');
-})->name('messageView');
 
 route::get('homeLeader',function(){
 	if (Session::has('login') && Session::get('login') == false) {
@@ -314,3 +304,8 @@ Route::get('/gmail', function () {
 Route::post('testGmail', ['uses' => 'emailController@addFeedback', 'as' => 'front.fb'])->name('testGmail');
 
 Route::get('sendMail','emailController@sendMail');
+
+
+//message
+Route::get('message','MessageController@index');
+Route::post('sendMessage','MessageController@sendMessage');

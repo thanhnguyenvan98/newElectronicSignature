@@ -1,6 +1,6 @@
 @extends('master.master')
 
-@section('title','Notification')
+@section('title','Message')
 
 @section('content')
 	<div class="app-main__inner">
@@ -20,165 +20,282 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="main-card mb-3 card">
-                    <div class="card-header">Thông báo của tôi
+                    <div class="card-header">Danh sách tin nhắn
                         
                     </div>
                     <div class="table-responsive">
-                        <table class="align-middle mb-0 table table-borderless table-striped table-hover">
-                            <thead>
-                            <tr>
-                                <th class="text-center">#</th>
-                                <th>Name</th>
-                                <th class="text-center">Thời gian</th>
-                                <th class="text-center">Status</th>
-                                <th class="text-center">Actions</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td class="text-center text-muted">#345</td>
-                                <td>
-                                    <div class="widget-content p-0">
-                                        <div class="widget-content-wrapper">
-                                            <div class="widget-content-left mr-3">
-                                                <div class="widget-content-left">
-                                                    <img width="40" class="rounded-circle" src="assets/images/avatars/4.jpg" alt="">
+                        <div class="scroll-area-md" style="height: 400px">
+                            <div class="scrollbar-container ps--active-y ps" >
+                                <!--message view-->
+                                <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th class="text-center">STT</th>
+                                        <th>Name</th>
+                                        <th class="text-center">Status</th>
+                                        <th class="text-center">Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-center text-muted">1</td>
+                                            <td>
+                                                <div class="widget-content p-0">
+                                                    <div class="widget-content-wrapper">
+                                                        <div class="widget-content-left mr-3">
+                                                            <div class="widget-content-left">
+                                                                <img width="40" class="rounded-circle" src="assets/images/avatars/4.jpg" alt="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="widget-content-left flex2">
+                                                            <div class="widget-heading">John Doe</div>
+                                                            <div class="widget-subheading opacity-7">Web Developer</div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="widget-content-left flex2">
-                                                <div class="widget-heading">John Doe</div>
-                                                <div class="widget-subheading opacity-7">Web Developer</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="text-center">Madrid</td>
-                                <td class="text-center">
-                                    <div class="badge badge-warning">Pending</div>
-                                </td>
-                                <td class="text-center">
-                                    <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Chi tiết</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center text-muted">#347</td>
-                                <td>
-                                    <div class="widget-content p-0">
-                                        <div class="widget-content-wrapper">
-                                            <div class="widget-content-left mr-3">
-                                                <div class="widget-content-left">
-                                                    <img width="40" class="rounded-circle" src="assets/images/avatars/3.jpg" alt="">
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="badge badge-warning">Pending</div>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Chi tiết</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center text-muted">1</td>
+                                            <td>
+                                                <div class="widget-content p-0">
+                                                    <div class="widget-content-wrapper">
+                                                        <div class="widget-content-left mr-3">
+                                                            <div class="widget-content-left">
+                                                                <img width="40" class="rounded-circle" src="assets/images/avatars/4.jpg" alt="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="widget-content-left flex2">
+                                                            <div class="widget-heading">John Doe</div>
+                                                            <div class="widget-subheading opacity-7">Web Developer</div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="widget-content-left flex2">
-                                                <div class="widget-heading">Ruben Tillman</div>
-                                                <div class="widget-subheading opacity-7">Etiam sit amet orci eget</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="text-center">Berlin</td>
-                                <td class="text-center">
-                                    <div class="badge badge-success">Completed</div>
-                                </td>
-                                <td class="text-center">
-                                    <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Chi tiết</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center text-muted">#321</td>
-                                <td>
-                                    <div class="widget-content p-0">
-                                        <div class="widget-content-wrapper">
-                                            <div class="widget-content-left mr-3">
-                                                <div class="widget-content-left">
-                                                    <img width="40" class="rounded-circle" src="assets/images/avatars/2.jpg" alt="">
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="badge badge-warning">Pending</div>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Chi tiết</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center text-muted">1</td>
+                                            <td>
+                                                <div class="widget-content p-0">
+                                                    <div class="widget-content-wrapper">
+                                                        <div class="widget-content-left mr-3">
+                                                            <div class="widget-content-left">
+                                                                <img width="40" class="rounded-circle" src="assets/images/avatars/4.jpg" alt="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="widget-content-left flex2">
+                                                            <div class="widget-heading">John Doe</div>
+                                                            <div class="widget-subheading opacity-7">Web Developer</div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="widget-content-left flex2">
-                                                <div class="widget-heading">Elliot Huber</div>
-                                                <div class="widget-subheading opacity-7">Lorem ipsum dolor sic</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="text-center">London</td>
-                                <td class="text-center">
-                                    <div class="badge badge-danger">In Progress</div>
-                                </td>
-                                <td class="text-center">
-                                    <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Chi tiết</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center text-muted">#55</td>
-                                <td>
-                                    <div class="widget-content p-0">
-                                        <div class="widget-content-wrapper">
-                                            <div class="widget-content-left mr-3">
-                                                <div class="widget-content-left">
-                                                    <img width="40" class="rounded-circle" src="assets/images/avatars/1.jpg" alt=""></div>
-                                            </div>
-                                            <div class="widget-content-left flex2">
-                                                <div class="widget-heading">Vinnie Wagstaff</div>
-                                                <div class="widget-subheading opacity-7">UI Designer</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="text-center">Amsterdam</td>
-                                <td class="text-center">
-                                    <div class="badge badge-info">On Hold</div>
-                                </td>
-                                <td class="text-center">
-                                    <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Chi tiết</button>
-                                </td>
-                            </tr>
-                            </tbody>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="badge badge-warning">Pending</div>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Chi tiết</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center text-muted">1</td>
+                                            <td>
+                                                <div class="widget-content p-0">
+                                                    <div class="widget-content-wrapper">
+                                                        <div class="widget-content-left mr-3">
+                                                            <div class="widget-content-left">
+                                                                <img width="40" class="rounded-circle" src="assets/images/avatars/4.jpg" alt="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="widget-content-left flex2">
+                                                            <div class="widget-heading">John Doe</div>
+                                                            <div class="widget-subheading opacity-7">Web Developer</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="badge badge-warning">Pending</div>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Chi tiết</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center text-muted">1</td>
+                                            <td>
+                                                <div class="widget-content p-0">
+                                                    <div class="widget-content-wrapper">
+                                                        <div class="widget-content-left mr-3">
+                                                            <div class="widget-content-left">
+                                                                <img width="40" class="rounded-circle" src="assets/images/avatars/4.jpg" alt="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="widget-content-left flex2">
+                                                            <div class="widget-heading">John Doe</div>
+                                                            <div class="widget-subheading opacity-7">Web Developer</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="badge badge-warning">Pending</div>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Chi tiết</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center text-muted">1</td>
+                                            <td>
+                                                <div class="widget-content p-0">
+                                                    <div class="widget-content-wrapper">
+                                                        <div class="widget-content-left mr-3">
+                                                            <div class="widget-content-left">
+                                                                <img width="40" class="rounded-circle" src="assets/images/avatars/4.jpg" alt="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="widget-content-left flex2">
+                                                            <div class="widget-heading">John Doe</div>
+                                                            <div class="widget-subheading opacity-7">Web Developer</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="badge badge-warning">Pending</div>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Chi tiết</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center text-muted">1</td>
+                                            <td>
+                                                <div class="widget-content p-0">
+                                                    <div class="widget-content-wrapper">
+                                                        <div class="widget-content-left mr-3">
+                                                            <div class="widget-content-left">
+                                                                <img width="40" class="rounded-circle" src="assets/images/avatars/4.jpg" alt="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="widget-content-left flex2">
+                                                            <div class="widget-heading">John Doe</div>
+                                                            <div class="widget-subheading opacity-7">Web Developer</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="badge badge-warning">Pending</div>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Chi tiết</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center text-muted">1</td>
+                                            <td>
+                                                <div class="widget-content p-0">
+                                                    <div class="widget-content-wrapper">
+                                                        <div class="widget-content-left mr-3">
+                                                            <div class="widget-content-left">
+                                                                <img width="40" class="rounded-circle" src="assets/images/avatars/4.jpg" alt="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="widget-content-left flex2">
+                                                            <div class="widget-heading">John Doe</div>
+                                                            <div class="widget-subheading opacity-7">Web Developer</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="badge badge-warning">Pending</div>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Chi tiết</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center text-muted">1</td>
+                                            <td>
+                                                <div class="widget-content p-0">
+                                                    <div class="widget-content-wrapper">
+                                                        <div class="widget-content-left mr-3">
+                                                            <div class="widget-content-left">
+                                                                <img width="40" class="rounded-circle" src="assets/images/avatars/4.jpg" alt="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="widget-content-left flex2">
+                                                            <div class="widget-heading">John Doe</div>
+                                                            <div class="widget-subheading opacity-7">Web Developer</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="badge badge-warning">Pending</div>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Chi tiết</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center text-muted">1</td>
+                                            <td>
+                                                <div class="widget-content p-0">
+                                                    <div class="widget-content-wrapper">
+                                                        <div class="widget-content-left mr-3">
+                                                            <div class="widget-content-left">
+                                                                <img width="40" class="rounded-circle" src="assets/images/avatars/4.jpg" alt="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="widget-content-left flex2">
+                                                            <div class="widget-heading">John Doe</div>
+                                                            <div class="widget-subheading opacity-7">Web Developer</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="badge badge-warning">Pending</div>
+                                            </td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Chi tiết</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
                         </table>
+
+                                <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+                                    <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                                </div>
+                                <div class="ps__rail-y" style="top: 0px; height: 300px; right: 0px;">
+                                    <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 125px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
                     </div>
                     
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12">
             
-                <div class="tab-pane tabs-animation fade show active" id="tab-content-1" role="tabpanel">
-                    <div class="main-card mb-12 card">
-                        <div class="card-body"><h5 class="card-title">Gửi thông báo</h5>
-                            <form class="">
-                                
-                                <div class="position-relative row form-group"><label for="exampleSelect" class="col-sm-2 col-form-label">Người nhận</label>
-                                    <div class="col-sm-10"><select name="select" id="exampleSelect" class="form-control"></select></div>
-                                </div>
-                                <script type="text/javascript" src="../nicEdit.js"></script>
-                                <script type="text/javascript">
-                                    bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
-                                </script>
-                                <div class="position-relative row form-group"><label for="exampleText" class="col-sm-2 col-form-label">Nội dung</label>
-                                    <div class="col-sm-10"><textarea name="area1" id="exampleText" class="form-control"></textarea></div>
-                                </div>
-                                <!--
-                                <div class="position-relative row form-group"><label for="exampleFile" class="col-sm-2 col-form-label">File</label>
-                                    <div class="col-sm-10"><input name="file" id="exampleFile" type="file" class="form-control-file">
-                                        
-                                    </div>
-                                </div>
-                                -->
-                                <center>
-                                    <div class="position-relative row form-check">
-                                        <div class="col-sm-10 offset-sm-2">
-                                            <button type="button" class="btn btn-primary">Đặt lại</button>
-                                            <button class="btn btn-secondary">Submit</button>
-                                        </div>
-                                    </div>
-                                </center>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 @endSection
@@ -195,13 +312,50 @@
                 </button>
             </div>
             <div class="modal-body" style="margin-left: 20px">
-                <p>Người gửi : John Doe Web Developer</p>
-                <p>Ngày gửi : 1/1/09</p>
-                <p>Nội dung:</p>
-                <p>Có những ứng dụng sẽ luôn luôn chạy ngầm nên chiếm rất nhiều tài nguyên của máy. Điển hình như Facebook, Messenger, Snapchat,... Việc gỡ đi những ứng dụng này sẽ làm cho chiếc smartphone của bạn nhanh lên 1 cách rõ rệt. Thay vì dùng các ứng dụng nặng nề đó các bạn có thể lựa chọn trình duyệt web để sử dụng cho cả Facebook và Messenger.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Exit</button>
+                <div class="row">
+                    <div class="main-card col-md-12 card">
+                        <div class="card-body">
+                            <h5 class="card-title">Tin nhắn</h5>
+                            <div class="scroll-area-md">
+                                <div class="scrollbar-container ps--active-y ps" >
+                                    <!--message view-->
+                                    <div style="float: left; width: 100%">
+                                        <img width="40" class="rounded-circle" src="assets/images/avatars/4.jpg" alt="" style="float: left;margin: 10px;">
+                                        <p style="float: left;width: 70%;text-align: left; border-radius: 5px; border: 1px solid black ; padding: 10px ; margin-bottom: 10px; background-color: #1877F2; color: white">hahaha Bạn đang xem tag html textarea, là tag có thể nhập được văn bản, và có thể chứa được rất nhiều dòng Bạn đang xem tag html textarea, là tag có thể nhập được văn bản, và có thể chứa được rất nhiều dòngBạn đang xem tag html textarea, là tag có thể nhập được văn bản, và có thể chứa được rất nhiều dòng</p>
+                                        <small style="float: left;margin: 10px;"><?php echo date('d/m/Y - H:i:s'); ?></small>
+                                    </div>
+                                    <div style="float: left; width: 100%">
+
+                                        <p style="float: right;width: 70%; background-color:#DADDE1 ;text-align: right; border-radius: 5px; border: 1px solid black ; padding: 10px ; margin-bottom: 10px">sdfhsdfhsdfs</p>
+                                        <small style="float: right;margin: 10px;"><?php echo date('d/m/Y - H:i:s'); ?></small>
+                                    </div>
+
+                                    <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+                                        <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                                    </div>
+                                    <div class="ps__rail-y" style="top: 0px; height: 300px; right: 0px;">
+                                        <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 125px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="main-card col-md-12 card" style="padding-top: 20px">
+                        <form action="sendMessage" method="post">
+                            
+                           @csrf
+                            
+                            <div class="position-relative row form-group">
+                                <div class="col-md-12"><textarea name="content" id="exampleText" class="form-control"></textarea></div>
+                            </div>
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-secondary" style="float: right;">Gửi</button>
+                            </div>
+                        </form>
+                             
+                    </div>
+
+                </div>
                 
             </div>
         </div>

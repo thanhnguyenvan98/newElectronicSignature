@@ -1,6 +1,5 @@
 
 $(document).ready(function(){
-    alert('adsad');
     
 	var soTietHoc = document.getElementById('soTietHoc').value;
 	var SubjectNumberCredit = document.getElementById('Subject').value;
