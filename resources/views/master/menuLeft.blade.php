@@ -80,26 +80,10 @@
                 </li>
                 @endif
                 
-                @if(Session::has('category')&&Session::get('category') == 0)
+                @if(Session::has('category') && Session::get('category') != 3 && Session::get('category') != 4)
                 <li class="app-sidebar__heading ">
                     <a href="signatureCalendar" class="bg-love-kiss" style="color: white">
-                        
                         Ký & gửi lịch giảng dạy
-                    </a>
-                </li>
-                @endif
-
-                @if(Session::has('category')&&Session::get('category') == 1)
-                <li class="app-sidebar__heading ">
-                    <a href="signatureCalendarLeader" class="bg-love-kiss" style="color: white">
-                        Ký & gửi lịch
-                    </a>
-                </li>
-                @endif
-                @if(Session::has('category')&&Session::get('category') == 2)
-                <li class="app-sidebar__heading ">
-                    <a href="signatureCalendarDean" class="bg-love-kiss" style="color: white">
-                        Ký & gửi lịch
                     </a>
                 </li>
                 @endif
@@ -112,7 +96,7 @@
                 </li>
                 @endif
 
-                @if(Session::has('category') && Session::get('category') != 0 && Session::get('category') != 4 )
+                @if(Session::has('category') && Session::get('category') != 0 && Session::get('category') != 1 && Session::get('category') != 2 )
                 <li class="app-sidebar__heading ">
                     <a href="userManagement" class="bg-plum-plate" style="color: white">
                         Quản lý tài khoản
@@ -120,7 +104,7 @@
                 </li>
                 @endif
 
-                @if(Session::has('category') && Session::get('category') != 0 && Session::get('category') != 4 )
+                @if(Session::has('category') && Session::get('category') != 0 && Session::get('category') != 1 && Session::get('category') != 2 )
                 <li class="app-sidebar__heading ">
                     <a href="SpecializedManagement" class="bg-plum-plate" style="color: white">
                         Quản lý khoa
@@ -128,7 +112,7 @@
                 </li>
                 @endif
 
-                @if(Session::has('category') && Session::get('category') != 0 && Session::get('category') != 4 )
+                @if(Session::has('category') && Session::get('category') != 0 && Session::get('category') != 1 && Session::get('category') != 2 )
                 <li class="app-sidebar__heading ">
                     <a href="SubjectManagement" class="bg-plum-plate" style="color: white">
                         Quản lý môn học

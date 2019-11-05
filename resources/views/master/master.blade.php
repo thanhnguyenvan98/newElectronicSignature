@@ -62,7 +62,6 @@
 
 <script type="text/javascript" src="{{asset('assets/scripts/main.js')}}"></script>
 <script type="text/javascript" src="{{asset('assets/scripts/myScript.js')}}"></script>
-
 </body>
 </html>
 

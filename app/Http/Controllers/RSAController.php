@@ -27,21 +27,24 @@ class RSAController extends Controller
 			$rsa->loadKey($array['publickey']);//publickey
 
 			$signature = $rsa->encrypt($hashMessage);
+			
 
 			echo 'Chu ky dien tu : '.$signature;
 			echo "<br>";
 
 			//kiem tra chu ky
-				//giai ma chu ky
-				$rsa->loadKey($array['privatekey']); // private key
-				echo 'sau khi giai ma chu ky : '.$rsa->decrypt($signature);
-				echo "<br>";
-				echo 'Bam message : '.$hashMessage;
-				echo "<br>";
-				if ($hashMessage == $rsa->decrypt($signature)) {
-					# code...
-					echo "File khong thay doi tren duong truyen";
-				}
+			
+
+			//giai ma chu ky
+			$rsa->loadKey($array['privatekey']); // private key
+			echo 'sau khi giai ma chu ky : '.$rsa->decrypt($signature);
+			echo "<br>";
+			echo 'Bam message : '.$hashMessage;
+			echo "<br>";
+			if ($hashMessage == $rsa->decrypt($signature)) {
+				# code...
+				echo "File khong thay doi tren duong truyen";
+			}
 
 
 /*

@@ -13,6 +13,10 @@
 
 // Route::resource('specializeds','SpecializedController');
 
+route::get('HAHA',function(){
+       return view('signatureCalendarLeader');
+});
+
 Route::get('home', function () {
 	if (Session::has('login') && Session::get('login') == false) {
     # code...
@@ -28,8 +32,6 @@ Route::get('logout', function () {
     
     Session()->flush();
     return redirect()->route('loginView');
-    
-    return view('home');
 });
 
 route::get('/',function(){
@@ -55,10 +57,10 @@ route::get('/',function(){
 })->name('loginView');
 
 //login
-
 Route::post('postLogin',['as'=>'postLogin','uses'=>'loginController@check']);
 
 //user
+<<<<<<< HEAD
     //Edit informaion user
     route::post('EditInformation','EditInformationController@edit');
     route::get('ShowInfor', 'EditInformationController@show')->name('Information');
@@ -66,6 +68,11 @@ Route::post('postLogin',['as'=>'postLogin','uses'=>'loginController@check']);
     //Edit password
     route::get('ShowEditPassword','SettingAccountController@show');
     route::get('EditPassword','SettingAccountController@edit')->name('ShowPassword');
+=======
+//Edit informaion user
+    route::get('EditInformation','EditInformationController@edit');
+    route::get('ShowInfor', 'EditInformationController@show');
+>>>>>>> 46667360e2b6216f73ce68b9198e2616144f4c09
 
 route::get('userManagement','UserController@index')->name('userManagementView');
 
@@ -95,6 +102,10 @@ Route::get('infor', 'TeacherController@showInforBeforLogin')->name('inforView');
 
 Route::post('editInforTeacher',['as'=>'editInforTeacher','uses'=>'TeacherController@create']);
 
+Route::post('editInforLeader',['as'=>'editInforLeader','uses'=>'LeaderController@create']);
+
+Route::post('editInforDean',['as'=>'editInforDean','uses'=>'DeanController@create']);
+
 // Subject
 
 Route::get('SubjectManagement', 'SubjectController@index')->name('SubjectMangementView');
@@ -110,10 +121,6 @@ Route::post('ShowSubject',['as'=>'ShowSubject','uses'=>'SubjectController@show']
 
 
 route::get('calendar','CalendarController@show')->name('calendarView');
-
-
-
-
 // Calendar
 
 route::get('createCalendarView','CalendarController@index')->name('createCalendarView');
@@ -156,6 +163,8 @@ route::get('calendarManagementAdmin',function(){
 
 
 route::get('signatureCalendar','signatureCalendarController@index')->name('signatureCalendarView');
+
+route::get('signatureCalendarTest/{theFileSignatured_path}','signatureCalendarController@test');
 
 route::post('postSignatureCalendar/{fileSignaturePath}','signatureCalendarController@signature');
 

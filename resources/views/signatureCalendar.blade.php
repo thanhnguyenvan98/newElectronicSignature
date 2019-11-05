@@ -35,42 +35,118 @@
                             <tr>
                                 <th>STT</th>
                                 <th>Môn</th>
-                                <th>Ngày tạo</th>
-                                <th>Ngày hoàn thành ký gửi</th>
-                                <th>Chữ ký của tổ trưởng</th>
-                                <th>Chữ ký của trưởng khoa</th>
+                                <th>Mã số</th>
+                                @if(session()->get('category') != 0)
+                                    <th>Giáo viên</th>
+                                @endif
+                                <th>Ngày tạo lịch</th>
+                                @if(session()->get('category') != 1)
+                                    <th>Tổ trưởng</th>
+                                @endif
+                                @if(session()->get('category') != 2)
+                                    <th>Trưởng khoa</th>
+                                @endif
                                 <th>Tác vụ</th>
                             </tr>
                             </thead>
                             <tbody>
+                            @if(session()->get('category') == 0)
+                                <?php $i=1; ?>
                                 @foreach($calendarDatas as $calendarData)
-                            <tr>
-                                <th scope="row">{{$calendarData['stt']}}</th>
-                                <td>{{$calendarData['subject_name']}}</td>
-                                <td>{{$calendarData['theFileSignatured_date']}}</td>
-                                <td>{{$calendarData['ngayHoanThanh']}}</td>
-                                @if($calendarData['leaderSignature'] != '')
-                                <td><div class="badge badge-info">Đã ký</div></td>
-                                @endif
-                                @if($calendarData['leaderSignature'] == '')
-                                <td><div class="badge badge-danger">Chưa ký</div></td>
-                                @endif
-                                @if($calendarData['deanSignature'] != '')
-                                <td><div class="badge badge-info">Đã ký</div></td>
-                                @endif
-                                @if($calendarData['deanSignature'] == '')
-                                <td><div class="badge badge-danger">Chưa ký</div></td>
-                                @endif
-                                @if($calendarData['ngayHoanThanh'] != '')
-                                <td><div class="badge badge-info">Đã ký</div></td>
-                                @endif
-                                @if($calendarData['ngayHoanThanh'] == '')
-                                <td><button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg{{$calendarData['stt']}}">Ký & Gửi</button></td>
-                                @endif
-                                
-                            </tr>
-                            @endforeach
+                                    <tr>
+                                        <td scope="row">{{$i++}}</td>
+                                        <td>{{$calendarData['subject_name']}}</td>
+                                        <td>{{$calendarData['subject_code']}}</td>
+                                        
+                                        <td>{{$calendarData['theFileSignatured_date']}}</td>
+                                        @if($calendarData['leaderSignature'] != '')
+                                            <td><div class="badge badge-success">Đã ký</div></td>
+                                        @endif
+                                        @if($calendarData['leaderSignature'] == '')
+                                            <td><div class="badge badge-danger">Chưa ký</div></td>
+                                        @endif
+                                        @if($calendarData['deanSignature'] != '')
+                                            <td><div class="badge badge-success">Đã ký</div></td>
+                                        @endif
+                                        @if($calendarData['deanSignature'] == '')
+                                            <td><div class="badge badge-danger">Chưa ký</div></td>
+                                        @endif
 
+                                        @if($calendarData['teacherSignature'] != '')
+                                            <td><div class="badge badge-success">Đã ký</div></td>
+                                        @endif
+                                        @if($calendarData['teacherSignature'] == '')
+                                            <td>
+
+                                                <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg{{$calendarData['stt']}}">Ký & Gửi</button></td>
+                                        @endif
+                                    </tr>
+                                @endforeach
+                            @endif
+                            @if(session()->get('category') != 0)
+                                <?php $i = 1; ?>
+                                @foreach($calendarDatas as $calendarData)
+                                    @if($calendarData['teacherSignature'] != '')
+                                        <tr>
+                                            <td scope="row">{{$i++}}</td>
+                                            <td>{{$calendarData['subject_name']}}</td>
+                                            <td>{{$calendarData['subject_code']}}</td>
+                                            <td>{{$calendarData['teacher_name']}}</td>
+                                            <td>{{$calendarData['theFileSignatured_date']}}</td>
+                                            
+                                            @if(session()->get('category') != 1)
+                                                @if($calendarData['leaderSignature'] == '')
+                                                    <td><div class="badge badge-danger">Chưa ký</div></td>
+                                                @endif
+                                                @if($calendarData['leaderSignature'] != '')
+                                                    <td><div class="badge badge-success">Đã ký</div></td>
+                                                @endif
+                                            @endif
+                                            @if(session()->get('category') != 2)
+                                                @if($calendarData['deanSignature'] != '')
+                                                    <td><div class="badge badge-success">Đã ký</div></td>
+                                                @endif
+                                                @if($calendarData['deanSignature'] == '')
+                                                    <td><div class="badge badge-danger">Chưa ký</div></td>
+                                                @endif
+                                            @endif
+
+                                            @if(session()->get('category') == 1)
+                                                @if($calendarData['leaderSignature'] != '')
+                                                <td>
+                                                    <a href="#" class="btn-wide btn btn-success" style="width: 80px">Đã ký</a>
+                                                    
+                                                    <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg{{$calendarData['stt']}}" style="margin-top: 8px; width: 80px; margin-left: 5px">Chi tiết</button>
+                                                </td>
+                                                
+                                                @endif
+                                                @if($calendarData['leaderSignature'] == '')
+                                                    <td>
+                                                        <a href="signatureCalendarTest/{{$calendarData['theFileSignatured_path']}}" class="btn-transition btn btn-outline-primary" style="width: 80px">Kiểm tra</a>
+                                                        <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg{{$calendarData['stt']}}" style="margin-top: 8px; width: 80px; margin-left: 5px">Chi tiết</button>
+                                                    </td>
+                                                @endif
+                                            @endif
+
+                                            @if(session()->get('category') == 2)
+                                                @if($calendarData['deanSignature'] != '')
+                                                    <td>
+                                                        <a href="#" class="btn-wide btn btn-success" style="width: 80px">Đã ký</a>
+                                                        <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg{{$calendarData['stt']}}" style="margin-top: 8px; width: 80px; margin-left: 5px">Chi tiết</button>
+                                                    </td>
+
+                                                @endif
+                                                @if($calendarData['deanSignature'] == '')
+                                                <td>
+                                                     <a href="signatureCalendarTest/{{$calendarData['theFileSignatured_path']}}" class="btn-transition btn btn-outline-primary">Kiểm tra</a>
+                                                    <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg{{$calendarData['stt']}}" style="margin-top: 8px; width: 80px; margin-left: 5px">Chi tiết</button>
+                                                </td>
+                                                @endif
+                                            @endif
+                                        </tr>
+                                    @endif
+                                @endforeach
+                            @endif
                             
                             </tbody>
                         </table>
@@ -97,13 +173,45 @@
                     @csrf
                     <div class="modal-body">
                         <div class="card-body">
-                            <h5 class="card-title" style="margin-top: 30px">Nhập khóa</h5>
+                            @if(session()->get('category') != 0)
+                                <div>
+                                    <h5 class="card-title" style="margin-top: 20px">Thông tin lịch giảng dạy</h5>
+
+                                    <button class="mb-2 mr-2 btn-transition btn btn-outline-danger" style="float: right;">Download lịch giảng dạy</button>
+                                    <p>Giáo viên : {{$calendarData['teacher_name']}}</p>
+                                    <p>Môn học : {{$calendarData['subject_name']}}</p>
+                                    <p>Hệ khóa : {{$calendarData['heKhoa']}}</p>
+                                    <p>Học kỳ : {{$calendarData['hocKy']}}</p>
+                                    <p>Năm học : {{$calendarData['namHoc']}}</p>
+                                    <table class="mb-0 table" style="margin-top: 30px">
+                                        <thead>
+                                        <tr>
+                                            <th>Buổi</th>
+                                            <th>Bài giảng</th>
+                                            <th>Dự kiến tiến độ</th>
+                                            <th>Ghi chú</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($calendarData['theFileSignaturedDatas'] as $theFileSignaturedData)
+                                            <tr>
+                                                <td scope="row">{{$theFileSignaturedData['stt']}}</td>
+                                                <td>{{$theFileSignaturedData['unit']}}</td>
+                                                <td>{{$theFileSignaturedData['keHoach']}}</td>
+                                                <td>{{$theFileSignaturedData['chuThich']}}</td>
+                                                <!---->
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @endif
+                            <h5 class="card-title" style="margin-top: 30px">Ký lịch giảng dạy</h5>
                             <div>
                                 <div class="input-group">
-                                    <!--<input type="text" class="form-control" id="textPrivateKey" name="privateKey" style="height: 42px" placeholder="Nhập khóa của bạn hoặc chọn file(txt) chứa khóa">-->
                                     <div class="input-group-append">
                                         <span class="input-group-text">
-                                            <input name="filePrivateKey" id="exampleFile" type="file" class="form-control-file" onchange="change()">
+                                            Nhập file khóa của bạn (.txt)<input name="filePrivateKey" id="exampleFile" type="file" class="form-control-file col-md-12" onchange="" >
                                         </span>
                                     </div>
                                 </div>
@@ -112,7 +220,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                        <button type="submit" class="btn btn-primary" >Gửi</button>
+                        <button type="submit" class="btn btn-primary" >Ký</button>
                     </div>
                     
                 </form>

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\teacher;
+use App\dean;
+use App\leader;
 
 class loginController extends Controller
 {
@@ -40,7 +42,6 @@ class loginController extends Controller
             //kiem tra xem tai khoan nay da cap rnhap thong tin tai khoan hay chua
             //neu chua chuyen den trang cap nhap tai khoan thong tin ca nhan
             $teachers = teacher::all();
-            $kt = 0;
             foreach ($teachers as $teacher) {
                 if ($userId == $teacher->user_id) {
                     return  redirect()->route('homeView');
@@ -50,10 +51,23 @@ class loginController extends Controller
     		
     	}elseif ($dem == 1 && $category == 1) {
             # code...
-            return redirect()->route('homeLeaderView');
+            $leaders = leader::all();
+            foreach ($leaders as $leader) {
+                if ($userId == $leader->user_id) {
+                    return  redirect()->route('homeLeaderView');
+                }
+            }
+            return redirect()->route('inforView');
+
         }elseif ($dem == 1 && $category == 2) {
             # code...
-            return redirect()->route('homeDeanView');
+            $deans = dean::all();
+            foreach ($deans as $dean) {
+                if ($userId == $dean->user_id) {
+                    return  redirect()->route('homeDeanView');
+                }
+            }
+            return redirect()->route('inforView');
         }elseif ($dem == 1 && $category == 3) {
             # code...
             return redirect()->route('homeManagerView');
