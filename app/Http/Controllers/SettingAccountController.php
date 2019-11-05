@@ -26,8 +26,10 @@ class SettingAccountController extends Controller
         else if ($confirmPassword == "") {
             $error = 'Nhập lại passwords';
         }else{
-            
-            }
+            $newPass = User::where('user_id','=',$id)->update(['user_password'=>$confirmPassword]);
+            $request->session()->put('notice', 'Sửa thành công');
+            return redirect()->route('ShowPassword');
+        }
         $request->session()->put('notice',$error);
         return redirect()->route('userManagementView');
     }
