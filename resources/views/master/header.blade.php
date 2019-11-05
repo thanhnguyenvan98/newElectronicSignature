@@ -58,7 +58,7 @@
                                             </a>
                                         </li>
                                         <li class="app-sidebar__heading ">
-                                            <a href="settingAcount" class="" style="color: black">
+                                            <a href="ShowEditPassword" class="" style="color: black">
                                                 Thay đổi mật khẩu
                                             </a>
                                         </li>

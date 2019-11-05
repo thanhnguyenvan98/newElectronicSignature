@@ -9,6 +9,7 @@ use App\dean;
 use App\teacher;
 use App\admin;
 use App\leader;
+use App\Specialized;
 
 class EditInformationController extends Controller
 {
@@ -61,6 +62,7 @@ class EditInformationController extends Controller
                 "manage_telephoneNumber",
                 "manage_email",
                 "manage_image",
+                "manage_gender",
             ),
             array(
                 "admin_name",
@@ -70,6 +72,7 @@ class EditInformationController extends Controller
                 "admin_telephoneNumber",
                 "admin_email",
                 "admin_image",
+                "admin_gender",
             ),
         );
 
@@ -78,15 +81,15 @@ class EditInformationController extends Controller
         switch ($roleID) {
             case 0:
                 return view('inforUser', [
-                    'user' => teacher::where('user_id','=',$id)->first(), 'name' => $nameInfor[$roleID]
+                    'user' => teacher::where('user_id','=',$id)->first(), 'specializeds' => specialized::all(), 'name' => $nameInfor[$roleID]
                 ]);
             case 1:
                 return view('inforUser', [
-                    'user' => leader::where('user_id','=',$id)->first(), 'name' => $nameInfor[$roleID]
+                    'user' => leader::where('user_id','=',$id)->first(), 'specializeds' => specialized::all(), 'name' => $nameInfor[$roleID]
                 ]);
             case 2:
                 return view('inforUser', [
-                    'user' => dean::where('user_id','=',$id)->first(), 'name' => $nameInfor[$roleID]
+                    'user' => dean::where('user_id','=',$id)->first(), 'specializeds' => specialized::all(), 'name' => $nameInfor[$roleID]
                 ]);
             case 3:
                 return view('inforUser', [
@@ -108,18 +111,22 @@ class EditInformationController extends Controller
         //
         $nameUser = $request->NameUser;
         $peopleID = $request->PeopleID;
-        $adress = $request->Adress;
+        $address = $request->Address;
         $brith = $request->Birth;
         $phone = $request->Phone;
         $email = $request->Email;
         $avata = $request->Avata;
-        $gender = $request->Gender;
-        if ($roleID==0||$roleID==1||$roleID==2) {
+       // $gender = $request->Gender;
+        if($request->Gender == "Nam")   
+                $gender = 1;
+        else    $gender = 0;
+
+        if ($roleID!=3&&$roleID!=4) {
             $specialized = $request->Specialized;
+            $specialized_object = Specialized::where('specialized_name','=',$specialized)->first('specialized_id');
+            $specialized_id = $specialized_object->specialized_id;
             $salary = $request->Salary;
         }
-        // $id = User::where('user_userName','=',$userName)->get('user_id');
-
         if ($nameUser == "") {
             $error = 'Không được bỏ trống tên';
         }
@@ -144,19 +151,41 @@ class EditInformationController extends Controller
         }else{
             switch ($roleID) {
                 case 0:
-                    $newInfo = teacher::where('user_id','=',$id)->update(['teacher_name'=>$nameUser,'teacher_peopleId'=>$peopleID,'teacher_address'=>$address,'teacher_birthday'=>$brith,'teacher_telephone'=>$phone]);
+                    $newInfo = teacher::where('user_id','=',$id)->update(['teacher_name'=>$nameUser,'teacher_peopleId'=>$peopleID,
+                    'teacher_address'=>$address,'teacher_birthday'=>$brith,'teacher_telephoneNumber'=>$phone,'teacher_email'=>$email,
+                    'teacher_image'=>$avata,'teacher_gender'=>$gender,'specialized_id'=>$specialized_id,'teacher_salary'=>$salary]);
                     $request->session()->put('notice', 'Sửa thành công');
-                    return redirect()->route('userManagementView');
+                    return redirect()->route('Information');
                     break;
-                
+                case 1:
+                    $newInfo = leader::where('user_id','=',$id)->update(['leader_name'=>$nameUser,'leader_peopleId'=>$peopleID,
+                    'leader_address'=>$address,'leader_birthday'=>$brith,'leader_telephoneNumber'=>$phone,'leader_email'=>$email,
+                    'leader_image'=>$avata,'leader_gender'=>$gender,'specialized_id'=>$specialized_id,'leader_salary'=>$salary]);
+                    $request->session()->put('notice', 'Sửa thành công');
+                    return redirect()->route('Information');
+                    break;
+                case 2:
+                    $newInfo = dean::where('user_id','=',$id)->update(['dean_name'=>$nameUser,'dean_peopleId'=>$peopleID,
+                    'dean_address'=>$address,'dean_birthday'=>$brith,'dean_telephoneNumber'=>$phone,'dean_email'=>$email,
+                    'dean_image'=>$avata,'dean_gender'=>$gender,'specialized_id'=>$specialized_id,'dean_salary'=>$salary]);
+                    $request->session()->put('notice', 'Sửa thành công');
+                    return redirect()->route('Information');
+                    break;
+                case 3: 
+                    $newInfo = manager::where('user_id','=',$id)->update(['manager_name'=>$nameUser,'manager_peopleId'=>$peopleID,
+                    'manage_birthDay'=>$brith,'manage_address'=>$address,'manage_image'=>$avata,'manage_telephoneNumber'=>$phone,
+                    'manage_email'=>$email,'manage_gender'=>$gender]);
+                    $request->session()->put('notice', 'Sửa thành công');
+                    return redirect()->route('Information');
+                    break;
                 default:
-                    # code...
+                    $newInfo = admin::where('user_id','=',$id)->update(['admin_name'=>$nameUser,'admin_birthday'=>$brith,
+                    'admin_address'=>$address,'admin_email'=>$email,'admin_telephoneNumber'=>$phone,'admin_image'=>$avata,
+                    'admin_gender'=>$gender,'admin_peopleId'=>$peopleID,]);
+                    $request->session()->put('notice', 'Sửa thành công');
+                    return redirect()->route('Information');
                     break;
             }
-
-            $userNew = User::where('user_id','=',$id[0]['user_id'])->update(['user_password'=>$newPassword,'user_category'=>$category,]);
-            $request->session()->put('notice', 'Sửa thành công');
-            return redirect()->route('userManagementView');
         }
         $request->session()->put('notice',$error);
         return redirect()->route('userManagementView');

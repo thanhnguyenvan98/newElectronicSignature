@@ -22,12 +22,13 @@
         			<center>
         			<div class="col-md-8"> 
 						<div class="card-body">
-					
-				            <h5 class="card-title">Thông tin</h5>
+						    <h5 class="card-title">Thông tin</h5>
 				            <form class="needs-validation" novalidate action='EditInformation'>
 				                <div class="form-row">
 				                    <div class="col-md-12 mb-12">
 				                        <label for="validationCustom01" style="float: left; margin-top: 20px">Họ tên</label>
+										<br/>
+										<br/>
 										<?php $ten = $name[0];?>
 				                        <input type="text" class="form-control" name= "NameUser" id="NameUser" placeholder="First name" value="{{$user->$ten}}" required>
 				                        <div class="valid-feedback">
@@ -85,12 +86,12 @@
 				                    </div>
 				                    <div class="col-md-12 mb-12">
 				                        <label for="validationCustom02" style="float: left;margin-top: 20px">Giới tính</label>
-				                        <?php $gioiTinh = $user[7]?>
+				                        <?php $gioiTinh = $name[7]?>
 				                        <select class="form-control" name= "Gender" id="Gender">
 				                        	<option>Nam</option>
 				                        	<option 
 												<?php 
-													if ($gioiTinh == 0) {
+													if ($user->$gioiTinh == 0) {
 														echo('selected = "selected"');
 													}
 												?>>
@@ -104,9 +105,19 @@
 									@if(Session::has('category')&&Session::get('category') == 0||Session::get('category') == 1||Session::get('category') == 2)
 				                    <div class="col-md-12 mb-12">
 				                        <label for="validationCustom02" style="float: left;margin-top: 20px">Chuyên ngành</label>
-										<?php $chuyenNganh = $name[8];?>
-				                        <input type="text" class="form-control" name= "Specialized" id="Specialized" placeholder="Last name" value="{{$user->$chuyenNganh}}" required>
-				                        <div class="valid-feedback">
+										<?php $chuyenNganh = $user->specialized_id;?>
+										<select class="form-control" name= "Specialized" id="Specialized">
+											@foreach($specializeds as $specialized)
+												<option
+													<?php
+														if ($chuyenNganh == $specialized->specialized_id) {
+															echo('selected = "selected"');
+														}
+													?>>{{$specialized->specialized_name}}
+												</option>
+											@endforeach
+										</select>
+				                        <div class="valid-feedback"> 
 				                            Looks good!
 				                        </div>
 				                    </div>

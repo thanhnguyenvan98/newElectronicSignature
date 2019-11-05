@@ -24,51 +24,39 @@
         			
         			<div class="col-md-8"> 
 						<div class="card-body">
+						<?php $user;?>
 				            <h5 class="card-title">Thông tin</h5>
-				            <form class="needs-validation" novalidate>
+				            <form class="needs-validation" action="EditPassword" novalidate>
 				                <div class="form-row">
 				                    <div class="col-md-12 mb-12">
 				                        <label for="validationCustom01" style="float: left; margin-top: 20px">Tài khoản</label>
-				                        <input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="Mark" required>
+				                        <input type="text" class="form-control" name= "Username" id="Username" placeholder="User Name" value="{{$user->user_userName}}" required>
 				                        <div class="valid-feedback">
 				                            Looks good!
 				                        </div>
 				                    </div>
 				                    <div class="col-md-12 mb-12">
 				                        <label for="validationCustom02" style="float: left;margin-top: 20px">Mật khẩu cũ</label>
-				                        <input type="password" class="form-control" id="validationCustom02" placeholder="Last name" value="Otto" required>
+				                        <input type="password" class="form-control" name= "Password" id="Password" placeholder="password" value="{md5({$user->user_passwords})}" required>
 				                        <div class="valid-feedback">
 				                            Looks good!
 				                        </div>
 				                    </div>
 				                    <div class="col-md-12 mb-12">
 				                        <label for="validationCustom02" style="float: left;margin-top: 20px">Mật khẩu mới</label>
-				                        <input type="password" class="form-control" id="validationCustom02" placeholder="Last name" value="Otto" required>
-				                        <div class="valid-feedback">
+				                        <input type="password" class="form-control" name= "NewPassword" id="NewPassword" placeholder="New Password" required>
+				                        <div class="valid-feedback">NewPassword
 				                            Looks good!
 				                        </div>
 				                    </div>
 				                    <div class="col-md-12 mb-12">
 				                        <label for="validationCustom02" style="float: left;margin-top: 20px">Nhập lại mật khẩu</label>
-				                        <input type="password" class="form-control" id="validationCustom02" placeholder="Last name" value="Otto" required>
+				                        <input type="password" class="form-control" name= "ConfirmPassword" id="ConfirmPassword" placeholder="Confirm Password" required>
 				                        <div class="valid-feedback">
 				                            Looks good!
 				                        </div>
 				                    </div>
 				                    
-
-				                 <!--   
-				                <div class="form-group">
-				                    <div class="form-check">
-				                        <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-				                        <label class="form-check-label" for="invalidCheck">
-				                            Agree to terms and conditions
-				                        </label>
-				                        <div class="invalid-feedback">
-				                            You must agree before submitting.
-				                        </div>
-				                    </div>
-				                </div>-->
 				                <button class="btn btn-primary" type="submit" style="margin-top: 20px;">Lưu thay đổi</button>
 
 				            </form>
