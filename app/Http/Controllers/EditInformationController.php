@@ -116,6 +116,8 @@ class EditInformationController extends Controller
         $phone = $request->Phone;
         $email = $request->Email;
         $avata = $request->Avata;
+        $avata->move(public_path().'/image/', $avata->getClientOriginalName());
+
        // $gender = $request->Gender;
         if($request->Gender == "Nam")   
                 $gender = 1;

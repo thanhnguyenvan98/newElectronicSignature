@@ -109,7 +109,7 @@ class SpecializedController extends Controller
         foreach ($specializeds as $specialized) {
             if ($specialized->specialized_name == $specializedName) {
                 # code...
-                $kt = 1;
+                $kt++;
             }
         }
 
@@ -122,7 +122,7 @@ class SpecializedController extends Controller
         else if ($specializedDescription == "") {
             $error = 'Mô tả không được bỏ trống';
         }
-        else if ($kt == 0) {
+        else if ($kt >1) {
             $error = 'Tên khoa đã tồn tại';
         }else{
             $specializedNew = Specialized::where('specialized_id','=',$id[0]['specialized_id'])->update(['specialized_name'=>$specializedName,'specialized_acronym'=>$specializedAcronym,'specialized_description'=>$specializedDescription,]);

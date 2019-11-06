@@ -51,6 +51,7 @@
                                 <th>STT</th>
                                 <th>Tên</th>
                                 <th>Số tín chỉ</th>
+                                <th>Tên Khoa</th>
                                 <th>Tác vụ</th>
                             </tr>
                             </thead>
@@ -59,11 +60,12 @@
                                 @foreach($subjects as $subject)
                                 <tr>
                                     <td scope="row" style="width: 20px">{{$i}}</td>
-                                    
                                     <td>{{$subject->subject_name}}</td>
                                     <td>{{$subject->subject_numberCredit}}</td>
+                                    <?php $id = $subject->Specialized_id; ?>
+                                    <td>{{$nameSpecialized[$id]}}</td>
                                     <td>
-                                        <button type="button" class="btn mr-2 mb-2 btn-primary"  data-number-credit="{{$subject->subject_numberCredit}}" data-form-action="{{route('EditSpecialized',['id'=>$subject->subject_id])}}" data-subject-name="{{$subject->subject_name}}" onclick="onEditButtonClick(this)" data-toggle="modal" data-target=".bd-example-modal-lg-edit" style="">Sửa</button>
+                                        <button type="button" class="btn mr-2 mb-2 btn-primary"  data-number-credit="{{$subject->subject_numberCredit}}" data-spec-id="{{$subject->Specialized_id}}" data-form-action="{{route('EditSpecialized',['id'=>$subject->subject_id])}}" data-subject-name="{{$subject->subject_name}}" onclick="onEditButtonClick(this)" data-toggle="modal" data-target=".bd-example-modal-lg-edit" style="">Sửa</button>
                                         <button type="button" onclick="onDeleteButtonClick(this)" class="btn mr-2 mb-2 btn-secondary" data-id="{{$subject->subject_id}}" data-toggle="modal" data-target=".bd-delete-modal" style="">Xóa</button>
                                     </td>
                                 </tr>
@@ -81,7 +83,10 @@
             console.log(elm);
             $('.bd-example-modal-lg-edit #number_credit').val($(elm).attr('data-number-credit'));
             $('.bd-example-modal-lg-edit #subject_name').val($(elm).attr('data-subject-name'));
-            $('.EditSubject').attr('action', $(elm).attr('data-form-action'))
+            $('.bd-example-modal-lg-edit #specialized_name').val($(elm).attr('data-spec-id'));
+            //console.log();
+            $('.EditSubject').attr('action', $(elm).attr('data-form-action'));
+
         }
         function onDeleteButtonClick(elm) {
             console.log(elm);
@@ -123,7 +128,16 @@
                                                 <label for="exampleSelect" class="">Số Tín Chỉ</label>
                                                 <input type="text"  name="number_credit" id="number_credit" class="form-control" value="">
                                             </div>
-
+                                            <div class="position-relative form-group">
+                                                <label for="exampleSelect" class="">Tên khoa</label>
+                                                <select class="form-control" name= "specialized_name" id="specialized_name">
+                                                @foreach($specializeds as $specialized)
+                                                    <option value="{{$specialized->specialized_id}}">{{$specialized->specialized_name}}
+                                                    </option>
+                                                @endforeach
+										        </select>
+                                            </div>
+                                            
                                             <div class="modal-footer" style="background-color: white ">
                                                 <button type="button" class="btn btn-primary">Đặt lại</button>
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
@@ -197,6 +211,15 @@
                                         <div class="position-relative form-group">
                                             <label for="exampleSelect" class="">Số Tín Chỉ</label>
                                             <input type="text"  name="number_credit"id="exampleSelect" class="form-control">
+                                        </div>
+
+                                        <div class="position-relative form-group">
+                                            <label for="exampleSelect" class="">Tên khoa</label>
+                                            <select class="form-control" name= "specialized_name" id="specialized_name">
+                                            @foreach($specializeds as $specialized)
+                                                <option>{{$specialized->specialized_name}}</option>
+                                            @endforeach
+                                            </select>
                                         </div>
 
                                         <div class="modal-footer" style="background-color: white ">
