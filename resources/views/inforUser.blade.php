@@ -23,7 +23,8 @@
         			<div class="col-md-8"> 
 						<div class="card-body">
 						    <h5 class="card-title">Thông tin</h5>
-				            <form class="needs-validation" novalidate action='EditInformation'>
+				            <form class="needs-validation" novalidate action='EditInformation' method="post">
+								@csrf
 				                <div class="form-row">
 				                    <div class="col-md-12 mb-12">
 				                        <label for="validationCustom01" style="float: left; margin-top: 20px">Họ tên</label>
@@ -67,7 +68,7 @@
 				                            Looks good!
 				                        </div>
 				                    </div>
-				                    <div class="col-md-12 mb-12">
+		   		                    <div class="col-md-12 mb-12">
 				                        <label for="validationCustom02" style="float: left;margin-top: 20px">Email</label>
 										<?php $email = $name[5];?>
 				                        <input type="text" class="form-control" name= "Email" id="Email" placeholder="Last name" value="{{$user->$email}}" required>

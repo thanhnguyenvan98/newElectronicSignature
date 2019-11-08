@@ -116,6 +116,30 @@ class EditInformationController extends Controller
         if (Session()->has('login') && Session()->get('login') == false) {
         # code...
         return redirect()->route('loginView');
+        $id = session()->get('userId');
+        $roleID = session()->get('category');
+        $specialized = "";
+        $salary= "";
+        //
+        $nameUser = $request->NameUser;
+        $peopleID = $request->PeopleID;
+        $address = $request->Address;
+        $brith = $request->Birth;
+        $phone = $request->Phone;
+        $email = $request->Email;
+        $avata = $request->Avata;
+        $avata->move(public_path().'/image/', $avata->getClientOriginalName());
+
+       // $gender = $request->Gender;
+        if($request->Gender == "Nam")   
+                $gender = 1;
+        else    $gender = 0;
+
+        if ($roleID!=3&&$roleID!=4) {
+            $specialized = $request->Specialized;
+            $specialized_object = Specialized::where('specialized_name','=',$specialized)->first('specialized_id');
+            $specialized_id = $specialized_object->specialized_id;
+            $salary = $request->Salary;
         }
         else if (!Session()->has('login')) {
             return redirect()->route('loginView');

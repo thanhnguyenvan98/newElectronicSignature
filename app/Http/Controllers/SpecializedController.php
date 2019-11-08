@@ -140,12 +140,15 @@ class SpecializedController extends Controller
 
             $specializeds = Specialized::all();
             $kt = 0;
-
             foreach ($specializeds as $specialized) {
                 if ($specialized->specialized_name == $specializedName) {
                     # code...
                     $kt = 1;
                 }
+        foreach ($specializeds as $specialized) {
+            if ($specialized->specialized_name == $specializedName) {
+                # code...
+                $kt++;
             }
 
             if ($specializedName == "") {
@@ -165,6 +168,20 @@ class SpecializedController extends Controller
                 return redirect()->route('SpecializedManagementView');
             }
             $request->session()->put('notice',$error);
+        if ($specializedName == "") {
+            $error = 'Tên khoa không được bỏ trống';
+        }
+        else if ($specializedAcronym == "") {
+            $error = 'Viết tắt khoa không được bỏ trống';
+        }  
+        else if ($specializedDescription == "") {
+            $error = 'Mô tả không được bỏ trống';
+        }
+        else if ($kt >1) {
+            $error = 'Tên khoa đã tồn tại';
+        }else{
+            $specializedNew = Specialized::where('specialized_id','=',$id[0]['specialized_id'])->update(['specialized_name'=>$specializedName,'specialized_acronym'=>$specializedAcronym,'specialized_description'=>$specializedDescription,]);
+            $request->session()->put('notice', 'Sửa thành công');
             return redirect()->route('SpecializedManagementView');
         }
     }
