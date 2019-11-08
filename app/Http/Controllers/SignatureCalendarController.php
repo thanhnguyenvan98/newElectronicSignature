@@ -27,10 +27,10 @@ class SignatureCalendarController extends Controller
         //
         if (Session()->has('login') && Session()->get('login') == false) {
         # code...
-        return view('login');
+        return redirect()->route('loginView');
         }
         else if (!Session()->has('login')) {
-            return view('login');
+            return redirect()->route('loginView');
         }
         else {
             if(session()->get('category') == 0){
@@ -102,7 +102,15 @@ class SignatureCalendarController extends Controller
 
     public function signature(Request $request,$fileSignaturePath)
     {
-        if(session()->has('test'.$fileSignaturePath) && session()->get('category') != 0) {
+        if (Session()->has('login') && Session()->get('login') == false) {
+        # code...
+        return redirect()->route('loginView');
+        }
+        else if (!Session()->has('login')) {
+            return redirect()->route('loginView');
+        }
+        else {
+            if(session()->has('test'.$fileSignaturePath) && session()->get('category') != 0) {
             $privateKey = '';
             $data = '';
             $rsa = new RSA();
@@ -221,9 +229,18 @@ class SignatureCalendarController extends Controller
             session()->put('notice',$notice);
             return redirect()->back()->withInput();
         }
+        }
     }
 
     public function test($theFileSignatured_path){
+        if (Session()->has('login') && Session()->get('login') == false) {
+        # code...
+        return redirect()->route('loginView');
+        }
+        else if (!Session()->has('login')) {
+            return redirect()->route('loginView');
+        }
+        else {
         //lấy ra chữ ký của giáo viên
         $theFileSignatured = TheFileSignatured::where('theFileSignatured_path',$theFileSignatured_path)->get()->toArray();
         $signatureTeacher = decrypt($theFileSignatured[0]['theFileSignatured_signatureTeacher']);
@@ -255,6 +272,7 @@ class SignatureCalendarController extends Controller
         }
         session()->put('notice',$notice);
         return redirect()->route('signatureCalendarView');
+        }
     }
 
     public function create()

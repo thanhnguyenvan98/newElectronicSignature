@@ -41,14 +41,14 @@
 
                 @if(Session::has('category')&&Session::get('category') == 0)
                 <li class="app-sidebar__heading ">
-                    <a href="home" class="mm-active bg-midnight-bloom" style="color: white">
+                    <a href="{{Route('homeView')}}" class="mm-active bg-midnight-bloom" style="color: white">
                         Tổng quan 
                     </a>
                 </li>
                 @endif
                 @if(Session::has('category')&&Session::get('category') == 1)
                 <li class="app-sidebar__heading ">
-                    <a href="homeLeader" class="mm-active bg-midnight-bloom" style="color: white">
+                    <a href="{{Route('homeLeaderView')}}" class="mm-active bg-midnight-bloom" style="color: white">
                         
                         Tổng quan
                     </a>
@@ -56,7 +56,7 @@
                 @endif
                 @if(Session::has('category')&&Session::get('category') == 2)
                 <li class="app-sidebar__heading ">
-                    <a href="homeDean" class="mm-active bg-midnight-bloom" style="color: white">
+                    <a href="{{Route('homeDeanView')}}" class="mm-active bg-midnight-bloom" style="color: white">
                         
                         Tổng quan
                     </a>
@@ -64,7 +64,7 @@
                 @endif
                 @if(Session::has('category')&&Session::get('category') == 3)                
                 <li class="app-sidebar__heading ">
-                    <a href="homeManage" class="mm-active bg-midnight-bloom" style="color: white">
+                    <a href="{{Route('homeManagerView')}}" class="mm-active bg-midnight-bloom" style="color: white">
                         
                         Tổng quan
                     </a>
@@ -73,7 +73,7 @@
 
                 @if(Session::has('category')&&Session::get('category') == 0)
                 <li class="app-sidebar__heading ">
-                    <a href="calendar" class="bg-grow-early" style="color: white">
+                    <a href="{{Route('calendarView')}}" class="bg-grow-early" style="color: white">
                         
                         Lịch trình giảng dạy
                     </a>
@@ -82,7 +82,7 @@
                 
                 @if(Session::has('category') && Session::get('category') != 3 && Session::get('category') != 4)
                 <li class="app-sidebar__heading ">
-                    <a href="signatureCalendar" class="bg-love-kiss" style="color: white">
+                    <a href="{{Route('signatureCalendarView')}}" class="bg-love-kiss" style="color: white">
                         Ký & gửi lịch giảng dạy
                     </a>
                 </li>
@@ -90,7 +90,7 @@
 
                 @if(Session::has('login') && Session::get('login') == true)
                 <li class="app-sidebar__heading ">
-                    <a href="message" class="bg-plum-plate" style="color: white">
+                    <a href="{{Route('messageView')}}" class="bg-plum-plate" style="color: white">
                         Tin nhắn
                     </a>
                 </li>
@@ -98,7 +98,7 @@
 
                 @if(Session::has('category') && Session::get('category') != 0 && Session::get('category') != 1 && Session::get('category') != 2 )
                 <li class="app-sidebar__heading ">
-                    <a href="userManagement" class="bg-plum-plate" style="color: white">
+                    <a href="{{Route('userManagementView')}}" class="bg-plum-plate" style="color: white">
                         Quản lý tài khoản
                     </a>
                 </li>
@@ -106,7 +106,7 @@
 
                 @if(Session::has('category') && Session::get('category') != 0 && Session::get('category') != 1 && Session::get('category') != 2 )
                 <li class="app-sidebar__heading ">
-                    <a href="SpecializedManagement" class="bg-plum-plate" style="color: white">
+                    <a href="{{Route('SpecializedManagementView')}}" class="bg-plum-plate" style="color: white">
                         Quản lý khoa
                     </a>
                 </li>
@@ -114,7 +114,7 @@
 
                 @if(Session::has('category') && Session::get('category') != 0 && Session::get('category') != 1 && Session::get('category') != 2 )
                 <li class="app-sidebar__heading ">
-                    <a href="SubjectManagement" class="bg-plum-plate" style="color: white">
+                    <a href="{{Route('SubjectMangementView')}}" class="bg-plum-plate" style="color: white">
                         Quản lý môn học
                     </a>
                 </li>
@@ -122,7 +122,7 @@
 
                 @if(Session::has('category') && Session::get('category') == 4)
                 <li class="app-sidebar__heading ">
-                    <a href="userManagementAdmin" class="bg-plum-plate" style="color: white">
+                    <a href="{{Route('userManagementAdminView')}}" class="bg-plum-plate" style="color: white">
                         Quản lý tài khoản
                     </a>
                 </li>
@@ -130,7 +130,7 @@
 
                 @if(Session::has('category') && Session::get('category') == 3)
                 <li class="app-sidebar__heading ">
-                    <a href="calendarManagement" class="bg-plum-plate" style="color: white">
+                    <a href="{{Route('calendarManegementView')}}" class="bg-plum-plate" style="color: white">
                         Quản lý lịch giảng dạy
                     </a>
                 </li>

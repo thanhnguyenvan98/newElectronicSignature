@@ -13,9 +13,7 @@
 
 // Route::resource('specializeds','SpecializedController');
 
-route::get('HAHA',function(){
-       return view('signatureCalendarLeader');
-});
+
 
 Route::get('home', function () {
 	if (Session::has('login') && Session::get('login') == false) {
@@ -29,11 +27,12 @@ Route::get('home', function () {
 })->name('homeView');
 
 Route::get('logout', function () {
-    
     Session()->flush();
     return redirect()->route('loginView');
-});
+})->name('logout');
 
+
+//login
 route::get('/',function(){
     if (Session::has('login') && Session::get('login') == true) {
         if (Session::get('category') == 0) {
@@ -56,24 +55,19 @@ route::get('/',function(){
 	   return view('login');
 })->name('loginView');
 
-//login
 Route::post('postLogin',['as'=>'postLogin','uses'=>'loginController@check']);
 
-//user
-//<<<<<<< HEAD
-    //Edit informaion user
-    route::get('ShowInfor', 'EditInformationController@show')->name('Information');
-    route::post('EditInformation','EditInformationController@edit');
+route::get('ShowInfor', 'EditInformationController@show')->name('Information');
 
-    //Edit password
-    route::get('ShowEditPassword','SettingAccountController@show')->name('ShowPassword');
-    route::get('EditPassword','SettingAccountController@edit');
-//=======
-//Edit informaion user
+route::post('EditInformation','EditInformationController@edit');
 
-    route::get('EditInformation','EditInformationController@edit');
-    route::get('ShowInfor', 'EditInformationController@show');
-//>>>>>>> 46667360e2b6216f73ce68b9198e2616144f4c09
+//Edit password
+route::get('ShowEditPassword','SettingAccountController@show')->name('ShowPassword');
+
+route::get('EditPassword','SettingAccountController@edit');
+
+route::get('EditInformation','EditInformationController@edit');
+route::get('ShowInfor', 'EditInformationController@show');
 
 route::get('userManagement','UserController@index')->name('userManagementView');
 
@@ -85,8 +79,6 @@ Route::get('destroyUser/{id}','UserController@destroy')->name('destroyUser');
 
 Route::post('showUser',['as'=>'showUser','uses'=>'UserController@show']);
 
-// Specialized
-
 route::get('SpecializedManagement','SpecializedController@index')->name('SpecializedManagementView');
 
 Route::post('createSpecialized',['as'=>'createSpecialized','uses'=>'SpecializedController@create']);
@@ -97,8 +89,6 @@ Route::get('destroySpecialized/{id}','SpecializedController@destroy')->name('des
 
 Route::post('showSpecialized',['as'=>'showSpecialized','uses'=>'SpecializedController@show']);
 
-// Teacher
-
 Route::get('infor', 'TeacherController@showInforBeforLogin')->name('inforView');
 
 Route::post('editInforTeacher',['as'=>'editInforTeacher','uses'=>'TeacherController@create']);
@@ -106,8 +96,6 @@ Route::post('editInforTeacher',['as'=>'editInforTeacher','uses'=>'TeacherControl
 Route::post('editInforLeader',['as'=>'editInforLeader','uses'=>'LeaderController@create']);
 
 Route::post('editInforDean',['as'=>'editInforDean','uses'=>'DeanController@create']);
-
-// Subject
 
 Route::get('SubjectManagement', 'SubjectController@index')->name('SubjectMangementView');
 
@@ -119,19 +107,13 @@ Route::get('DestroySubject/{id}','SubjectController@destroy')->name('destroySubj
 
 Route::post('ShowSubject',['as'=>'ShowSubject','uses'=>'SubjectController@show']);
 
-
-
 route::get('calendar','CalendarController@show')->name('calendarView');
-// Calendar
 
 route::get('createCalendarView','CalendarController@index')->name('createCalendarView');
 
 route::get('ajaxCreateCalendar','CalendarController@ajax');
 
 route::post('createCalendar','CalendarController@create')->name('createCalendar');
-
-
-
 
 route::get('editCalendar',function(){
     if (Session::has('login') && Session::get('login') == false) {
@@ -149,7 +131,6 @@ route::get('calendarManagement','CalendarManagementController@index')->name('cal
 
 route::post('createCalendarManagement','CalendarManagementController@create');
 
-
 route::get('calendarManagementAdmin',function(){
     if (Session::has('login') && Session::get('login') == false) {
     # code...
@@ -162,13 +143,11 @@ route::get('calendarManagementAdmin',function(){
         return view('calendarManagementAdmin');
 })->name('calendarManegermentAdminView');
 
-
 route::get('signatureCalendar','signatureCalendarController@index')->name('signatureCalendarView');
 
 route::get('signatureCalendarTest/{theFileSignatured_path}','signatureCalendarController@test');
 
 route::post('postSignatureCalendar/{fileSignaturePath}','signatureCalendarController@signature');
-
 
 route::get('homeLeader',function(){
 	if (Session::has('login') && Session::get('login') == false) {
@@ -266,10 +245,6 @@ route::get('homeManage',function(){
 		return view('homeManage');
 })->name('homeManagerView');
 
-
-
-
-
 route::get('userManagementAdmin',function(){
 	if (Session::has('login') && Session::get('login') == false) {
     # code...
@@ -282,31 +257,6 @@ route::get('userManagementAdmin',function(){
 		return view('userManagementAdmin');
 })->name('userManagementAdminView');
 
-
-
-
-
-
-
-
-route::get('bank',function(){
-	if (Session::has('login') && Session::get('login') == false) {
-    # code...
-    return view('login');
-    }
-    else if (!Session::has('login')) {
-        return view('login');
-    }
-    else 
-		return view('bank');
-})->name('bankView');
-
-//RSA
-route::get('RSA','RSAController@createKey');
-
-
-
-//Gmail
 Route::get('/gmail', function () {
     return view('testGmail');
 });
@@ -315,7 +265,8 @@ Route::post('testGmail', ['uses' => 'emailController@addFeedback', 'as' => 'fron
 
 Route::get('sendMail','emailController@sendMail');
 
+Route::get('message','MessageController@index')->name('messageView');
+Route::post('messageInfor/sendMessage/{id}','MessageController@sendMessage');
+route::get('messageInfor/{id}','MessageController@show')->name('messageInfor');
 
-//message
-Route::get('message','MessageController@index');
-Route::post('sendMessage','MessageController@sendMessage');
+route::post('editInforManager','ManagerController@create')->name('editInforManager');

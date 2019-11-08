@@ -79,7 +79,7 @@
 	                        <div class="widget-content-left">
 	                            <div class="btn-group">
 	                                <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
-	                                    <img width="42" class="rounded-circle" src="assets/images/avatars/1.jpg" alt="">
+	                                    
 	                                    <i class="fa fa-angle-down ml-2 opacity-8"></i>
 	                                </a>
 	                                <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
@@ -315,7 +315,9 @@
 							            											elseif(session()->get('category') == 1)
 							            												echo('editInforLeader');
 							            											elseif(session()->get('category') == 2)
-							            												echo('editInforDean');?>" 
+							            												echo('editInforDean');
+							            											elseif(session()->get('category') == 3)
+							            												echo('editInforManager');?>" 
 							            method="post" enctype="multipart/form-data" novalidate>
 							            	{!! csrf_field() !!}
 							                <div class="form-row">
@@ -379,6 +381,7 @@
 							                            Looks good!
 							                        </div>
 							                    </div>
+							                    @if(session()->get('category') != 3)
 							                    <div class="col-md-12 mb-12">
 							                        <label for="validationCustom02" style="float: left;margin-top: 20px">Chuyên ngành</label>
 							                        <select class="form-control" id="validationCustom02"  name="specialized_id">
@@ -398,6 +401,7 @@
 							                            Looks good!
 							                        </div>
 							                    </div>
+							                    @endif
 							                <button class="btn btn-primary" type="submit" style="margin-top: 20px;">Lưu thay đổi</button>
 
 							            </form>

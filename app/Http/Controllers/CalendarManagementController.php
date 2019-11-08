@@ -19,10 +19,18 @@ class CalendarManagementController extends Controller
      */
     public function index()
     {
-        //
+        if (Session()->has('login') && Session()->get('login') == false) {
+        # code...
+        return redirect()->route('loginView');
+        }
+        else if (!Session()->has('login')) {
+            return redirect()->route('loginView');
+        }
+        else {
         $teachers = teacher::all();
         $subjects = Subject::all();
         return view('calendarManagement',compact('teachers','subjects'));
+        }
     }
 
     /**
@@ -32,6 +40,14 @@ class CalendarManagementController extends Controller
      */
     public function create(Request $request)
     {
+        if (Session()->has('login') && Session()->get('login') == false) {
+        # code...
+        return redirect()->route('loginView');
+        }
+        else if (!Session()->has('login')) {
+            return redirect()->route('loginView');
+        }
+        else {
         //
         $nameUniversity = $request->nameUniversity;
         $heKhoa = $request->heKhoa;
@@ -181,7 +197,7 @@ class CalendarManagementController extends Controller
         $request->session()->put('notice',$error);
         return redirect()->route('calendarManegementView');
         
-
+        }
     }
 
     /**

@@ -33,6 +33,14 @@ class TeacherController extends Controller
 
     public function create(Request $request)
     {
+        if (Session()->has('login') && Session()->get('login') == false) {
+        # code...
+        return redirect()->route('loginView');
+        }
+        else if (!Session()->has('login')) {
+            return redirect()->route('loginView');
+        }
+        else {
         //
         $userId = session()->get('userId');
         $name = $request->name;
@@ -86,7 +94,8 @@ class TeacherController extends Controller
         });
         session()->put('feedBackSendEmail', 'Khóa cá nhân của bạn đã được gửi về Gmail');
         $request->session()->put('notice', 'Đã cập nhập thông tin cá nhân');
-        return redirect()->route('homeView');           
+        return redirect()->route('homeView');         
+        }  
     }
 
     
@@ -116,8 +125,17 @@ class TeacherController extends Controller
     public function showInforBeforLogin()
     {
         //
+        if (Session()->has('login') && Session()->get('login') == false) {
+        # code...
+        return redirect()->route('loginView');
+        }
+        else if (!Session()->has('login')) {
+            return redirect()->route('loginView');
+        }
+        else {
         $specializeds = Specialized::All();
         return view('infor',compact('specializeds'));
+        }
     }
 
     /**

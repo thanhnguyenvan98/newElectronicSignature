@@ -7,11 +7,13 @@ use App\mail\sendMail;
 use Illuminate\Support\Facades\Session;
 use Mail;
 use App\User;
-use App\dean;
+use App\Teacher;
 use App\Specialized;
 use App\signature;
+use App\manager;
 
-class DeanController extends Controller
+
+class ManagerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,7 +22,7 @@ class DeanController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -29,16 +31,9 @@ class DeanController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function showInforBeforLogin()
-    {
-        //
-        $specializeds = Specialized::All();
-        return view('infor',compact('specializeds'));
-    }
 
     public function create(Request $request)
     {
-        //
         if (Session()->has('login') && Session()->get('login') == false) {
         # code...
         return redirect()->route('loginView');
@@ -47,6 +42,7 @@ class DeanController extends Controller
             return redirect()->route('loginView');
         }
         else {
+        //
         $userId = session()->get('userId');
         $name = $request->name;
         $peopleId = $request->peopleId;
@@ -56,23 +52,21 @@ class DeanController extends Controller
         $email = $request->email;
         $image = $request->image;
         $gender = $request->gender;
-        $specialized_id = $request->specialized_id;
-        $salary = $request->salary;
 
-        $deanNew = new dean; 
-        $deanNew->dean_name = $name;
-        $deanNew->dean_peopleId = $peopleId;
-        $deanNew->dean_address = $address;
-        $deanNew->dean_birthday = $brithday;
-        $deanNew->dean_telephoneNumber = $telephoneNumber;
-        $deanNew->dean_email = $email;
-        $deanNew->dean_image = $image;
+        $managerNew = new manager; 
+        $managerNew->manager_name = $name;
+        $managerNew->manager_peopleId = $peopleId;
+        $managerNew->manage_address = $address;
+        $managerNew->manage_birthday = $brithday;
+        $managerNew->manage_telephoneNumber = $telephoneNumber;
+        $managerNew->manage_email = $email;
+        $managerNew->manage_image = $image;
         
         //luu anh vao sever
         if ($request->hasFile('image')) {
             if($request->file('image')->getClientOriginalExtension() == 'PNG' || $request->file('image')->getClientOriginalExtension() == 'jpg' || $request->file('image')->getClientOriginalExtension() == 'png' || $request->file('image')->getClientOriginalExtension() == 'JPG') {
                 
-                $request->file('image')->move('image',$userId.'Avata.png');
+               //$request->file('image')->move('image',$userId.'Avata.png');
                 //$request->file('image')->store('image');
             
             }else{
@@ -81,11 +75,9 @@ class DeanController extends Controller
             }
         }
 
-        $deanNew->dean_gender = $gender;
-        $deanNew->specialized_id = $specialized_id;
-        $deanNew->dean_salary = $salary;
-        $deanNew->user_id = $userId;
-        $deanNew->save();
+        $managerNew->manage_gender = $gender;
+        $managerNew->user_id = $userId;
+        $managerNew->save();
 
         //gửi email về email mà người dùng nhập
         $signature = signature::where('user_id','=',$userId)->get()->toArray();
@@ -99,10 +91,11 @@ class DeanController extends Controller
         });
         session()->put('feedBackSendEmail', 'Khóa cá nhân của bạn đã được gửi về Gmail');
         $request->session()->put('notice', 'Đã cập nhập thông tin cá nhân');
-
-        return redirect()->route('homeDeanView');
-        }
+        return redirect()->route('homeManagerView');         
+        }  
     }
+
+    
 
     /**
      * Store a newly created resource in storage.
@@ -126,15 +119,21 @@ class DeanController extends Controller
         //
     }
 
+    public function showInforBeforLogin()
+    {
+
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+        
+        
     }
 
     /**

@@ -10,8 +10,17 @@ class SettingAccountController extends Controller
     //
     public function show(Request $request)
     {
-        $id = session()->get('userId');
-        return view('settingAcount', ['user' => User::where('user_id','=',$id)->first()]);
+        if (Session()->has('login') && Session()->get('login') == false) {
+        # code...
+        return redirect()->route('loginView');
+        }
+        else if (!Session()->has('login')) {
+            return redirect()->route('loginView');
+        }
+        else {
+            $id = session()->get('userId');
+            return view('settingAcount', ['user' => User::where('user_id','=',$id)->first()]);
+        }
     }
 
     public function edit(Request $request)

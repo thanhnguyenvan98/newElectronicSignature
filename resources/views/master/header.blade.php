@@ -63,7 +63,7 @@
                                             </a>
                                         </li>
                                         <li class="app-sidebar__heading ">
-                                            <a href="logout" class="" style="color: black">
+                                            <a href="{{Route('logout')}}" class="" style="color: black">
                                                 Logout
                                             </a>
                                         </li>

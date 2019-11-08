@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\User;
 use App\signature;
 use App\teacher;
+use App\dean;
+use App\manager;
+use App\leader;
+use App\Calendar;
 use phpseclib\Crypt\RSA;
 
 class UserController extends Controller
@@ -18,6 +22,14 @@ class UserController extends Controller
     public function index(Request $request)
     {
         //
+        if (Session()->has('login') && Session()->get('login') == false) {
+        # code...
+        return redirect()->route('loginView');
+        }
+        else if (!Session()->has('login')) {
+            return redirect()->route('loginView');
+        }
+        else {
         if ($request->session()->has('login') && $request->session()->get('login') == false) {
         # code..
         return view('login');
@@ -26,8 +38,9 @@ class UserController extends Controller
             return view('login');
         }
         else{
-            $users = User::Where('user_category','<','3')->get();
+            $users = User::Where('user_category','<','4')->get();
             return view('userManagement',compact('users'));
+        }
         }
     }
 
@@ -39,6 +52,14 @@ class UserController extends Controller
     public function create(Request $request)
     {
         //
+        if (Session()->has('login') && Session()->get('login') == false) {
+        # code...
+        return redirect()->route('loginView');
+        }
+        else if (!Session()->has('login')) {
+            return redirect()->route('loginView');
+        }
+        else {
         $userName = $request->userName;
         $password = $request->password;
         $rePassword = $request->rePassword;
@@ -99,7 +120,7 @@ class UserController extends Controller
         }
         $request->session()->put('notice',$error);
         return redirect()->route('userManagementView');
-        
+        }
     }
     
 
@@ -123,8 +144,17 @@ class UserController extends Controller
     public function show(Request $request)
     {
         //
+        if (Session()->has('login') && Session()->get('login') == false) {
+        # code...
+        return redirect()->route('loginView');
+        }
+        else if (!Session()->has('login')) {
+            return redirect()->route('loginView');
+        }
+        else {
         $users = User::Where('user_userName','like','%'.$request->name.'%')->Where('user_category','<','3')->get();
         return view('userManagement',compact('users'));
+        }
     }
 
     /**
@@ -135,6 +165,14 @@ class UserController extends Controller
      */
     public function edit(Request $request)
     {
+        if (Session()->has('login') && Session()->get('login') == false) {
+        # code...
+        return redirect()->route('loginView');
+        }
+        else if (!Session()->has('login')) {
+            return redirect()->route('loginView');
+        }
+        else {
         //
         $userName = $request->userName;
         $newPassword = $request->newPassword;
@@ -162,6 +200,7 @@ class UserController extends Controller
         }
         $request->session()->put('notice',$error);
         return redirect()->route('userManagementView');
+        }
     }
 
     /**
@@ -184,17 +223,56 @@ class UserController extends Controller
      */
     public function destroy(Request $request,$id)
     {
-        //
-        try {
-            $signature = signature::where('user_id','=',$id)->delete();
-            $teacher = teacher::where('user_id','=',$id)->delete();
-            $userNew = User::where('user_id','=',$id)->delete();
-        } catch (Exception $e) {
-            $request->session()->put('notice', 'Lỗi không thể xóa được vì giáo viên này đang có lịch giảng dạy');
+        if (Session()->has('login') && Session()->get('login') == false) {
+        # code...
+        return redirect()->route('loginView');
+        }
+        else if (!Session()->has('login')) {
+            return redirect()->route('loginView');
+        }
+        else {
+            $user = User::where('user_id','=',$id)->get();
+            if($user[0]->user_category == 0){
+                $signature = signature::where('user_id','=',$id)->delete();
+                $teacher = teacher::where('user_id','=',$id)->get()->toArray();
+                if(count($teacher) != 0){
+                    $Calendars = Calendar::where('teacher_id','=',$teacher[0]['teacher_id'])->delete();
+                    $teacher = teacher::where('user_id','=',$id)->delete();
+                }
+                $user = User::where('user_id','=',$id)->delete();
+                $request->session()->put('notice', 'Xóa thành công');
+                return redirect()->route('userManagementView');
+            }elseif ($user[0]->user_category == 2) {
+                $signature = signature::where('user_id','=',$id)->delete();
+                $dean = dean::where('user_id','=',$id)->get()->toArray();
+                if(count($dean) != 0){
+                    $dean = dean::where('user_id','=',$id)->delete();
+                }
+                $user = User::where('user_id','=',$id)->delete();
+                $request->session()->put('notice', 'Xóa thành công');
+                return redirect()->route('userManagementView');
+            }elseif ($user[0]->user_category == 1) {
+                $signature = signature::where('user_id','=',$id)->delete();
+                $leader = leader::where('user_id','=',$id)->get()->toArray();
+                if(count($leader) != 0){
+                    $leader = leader::where('user_id','=',$id)->delete();
+                }
+                $user = User::where('user_id','=',$id)->delete();
+                $request->session()->put('notice', 'Xóa thành công');
+                return redirect()->route('userManagementView');
+            }elseif ($user[0]->user_category == 3) {
+                $signature = signature::where('user_id','=',$id)->delete();
+                $manager = manager::where('user_id','=',$id)->get()->toArray();
+                if(count($manager) != 0){
+                    $manager = manager::where('user_id','=',$id)->delete();
+                }
+                //dd($user[0]);
+                $user = User::where('user_id','=',$id)->delete();
+                $request->session()->put('notice', 'Xóa thành công');
+                return redirect()->route('userManagementView');
+            }
+            $request->session()->put('notice', 'Có lỗi trong quá trình xóa');
             return redirect()->route('userManagementView');
         }
-        
-        $request->session()->put('notice', 'Xóa thành công');
-        return redirect()->route('userManagementView');
     }
 }

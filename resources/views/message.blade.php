@@ -20,7 +20,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="main-card mb-3 card">
-                    <div class="card-header">Danh sách tin nhắn
+                    <div class="card-header">Danh sách người dùng
                         
                     </div>
                     <div class="table-responsive">
@@ -32,251 +32,87 @@
                                     <tr>
                                         <th class="text-center">STT</th>
                                         <th>Name</th>
-                                        <th class="text-center">Status</th>
                                         <th class="text-center">Actions</th>
                                     </tr>
                                     </thead>
                                     <tbody>
+                                        <?php $i = 1; ?>
+
+                                        @foreach($deans as $dean)
                                         <tr>
-                                            <td class="text-center text-muted">1</td>
+                                            <td class="text-center text-muted">{{$i}}</td>
                                             <td>
                                                 <div class="widget-content p-0">
                                                     <div class="widget-content-wrapper">
                                                         <div class="widget-content-left mr-3">
                                                             <div class="widget-content-left">
-                                                                <img width="40" class="rounded-circle" src="assets/images/avatars/4.jpg" alt="">
+                                                                <img width="40" class="rounded-circle" src="assets/image/{{$dean->dean_image}}" alt="">
                                                             </div>
                                                         </div>
                                                         <div class="widget-content-left flex2">
-                                                            <div class="widget-heading">John Doe</div>
-                                                            <div class="widget-subheading opacity-7">Web Developer</div>
+                                                            <div class="widget-heading">{{$dean->dean_name}}</div>
+                                                            <div class="widget-subheading opacity-7">Trưởng Khoa</div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td class="text-center">
-                                                <div class="badge badge-warning">Pending</div>
-                                            </td>
-                                            <td class="text-center">
-                                                <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Chi tiết</button>
+                                                <a href="messageInfor/{{$dean->user_id}}" class="btn mr-2 mb-2 btn-primary">Chi tiết</a>
                                             </td>
                                         </tr>
+                                        <?php $i++; ?>
+                                        @endforeach
+
+                                        @foreach($teachers as $teacher)
                                         <tr>
-                                            <td class="text-center text-muted">1</td>
+                                            <td class="text-center text-muted">{{$i}}</td>
                                             <td>
                                                 <div class="widget-content p-0">
                                                     <div class="widget-content-wrapper">
                                                         <div class="widget-content-left mr-3">
                                                             <div class="widget-content-left">
-                                                                <img width="40" class="rounded-circle" src="assets/images/avatars/4.jpg" alt="">
+                                                                <img width="40" class="rounded-circle" src="assets/image/{{$teacher->teacher_image}}" alt="">
                                                             </div>
                                                         </div>
                                                         <div class="widget-content-left flex2">
-                                                            <div class="widget-heading">John Doe</div>
-                                                            <div class="widget-subheading opacity-7">Web Developer</div>
+                                                            <div class="widget-heading">{{$teacher->teacher_name}}</div>
+                                                            <div class="widget-subheading opacity-7">Giáo viên</div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td class="text-center">
-                                                <div class="badge badge-warning">Pending</div>
-                                            </td>
-                                            <td class="text-center">
-                                                <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Chi tiết</button>
+                                                <a href="messageInfor/{{$teacher->user_id}}" class="btn mr-2 mb-2 btn-primary">Chi tiết</a>
                                             </td>
                                         </tr>
+                                        <?php $i++; ?>
+                                        @endforeach
+
+                                        @foreach($leaders as $leader)
                                         <tr>
-                                            <td class="text-center text-muted">1</td>
+                                            <td class="text-center text-muted">{{$i}}</td>
                                             <td>
                                                 <div class="widget-content p-0">
                                                     <div class="widget-content-wrapper">
                                                         <div class="widget-content-left mr-3">
                                                             <div class="widget-content-left">
-                                                                <img width="40" class="rounded-circle" src="assets/images/avatars/4.jpg" alt="">
+                                                                <img width="40" class="rounded-circle" src="assets/image/{{$leader->leader_image}}" alt="">
                                                             </div>
                                                         </div>
                                                         <div class="widget-content-left flex2">
-                                                            <div class="widget-heading">John Doe</div>
-                                                            <div class="widget-subheading opacity-7">Web Developer</div>
+                                                            <div class="widget-heading">{{$leader->leader_name}}</div>
+                                                            <div class="widget-subheading opacity-7">Tổ trưởng</div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td class="text-center">
-                                                <div class="badge badge-warning">Pending</div>
-                                            </td>
-                                            <td class="text-center">
-                                                <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Chi tiết</button>
+                                                <a href="messageInfor/{{$leader->user_id}}" class="btn mr-2 mb-2 btn-primary">Chi tiết</a>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td class="text-center text-muted">1</td>
-                                            <td>
-                                                <div class="widget-content p-0">
-                                                    <div class="widget-content-wrapper">
-                                                        <div class="widget-content-left mr-3">
-                                                            <div class="widget-content-left">
-                                                                <img width="40" class="rounded-circle" src="assets/images/avatars/4.jpg" alt="">
-                                                            </div>
-                                                        </div>
-                                                        <div class="widget-content-left flex2">
-                                                            <div class="widget-heading">John Doe</div>
-                                                            <div class="widget-subheading opacity-7">Web Developer</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">
-                                                <div class="badge badge-warning">Pending</div>
-                                            </td>
-                                            <td class="text-center">
-                                                <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Chi tiết</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center text-muted">1</td>
-                                            <td>
-                                                <div class="widget-content p-0">
-                                                    <div class="widget-content-wrapper">
-                                                        <div class="widget-content-left mr-3">
-                                                            <div class="widget-content-left">
-                                                                <img width="40" class="rounded-circle" src="assets/images/avatars/4.jpg" alt="">
-                                                            </div>
-                                                        </div>
-                                                        <div class="widget-content-left flex2">
-                                                            <div class="widget-heading">John Doe</div>
-                                                            <div class="widget-subheading opacity-7">Web Developer</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">
-                                                <div class="badge badge-warning">Pending</div>
-                                            </td>
-                                            <td class="text-center">
-                                                <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Chi tiết</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center text-muted">1</td>
-                                            <td>
-                                                <div class="widget-content p-0">
-                                                    <div class="widget-content-wrapper">
-                                                        <div class="widget-content-left mr-3">
-                                                            <div class="widget-content-left">
-                                                                <img width="40" class="rounded-circle" src="assets/images/avatars/4.jpg" alt="">
-                                                            </div>
-                                                        </div>
-                                                        <div class="widget-content-left flex2">
-                                                            <div class="widget-heading">John Doe</div>
-                                                            <div class="widget-subheading opacity-7">Web Developer</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">
-                                                <div class="badge badge-warning">Pending</div>
-                                            </td>
-                                            <td class="text-center">
-                                                <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Chi tiết</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center text-muted">1</td>
-                                            <td>
-                                                <div class="widget-content p-0">
-                                                    <div class="widget-content-wrapper">
-                                                        <div class="widget-content-left mr-3">
-                                                            <div class="widget-content-left">
-                                                                <img width="40" class="rounded-circle" src="assets/images/avatars/4.jpg" alt="">
-                                                            </div>
-                                                        </div>
-                                                        <div class="widget-content-left flex2">
-                                                            <div class="widget-heading">John Doe</div>
-                                                            <div class="widget-subheading opacity-7">Web Developer</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">
-                                                <div class="badge badge-warning">Pending</div>
-                                            </td>
-                                            <td class="text-center">
-                                                <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Chi tiết</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center text-muted">1</td>
-                                            <td>
-                                                <div class="widget-content p-0">
-                                                    <div class="widget-content-wrapper">
-                                                        <div class="widget-content-left mr-3">
-                                                            <div class="widget-content-left">
-                                                                <img width="40" class="rounded-circle" src="assets/images/avatars/4.jpg" alt="">
-                                                            </div>
-                                                        </div>
-                                                        <div class="widget-content-left flex2">
-                                                            <div class="widget-heading">John Doe</div>
-                                                            <div class="widget-subheading opacity-7">Web Developer</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">
-                                                <div class="badge badge-warning">Pending</div>
-                                            </td>
-                                            <td class="text-center">
-                                                <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Chi tiết</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center text-muted">1</td>
-                                            <td>
-                                                <div class="widget-content p-0">
-                                                    <div class="widget-content-wrapper">
-                                                        <div class="widget-content-left mr-3">
-                                                            <div class="widget-content-left">
-                                                                <img width="40" class="rounded-circle" src="assets/images/avatars/4.jpg" alt="">
-                                                            </div>
-                                                        </div>
-                                                        <div class="widget-content-left flex2">
-                                                            <div class="widget-heading">John Doe</div>
-                                                            <div class="widget-subheading opacity-7">Web Developer</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">
-                                                <div class="badge badge-warning">Pending</div>
-                                            </td>
-                                            <td class="text-center">
-                                                <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Chi tiết</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center text-muted">1</td>
-                                            <td>
-                                                <div class="widget-content p-0">
-                                                    <div class="widget-content-wrapper">
-                                                        <div class="widget-content-left mr-3">
-                                                            <div class="widget-content-left">
-                                                                <img width="40" class="rounded-circle" src="assets/images/avatars/4.jpg" alt="">
-                                                            </div>
-                                                        </div>
-                                                        <div class="widget-content-left flex2">
-                                                            <div class="widget-heading">John Doe</div>
-                                                            <div class="widget-subheading opacity-7">Web Developer</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">
-                                                <div class="badge badge-warning">Pending</div>
-                                            </td>
-                                            <td class="text-center">
-                                                <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Chi tiết</button>
-                                            </td>
-                                        </tr>
+                                        <?php $i++; ?>
+                                        @endforeach
+                                        
                                     </tbody>
                         </table>
 

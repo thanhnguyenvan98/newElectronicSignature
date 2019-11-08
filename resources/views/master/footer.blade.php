@@ -3,14 +3,7 @@
         <div class="app-footer__inner">
             
             <div class="app-footer-right">
-                <ul class="nav">
-                    <li class="nav-item">
-                        <a href="javascript:void(0);" class="nav-link">
-                            Liên hệ nhóm thiết kế
-                        </a>
-                    </li>
-                    
-                </ul>
+                <p style="margin-top: 20px">Bài tập lớn môn Phát triển phần mềm hướng dịch vụ (thành viên nhóm: Nguyễn Văn Thành, Trần Minh Trường, Giáp Quốc Cương)</p>
             </div>
         </div>
     </div>

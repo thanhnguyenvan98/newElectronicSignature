@@ -68,6 +68,7 @@
                                     <td>{{md5($user->user_password)}}</td>
                                     <td>
                                         <?php
+                                        if(session()->get('category')!=4 )
                                             switch ($user->user_category) {
                                                 case '0':
                                                     # code...
@@ -81,11 +82,35 @@
                                                     # code...
                                                     echo "Trưởng khoa";
                                                     break;
-
+                                                
                                                 default:
 
                                                     break;
                                             }
+                                        else{
+                                            switch ($user->user_category) {
+                                                case '0':
+                                                    # code...
+                                                    echo "Giáo viên";
+                                                    break;
+                                                case '1':
+                                                    # code...
+                                                    echo "Tổ trưởng";
+                                                    break;
+                                                case '2':
+                                                    # code...
+                                                    echo "Trưởng khoa";
+                                                    break;
+                                                case '3':
+                                                    # code...
+                                                    echo "Quản lý";
+                                                    break;
+                                                
+                                                default:
+
+                                                    break;
+                                            }
+                                        }
 
                                         ?>
                                     </td>
@@ -160,6 +185,12 @@
                                                         # code...
                                                         echo 'selected="selected"';
                                                     } ?>>Trưởng khoa</option>
+                                                    @if(session()->get('category') == 4)
+                                                    <option value="3"<?php if ($user->user_category == 3) {
+                                                        # code...
+                                                        echo 'selected="selected"';
+                                                    } ?>>Quản lý</option>
+                                                    @endif
                                                 </select>
                                             
 
@@ -254,6 +285,9 @@
                                                 <option value="0">Giáo viên</option>
                                                 <option value="1">Tổ trưởng</option>
                                                 <option value="2">Trưởng khoa</option>
+                                                @if(session()->get('category') == 4)
+                                                    <option value="3">Quản lý</option>
+                                                @endif
                                             </select>
                                         
 

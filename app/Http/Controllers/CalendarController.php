@@ -20,11 +20,20 @@ class CalendarController extends Controller
     public function index()
     {
         //
+        if (Session()->has('login') && Session()->get('login') == false) {
+        # code...
+        return redirect()->route('loginView');
+        }
+        else if (!Session()->has('login')) {
+            return redirect()->route('loginView');
+        }
+        else {
         $teacher_id = teacher::where('user_id','=',session()->get('userId'))->get('teacher_id')->toArray();
 
         $Subjects = Subject::join('calendar','subject.subject_id','=','calendar.subject_id')->where('teacher_id','=',$teacher_id[0]['teacher_id'])->get();
         
         return view('createCalendar',compact('Subjects'));
+        }
     }
 
     public function ajax(Request $request)
@@ -88,6 +97,14 @@ class CalendarController extends Controller
     public function create(Request $request)
     {
         //
+        if (Session()->has('login') && Session()->get('login') == false) {
+        # code...
+        return redirect()->route('loginView');
+        }
+        else if (!Session()->has('login')) {
+            return redirect()->route('loginView');
+        }
+        else {
         $soBuoi = session()->get('soBuoi');
         $unit = [];
         $date = [];
@@ -161,7 +178,7 @@ class CalendarController extends Controller
             return redirect()->back()->withInput();
         }
             
-        
+        }
     }
 
     /**
@@ -186,10 +203,10 @@ class CalendarController extends Controller
         //
         if (Session()->has('login') && Session()->get('login') == false) {
         # code...
-        return view('login');
+        return redirect()->route('loginView');
         }
         else if (!Session()->has('login')) {
-            return view('login');
+            return redirect()->route('loginView');
         }
         else {
             $teacher = teacher::where('user_id','=',session()->get('userId'))->get()->toArray();

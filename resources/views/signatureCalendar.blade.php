@@ -177,7 +177,7 @@
                                 <div>
                                     <h5 class="card-title" style="margin-top: 20px">Thông tin lịch giảng dạy</h5>
 
-                                    <button class="mb-2 mr-2 btn-transition btn btn-outline-danger" style="float: right;">Download lịch giảng dạy</button>
+                                    <a href="excel/{{$calendarData['theFileSignatured_path']}}" class="mb-2 mr-2 btn-transition btn btn-outline-danger" style="float: right;">Download lịch giảng dạy</a>
                                     <p>Giáo viên : {{$calendarData['teacher_name']}}</p>
                                     <p>Môn học : {{$calendarData['subject_name']}}</p>
                                     <p>Hệ khóa : {{$calendarData['heKhoa']}}</p>
