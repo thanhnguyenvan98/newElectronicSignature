@@ -66,7 +66,7 @@ class ManagerController extends Controller
         if ($request->hasFile('image')) {
             if($request->file('image')->getClientOriginalExtension() == 'PNG' || $request->file('image')->getClientOriginalExtension() == 'jpg' || $request->file('image')->getClientOriginalExtension() == 'png' || $request->file('image')->getClientOriginalExtension() == 'JPG') {
                 
-               //$request->file('image')->move('image',$userId.'Avata.png');
+                $request->file('image')->move('image',$userId.'Avata.png');
                 //$request->file('image')->store('image');
             
             }else{

@@ -120,14 +120,6 @@
                 </li>
                 @endif
 
-                @if(Session::has('category') && Session::get('category') == 4)
-                <li class="app-sidebar__heading ">
-                    <a href="{{Route('userManagementAdminView')}}" class="bg-plum-plate" style="color: white">
-                        Quản lý tài khoản
-                    </a>
-                </li>
-                @endif
-
                 @if(Session::has('category') && Session::get('category') == 3)
                 <li class="app-sidebar__heading ">
                     <a href="{{Route('calendarManegementView')}}" class="bg-plum-plate" style="color: white">
