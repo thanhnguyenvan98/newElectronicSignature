@@ -17,7 +17,7 @@ class SpecializedController extends Controller
     {
         if (Session()->has('login') && Session()->get('login') == false) {
         # code...
-        return redirect()->route('loginView');
+            return redirect()->route('loginView');
         }
         else if (!Session()->has('login')) {
             return redirect()->route('loginView');

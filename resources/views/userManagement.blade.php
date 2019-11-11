@@ -68,26 +68,7 @@
                                     <td>{{md5($user->user_password)}}</td>
                                     <td>
                                         <?php
-                                        if(session()->get('category')!=4 )
-                                            switch ($user->user_category) {
-                                                case '0':
-                                                    # code...
-                                                    echo "Giáo viên";
-                                                    break;
-                                                case '1':
-                                                    # code...
-                                                    echo "Tổ trưởng";
-                                                    break;
-                                                case '2':
-                                                    # code...
-                                                    echo "Trưởng khoa";
-                                                    break;
-                                                
-                                                default:
-
-                                                    break;
-                                            }
-                                        else{
+                                        
                                             switch ($user->user_category) {
                                                 case '0':
                                                     # code...
@@ -105,12 +86,11 @@
                                                     # code...
                                                     echo "Quản lý";
                                                     break;
-                                                
                                                 default:
 
                                                     break;
                                             }
-                                        }
+                                    
 
                                         ?>
                                     </td>
