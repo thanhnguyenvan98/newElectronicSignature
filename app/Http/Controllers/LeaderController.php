@@ -50,66 +50,66 @@ class LeaderController extends Controller
         //
         if (Session()->has('login') && Session()->get('login') == false) {
         # code...
-        return redirect()->route('loginView');
+            return redirect()->route('loginView');
         }
         else if (!Session()->has('login')) {
             return redirect()->route('loginView');
         }
         else {
-        $userId = session()->get('userId');
-        $name = $request->name;
-        $peopleId = $request->peopleId;
-        $address = $request->address;
-        $brithday = $request->brithday;
-        $telephoneNumber = $request->telephoneNumber;
-        $email = $request->email;
-        $image = $request->image;
-        $gender = $request->gender;
-        $specialized_id = $request->specialized_id;
-        $salary = $request->salary;
+            $userId = session()->get('userId');
+            $name = $request->name;
+            $peopleId = $request->peopleId;
+            $address = $request->address;
+            $brithday = $request->brithday;
+            $telephoneNumber = $request->telephoneNumber;
+            $email = $request->email;
+            $image = $request->image;
+            $gender = $request->gender;
+            $specialized_id = $request->specialized_id;
+            $salary = $request->salary;
 
-        $leaderNew = new leader; 
-        $leaderNew->leader_name = $name;
-        $leaderNew->leader_peopleId = $peopleId;
-        $leaderNew->leader_address = $address;
-        $leaderNew->leader_birthday = $brithday;
-        $leaderNew->leader_telephoneNumber = $telephoneNumber;
-        $leaderNew->leader_email = $email;
-        $leaderNew->leader_image = $image;
-        
-        //luu anh vao sever
-        if ($request->hasFile('image')) {
-            if($request->file('image')->getClientOriginalExtension() == 'PNG' || $request->file('image')->getClientOriginalExtension() == 'jpg' || $request->file('image')->getClientOriginalExtension() == 'png' || $request->file('image')->getClientOriginalExtension() == 'JPG') {
-                
-                $request->file('image')->move('image',$userId.'Avata.png');
-                //$request->file('image')->store('image');
+            $leaderNew = new leader; 
+            $leaderNew->leader_name = $name;
+            $leaderNew->leader_peopleId = $peopleId;
+            $leaderNew->leader_address = $address;
+            $leaderNew->leader_birthday = $brithday;
+            $leaderNew->leader_telephoneNumber = $telephoneNumber;
+            $leaderNew->leader_email = $email;
+            $leaderNew->leader_image = $image;
             
-            }else{
-                $request->session()->put('notice','file ảnh đại diện không đúng định dạng');
-                return redirect()->route('inforView');
+            //luu anh vao sever
+            if ($request->hasFile('image')) {
+                if($request->file('image')->getClientOriginalExtension() == 'PNG' || $request->file('image')->getClientOriginalExtension() == 'jpg' || $request->file('image')->getClientOriginalExtension() == 'png' || $request->file('image')->getClientOriginalExtension() == 'JPG') {
+                    
+                    $request->file('image')->move('image',$userId.'Avata.png');
+                    //$request->file('image')->store('image');
+                
+                }else{
+                    $request->session()->put('notice','file ảnh đại diện không đúng định dạng');
+                    return redirect()->route('inforView');
+                }
             }
-        }
 
-        $leaderNew->leader_gender = $gender;
-        $leaderNew->specialized_id = $specialized_id;
-        $leaderNew->leader_salary = $salary;
-        $leaderNew->user_id = $userId;
-        $leaderNew->save();
+            $leaderNew->leader_gender = $gender;
+            $leaderNew->specialized_id = $specialized_id;
+            $leaderNew->leader_salary = $salary;
+            $leaderNew->user_id = $userId;
+            $leaderNew->save();
 
-        //gửi email về email mà người dùng nhập
-        $signature = signature::where('user_id','=',$userId)->get()->toArray();
-        session()->put('privateKeyEmail', $signature[0]['signature_publicKey']);
-        $data = [];
-        session()->put('email', $email);
-        session()->put('name', $name);
-        Mail::send('mailfb',$data, function($msg){
-            $msg->from('n.v.thanh.26.10@gmail.com','Electronic Signature');
-            $msg->to(session()->pull('email'),session()->pull('name'))->subject('privateKey');
-        });
-        session()->put('feedBackSendEmail', 'Khóa cá nhân của bạn đã được gửi về Gmail');
-        $request->session()->put('notice', 'Đã cập nhập thông tin cá nhân');
+            //gửi email về email mà người dùng nhập
+            $signature = signature::where('user_id','=',$userId)->get()->toArray();
+            session()->put('privateKeyEmail', $signature[0]['signature_publicKey']);
+            $data = [];
+            session()->put('email', $email);
+            session()->put('name', $name);
+            Mail::send('mailfb',$data, function($msg){
+                $msg->from('n.v.thanh.26.10@gmail.com','Electronic Signature');
+                $msg->to(session()->pull('email'),session()->pull('name'))->subject('privateKey');
+            });
+            session()->put('feedBackSendEmail', 'Khóa cá nhân của bạn đã được gửi về Gmail');
+            $request->session()->put('notice', 'Đã cập nhập thông tin cá nhân');
 
-        return redirect()->route('homeLeaderView');
+            return redirect()->route('homeLeaderView');
         }
     }
 

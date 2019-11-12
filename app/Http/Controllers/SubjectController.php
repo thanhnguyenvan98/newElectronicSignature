@@ -24,16 +24,15 @@ class SubjectController extends Controller
             return redirect()->route('loginView');
         }
         else {
+            $specializeds = Specialized::all();
+            $nameSpecialized = array();
+            foreach ($specializeds as $specialized) {
+                $nameSpecialized[$specialized->specialized_id]=$specialized->specialized_name;
+            }
             $subjects = Subject::all();
-            return view('subjectManagement',compact('subjects'));
+            return view('subjectManagement',compact('subjects','nameSpecialized','specializeds'));
         }
-        $specializeds = Specialized::all();
-        $nameSpecialized = array();
-        foreach ($specializeds as $specialized) {
-            $nameSpecialized[$specialized->specialized_id]=$specialized->specialized_name;
-        }
-        $subjects = Subject::all();
-        return view('subjectManagement',compact('subjects','nameSpecialized','specializeds'));
+        
     }
 
     /**
@@ -46,22 +45,7 @@ class SubjectController extends Controller
         //
         if (Session()->has('login') && Session()->get('login') == false) {
         # code...
-        return redirect()->route('loginView');
-        $subjectName = $request->subject_name;
-        $numberCredit = $request->number_credit;
-        $numberSpecialized = $request->specialized_name;
-
-        $id = Specialized::where('specialized_name','=',$numberSpecialized)->first('specialized_id');
-        $idSpecialized = $id->specialized_id;
-
-        $subjects = Subject::all();
-        $kt = 0;
-
-        foreach ($subjects as $subject) {
-            if ($subject->subject_name == $subjectName) {
-                # code...
-                $kt = 1;
-            }
+            return redirect()->route('loginView');
         }
         else if (!Session()->has('login')) {
             return redirect()->route('loginView');
@@ -69,6 +53,15 @@ class SubjectController extends Controller
         else {
             $subjectName = $request->subject_name;
             $numberCredit = $request->number_credit;
+            $nameSpecialized = $request->specialized_name;
+            $specializeds = Specialized::all();
+            $idSpecialized = 0;
+            foreach ($specializeds as $specialized) {
+                if($specialized->specialized_name == $nameSpecialized){
+                    $idSpecialized = $specialized->specialized_id;
+                    break;
+                }
+            }
 
             $subjects = Subject::all();
             $kt = 0;
@@ -93,31 +86,32 @@ class SubjectController extends Controller
                 $subjectNew->timestamps = false;
                 $subjectNew->subject_name=$subjectName;
                 $subjectNew->subject_numberCredit=$numberCredit;
+                $subjectNew->Specialized_id = $idSpecialized;
                 $subjectNew->save();
 
                 //quay tro lai giao dien voi thong bao thanh cong
                 $request->session()->put('notice', 'thêm thành công');
                 return redirect()->route('SubjectMangementView');
             }
-            $request->session()->put('notice',$error);
-        else if ($numberCredit == "") {
-            $error = 'số tín chỉ không được bỏ trống';
+        //     $request->session()->put('notice',$error);
+        // else if ($numberCredit == "") {
+        //     $error = 'số tín chỉ không được bỏ trống';
         }  
-        else if ($kt !=0) {
-            $error = 'Tên môn đã tồn tại';
-        }else{
-            $subjectNew = new Subject;
-            $subjectNew->timestamps = false;
-            $subjectNew->subject_name=$subjectName;
-            $subjectNew->subject_numberCredit=$numberCredit;
-            $subjectNew->Specialized_id = $idSpecialized;
-            $subjectNew->save();
+        // else if ($kt !=0) {
+        //     $error = 'Tên môn đã tồn tại';
+        // }else{
+        //     $subjectNew = new Subject;
+        //     $subjectNew->timestamps = false;
+        //     $subjectNew->subject_name=$subjectName;
+        //     $subjectNew->subject_numberCredit=$numberCredit;
+        //     $subjectNew->Specialized_id = $idSpecialized;
+        //     $subjectNew->save();
 
-            //quay tro lai giao dien voi thong bao thanh cong
-            $request->session()->put('notice', 'thêm thành công');
-            return redirect()->route('SubjectMangementView');
-        }
-    }
+        //     //quay tro lai giao dien voi thong bao thanh cong
+        //     $request->session()->put('notice', 'thêm thành công');
+        //     return redirect()->route('SubjectMangementView');
+        // }
+    }   
 
     /**
      * Store a newly created resource in storage.
@@ -180,52 +174,56 @@ class SubjectController extends Controller
             $numberCredit = $request->number_credit;
 
             //$id = Subject::where('subject_name','=',$subjectName)->get('subject_id');
-        $subjectName = $request->subject_name;
-        $numberCredit = $request->number_credit;
-        $idSpecialized = $request->specialized_name;
+            $subjectName = $request->subject_name;
+            $numberCredit = $request->number_credit;
+            $idSpecialized = $request->specialized_name;
 
             $subjects = Subject::all();
             $kt = 0;
-            foreach ($subjects as $subject) {
-                if ($subject->subject_name == $subjectName) {
-                    # code...
-                    $kt = 1;
+            //lỗi nhs, 2 vòng foreach mà cùng biến $subjects
+            // foreach ($subjects as $subject) {
+            //     if ($subject->subject_name == $subjectName) {
+            //         # code...
+            //         $kt = 1;
+            //     }
+                foreach ($subjects as $subject) {
+                    if ($subject->subject_name == $subjectName) {
+                        # code...
+                        $kt++;
+                    }
+
+                    if ($subjectName == "") {
+                        $error = 'Tên môn không được bỏ trống';
+                    }
+                    else if ($numberCredit == "") {
+                        $error = 'Số tín chỉ không được bỏ trống';
+                    }  
+                    else if ($kt != 0) {
+                        $error = 'Tên môn đã tồn tại';
+                    }else{
+                        $subjectNew = Subject::where('subject_id','=',$id)->update(['subject_name'=>$subjectName,'subject_numberCredit'=>$numberCredit,]);
+                        $request->session()->put('notice', 'Sửa thành công');
+                        return redirect()->route('SubjectMangementView');
+                    }
+                    $request->session()->put('notice',$error);
                 }
-        foreach ($subjects as $subject) {
-            if ($subject->subject_name == $subjectName) {
-                # code...
-                $kt++;
-            }
-
-            if ($subjectName == "") {
-                $error = 'Tên môn không được bỏ trống';
-            }
-            else if ($numberCredit == "") {
-                $error = 'Số tín chỉ không được bỏ trống';
-            }  
-            else if ($kt != 0) {
-                $error = 'Tên môn đã tồn tại';
-            }else{
-                $subjectNew = Subject::where('subject_id','=',$ids)->update(['subject_name'=>$subjectName,'subject_numberCredit'=>$numberCredit,]);
-                $request->session()->put('notice', 'Sửa thành công');
-                return redirect()->route('SubjectMangementView');
-            }
-            $request->session()->put('notice',$error);
-        if ($subjectName == "") {
-            $error = 'Tên môn không được bỏ trống';
         }
-        else if ($numberCredit == "") {
-            $error = 'Số tín chỉ không được bỏ trống';
-        }  
-        else if ($kt > 1) {
-            $error = 'Tên môn đã tồn tại';
-        }else{
-            $subjectNew = Subject::where('subject_id','=',$id)->update(['subject_name'=>$subjectName,'subject_numberCredit'=>$numberCredit,'Specialized_id'=>$idSpecialized]);
-            $request->session()->put('notice', 'Sửa thành công');
+            
+        // if ($subjectName == "") {
+        //     $error = 'Tên môn không được bỏ trống';
+        // else if ($numberCredit == "") {
+        //     $error = 'Số tín chỉ không được bỏ trống';
+        // }  s
+        // else if ($kt > 1) {
+        //     $error = 'Tên môn đã tồn tại';
+        // }else{
+        //     $subjectNew = Subject::where('subject_id','=',$id)->update(['subject_name'=>$subjectName,'subject_numberCredit'=>$numberCredit,'Specialized_id'=>$idSpecialized]);
+        //     $request->session()->put('notice', 'Sửa thành công');
 
-            return redirect()->route('SubjectMangementView');
-        }
+        //     return redirect()->route('SubjectMangementView');
+        // }
     }
+    //r đó chạy thử xem nào
 
     /**
      * Update the specified resource in storage.
@@ -234,6 +232,7 @@ class SubjectController extends Controller
      * @param  \App\Subject  $subject
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, Subject $subject)
     {
         //

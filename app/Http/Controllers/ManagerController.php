@@ -36,62 +36,62 @@ class ManagerController extends Controller
     {
         if (Session()->has('login') && Session()->get('login') == false) {
         # code...
-        return redirect()->route('loginView');
+            return redirect()->route('loginView');
         }
         else if (!Session()->has('login')) {
             return redirect()->route('loginView');
         }
         else {
         //
-        $userId = session()->get('userId');
-        $name = $request->name;
-        $peopleId = $request->peopleId;
-        $address = $request->address;
-        $brithday = $request->brithday;
-        $telephoneNumber = $request->telephoneNumber;
-        $email = $request->email;
-        $image = $request->image;
-        $gender = $request->gender;
+            $userId = session()->get('userId');
+            $name = $request->name;
+            $peopleId = $request->peopleId;
+            $address = $request->address;
+            $brithday = $request->brithday;
+            $telephoneNumber = $request->telephoneNumber;
+            $email = $request->email;
+            $image = $request->image;
+            $gender = $request->gender;
 
-        $managerNew = new manager; 
-        $managerNew->manager_name = $name;
-        $managerNew->manager_peopleId = $peopleId;
-        $managerNew->manage_address = $address;
-        $managerNew->manage_birthday = $brithday;
-        $managerNew->manage_telephoneNumber = $telephoneNumber;
-        $managerNew->manage_email = $email;
-        $managerNew->manage_image = $image;
-        
-        //luu anh vao sever
-        if ($request->hasFile('image')) {
-            if($request->file('image')->getClientOriginalExtension() == 'PNG' || $request->file('image')->getClientOriginalExtension() == 'jpg' || $request->file('image')->getClientOriginalExtension() == 'png' || $request->file('image')->getClientOriginalExtension() == 'JPG') {
-                
-                $request->file('image')->move('image',$userId.'Avata.png');
-                //$request->file('image')->store('image');
+            $managerNew = new manager; 
+            $managerNew->manager_name = $name;
+            $managerNew->manager_peopleId = $peopleId;
+            $managerNew->manage_address = $address;
+            $managerNew->manage_birthday = $brithday;
+            $managerNew->manage_telephoneNumber = $telephoneNumber;
+            $managerNew->manage_email = $email;
+            $managerNew->manage_image = $image;
             
-            }else{
-                $request->session()->put('notice','file ảnh đại diện không đúng định dạng');
-                return redirect()->route('inforView');
+            //luu anh vao sever
+            if ($request->hasFile('image')) {
+                if($request->file('image')->getClientOriginalExtension() == 'PNG' || $request->file('image')->getClientOriginalExtension() == 'jpg' || $request->file('image')->getClientOriginalExtension() == 'png' || $request->file('image')->getClientOriginalExtension() == 'JPG') {
+                    
+                    $request->file('image')->move('image',$userId.'Avata.png');
+                    //$request->file('image')->store('image');
+                
+                }else{
+                    $request->session()->put('notice','file ảnh đại diện không đúng định dạng');
+                    return redirect()->route('inforView');
+                }
             }
-        }
 
-        $managerNew->manage_gender = $gender;
-        $managerNew->user_id = $userId;
-        $managerNew->save();
+            $managerNew->manage_gender = $gender;
+            $managerNew->user_id = $userId;
+            $managerNew->save();
 
-        //gửi email về email mà người dùng nhập
-        $signature = signature::where('user_id','=',$userId)->get()->toArray();
-        session()->put('privateKeyEmail', $signature[0]['signature_publicKey']);
-        $data = [];
-        session()->put('email', $email);
-        session()->put('name', $name);
-        Mail::send('mailfb',$data, function($msg){
-            $msg->from('n.v.thanh.26.10@gmail.com','Electronic Signature');
-            $msg->to(session()->pull('email'),session()->pull('name'))->subject('privateKey');
-        });
-        session()->put('feedBackSendEmail', 'Khóa cá nhân của bạn đã được gửi về Gmail');
-        $request->session()->put('notice', 'Đã cập nhập thông tin cá nhân');
-        return redirect()->route('homeManagerView');         
+            //gửi email về email mà người dùng nhập
+            $signature = signature::where('user_id','=',$userId)->get()->toArray();
+            session()->put('privateKeyEmail', $signature[0]['signature_publicKey']);
+            $data = [];
+            session()->put('email', $email);
+            session()->put('name', $name);
+            Mail::send('mailfb',$data, function($msg){
+                $msg->from('n.v.thanh.26.10@gmail.com','Electronic Signature');
+                $msg->to(session()->pull('email'),session()->pull('name'))->subject('privateKey');
+            });
+            session()->put('feedBackSendEmail', 'Khóa cá nhân của bạn đã được gửi về Gmail');
+            $request->session()->put('notice', 'Đã cập nhập thông tin cá nhân');
+            return redirect()->route('homeManagerView');         
         }  
     }
 

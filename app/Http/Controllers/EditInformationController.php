@@ -115,36 +115,10 @@ class EditInformationController extends Controller
     {
         if (Session()->has('login') && Session()->get('login') == false) {
         # code...
-        return redirect()->route('loginView');
-        $id = session()->get('userId');
-        $roleID = session()->get('category');
-        $specialized = "";
-        $salary= "";
-        //
-        $nameUser = $request->NameUser;
-        $peopleID = $request->PeopleID;
-        $address = $request->Address;
-        $brith = $request->Birth;
-        $phone = $request->Phone;
-        $email = $request->Email;
-        $avata = $request->Avata;
-        $avata->move(public_path().'/image/', $avata->getClientOriginalName());
-
-       // $gender = $request->Gender;
-        if($request->Gender == "Nam")   
-                $gender = 1;
-        else    $gender = 0;
-
-        if ($roleID!=3&&$roleID!=4) {
-            $specialized = $request->Specialized;
-            $specialized_object = Specialized::where('specialized_name','=',$specialized)->first('specialized_id');
-            $specialized_id = $specialized_object->specialized_id;
-            $salary = $request->Salary;
-        }
-        else if (!Session()->has('login')) {
             return redirect()->route('loginView');
-        }
-        else {
+        }else if (!Session()->has('login')) {
+                return redirect()->route('loginView');
+        }else {
             $id = session()->get('userId');
             $roleID = session()->get('category');
             $specialized = "";
@@ -157,7 +131,6 @@ class EditInformationController extends Controller
             $phone = $request->Phone;
             $email = $request->Email;
             $avata = $request->Avata;
-           // $gender = $request->Gender;
             if($request->Gender == "Nam")   
                     $gender = 1;
             else    $gender = 0;
@@ -222,14 +195,14 @@ class EditInformationController extends Controller
                     default:
                         $newInfo = admin::where('user_id','=',$id)->update(['admin_name'=>$nameUser,'admin_birthday'=>$brith,
                         'admin_address'=>$address,'admin_email'=>$email,'admin_telephoneNumber'=>$phone,'admin_image'=>$avata,
-                        'admin_gender'=>$gender,'admin_peopleId'=>$peopleID,]);
+                        'admin_gender'=>$gender,'admin_peopleId'=>$peopleID]);
                         $request->session()->put('notice', 'Sửa thành công');
                         return redirect()->route('Information');
                         break;
                 }
             }
-            $request->session()->put('notice',$error);
-            return redirect()->route('userManagementView');
+                $request->session()->put('notice',$error);
+                return redirect()->route('Information');
         }
     }
 }
