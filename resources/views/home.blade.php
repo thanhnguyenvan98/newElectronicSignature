@@ -37,7 +37,7 @@
             @endif
             
 
-            <div class="col-md-6 col-xl-4">
+            <div class="col-md-4 col-xl-4">
                 <a href="" style="text-decoration: none;">
                     <div class="card mb-3 widget-content bg-midnight-bloom">
                         <div class="widget-content-wrapper text-white">
@@ -52,7 +52,7 @@
                     </div>
                 </a>
             </div>
-            <div class="col-md-6 col-xl-4">
+            <div class="col-md-4 col-xl-4">
                 <a href="" style="text-decoration: none;">
                     <div class="card mb-3 widget-content bg-arielle-smile">
                         <div class="widget-content-wrapper text-white">
@@ -66,7 +66,7 @@
                     </div>
                 </a>
             </div>
-            <div class="col-md-6 col-xl-4">
+            <div class="col-md-4 col-xl-4">
                 <a href="" style="text-decoration: none;">
                     <div class="card mb-3 widget-content bg-grow-early">
                         <div class="widget-content-wrapper text-white">
@@ -80,19 +80,6 @@
                         </div>
                     </div>
                 </a>
-            </div>
-            <div class="d-xl-none d-lg-block col-md-6 col-xl-4">
-                <div class="card mb-3 widget-content bg-premium-dark">
-                    <div class="widget-content-wrapper text-white">
-                        <div class="widget-content-left">
-                            <div class="widget-heading">Products Sold</div>
-                            <div class="widget-subheading">Revenue streams</div>
-                        </div>
-                        <div class="widget-content-right">
-                            <div class="widget-numbers text-warning"><span>$14M</span></div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
         <div class="row">
@@ -112,24 +99,6 @@
                             </div>
                         </li>
                     </ul>
-                    <!--
-                    <div style="width: 100%;clear: both;">
-                        <h5 style="color: blue">Lịch giảng dạy trong ngày</h5></li>
-                    </div>
-                    
-                        <ul id="menuHome" style="list-style-type: none; margin-top: 27px;">
-                            <li style="float: left; padding-bottom:10px">
-                                <div class="search-wrapper">
-                                    <div class="input-holder">
-                                        <input type="text" class="search-input" placeholder="yyyy-mm-dd">
-                                        <button class="search-icon"><span></span></button>
-                                    </div>
-                                    <button class="close"></button>
-                                </div>
-                            </li>
-                            <li style="padding-left: 20px; float: right;padding-top: 10px">Tìm kiếm theo ngày</li>
-                        </ul>
-                    </div>-->
                 </div>
                 <div class="main-card mb-12 card">
                     <div class="card-body">
@@ -146,66 +115,6 @@
                         <button type="button" data-toggle="collapse" href="#collapseExample1" class="btn btn-primary">Chi tiết</button>
                     </div>
                 </div>
-                <!-- <div class="main-card mb-12 card">
-                    <div class="card-body">
-                        <h5 class="card-title">Phat triển phần mềm hướng dịch vụ</h5>
-                        <div class="collapse" id="collapseExample2">
-                            <p>Mã lớp: KTPM2K11</p>
-
-                            <p>Nội dung giảng dạy</p>
-                            <p>Chương 1: Tổng quan và giới thiệu môn học</p>
-
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <button type="button" data-toggle="collapse" href="#collapseExample2" class="btn btn-primary">Chi tiết</button>
-                    </div>
-                </div>
-                <div class="main-card mb-12 card">
-                    <div class="card-body">
-                        <h5 class="card-title">Mã nguồn mở</h5>
-                        <div class="collapse" id="collapseExample3">
-                            <p>Mã lớp: KTPM2K11</p>
-
-                            <p>Nội dung giảng dạy</p>
-                            <p>Chương 1: Tổng quan và giới thiệu môn học</p>
-
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <button type="button" data-toggle="collapse" href="#collapseExample3" class="btn btn-primary">Chi tiết</button>
-                    </div>
-                </div>
-                <div class="main-card mb-12 card">
-                    <div class="card-body">
-                        <h5 class="card-title">Thực tại ảo</h5>
-                        <div class="collapse" id="collapseExample4">
-                            <p>Mã lớp: KTPM2K11</p>
-
-                            <p>Nội dung giảng dạy</p>
-                            <p>Chương 1: Tổng quan và giới thiệu môn học</p>
-
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <button type="button" data-toggle="collapse" href="#collapseExample4" class="btn btn-primary">Chi tiết</button>
-                    </div>
-                </div>
-                <div class="main-card mb-12 card">
-                    <div class="card-body">
-                        <h5 class="card-title">Mô hình hóa</h5>
-                        <div class="collapse" id="collapseExample5">
-                            <p>Mã lớp: KTPM2K11</p>
-
-                            <p>Nội dung giảng dạy</p>
-                            <p>Chương 1: Tổng quan và giới thiệu môn học</p>
-
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <button type="button" data-toggle="collapse" href="#collapseExample5" class="btn btn-primary">Chi tiết</button>
-                    </div>
-                </div> -->
             </div>
 
             <div class="col-md-6">
