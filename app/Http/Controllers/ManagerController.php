@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\mail\sendMail;
 use Illuminate\Support\Facades\Session;
+
 use Mail;
 use App\User;
 use App\Teacher;
 use App\Specialized;
 use App\signature;
 use App\manager;
+use Storage;
 
 
 class ManagerController extends Controller
@@ -60,14 +62,13 @@ class ManagerController extends Controller
             $managerNew->manage_birthday = $brithday;
             $managerNew->manage_telephoneNumber = $telephoneNumber;
             $managerNew->manage_email = $email;
-            $managerNew->manage_image = $image;
-            
+
             //luu anh vao sever
             if ($request->hasFile('image')) {
                 if($request->file('image')->getClientOriginalExtension() == 'PNG' || $request->file('image')->getClientOriginalExtension() == 'jpg' || $request->file('image')->getClientOriginalExtension() == 'png' || $request->file('image')->getClientOriginalExtension() == 'JPG') {
                     
-                    $request->file('image')->move('image',$userId.'Avata.png');
-                    //$request->file('image')->store('image');
+                    $path = $request->file('image')->store('public');
+                    $managerNew->manage_image = $path;
                 
                 }else{
                     $request->session()->put('notice','file ảnh đại diện không đúng định dạng');

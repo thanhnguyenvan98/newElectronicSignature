@@ -72,8 +72,8 @@ class DeanController extends Controller
             if ($request->hasFile('image')) {
                 if($request->file('image')->getClientOriginalExtension() == 'PNG' || $request->file('image')->getClientOriginalExtension() == 'jpg' || $request->file('image')->getClientOriginalExtension() == 'png' || $request->file('image')->getClientOriginalExtension() == 'JPG') {
                     
-                    $request->file('image')->move('image',$userId.'Avata.png');
-                    //$request->file('image')->store('image');
+                    $path = $request->file('image')->store('public');
+                    $deanNew->dean_image = $path;
                 
                 }else{
                     $request->session()->put('notice','file ảnh đại diện không đúng định dạng');

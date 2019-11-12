@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\User;
 use App\teacher;
 use App\dean;
@@ -28,7 +29,6 @@ class loginController extends Controller
                     if($dem = 1){
                         $userId = $value['user_id'];
                         $category = $value['user_category'];
-
                         //tao session luu thong tin cua tai khoan vua dang nhap vao he thong
                         session()->put('login', true);
                         session()->put('userId',$userId);
@@ -44,6 +44,10 @@ class loginController extends Controller
                 $teachers = teacher::all();
                 foreach ($teachers as $teacher) {
                     if ($userId == $teacher->user_id) {
+                        $teacher = teacher::where('user_id',$userId)->get();
+                        $image = $teacher->teacher_image;
+                        $url = Storage::url($image);
+                        session()->put('image', $url);
                         return  redirect()->route('homeView');
                     }
                 }
@@ -54,6 +58,10 @@ class loginController extends Controller
                 $leaders = leader::all();
                 foreach ($leaders as $leader) {
                     if ($userId == $leader->user_id) {
+                        $leader = leader::where('user_id',$userId)->get();
+                        $image = $leader->leader_image;
+                        $url = Storage::url($image);
+                        session()->put('image', $url);
                         return  redirect()->route('homeLeaderView');
                     }
                 }
@@ -64,6 +72,10 @@ class loginController extends Controller
                 $deans = dean::all();
                 foreach ($deans as $dean) {
                     if ($userId == $dean->user_id) {
+                        $dean = dean::where('user_id',$userId)->get();
+                        $image = $dean->dean_image;
+                        $url = Storage::url($image);
+                        session()->put('image', $url);
                         return  redirect()->route('homeDeanView');
                     }
                 }
@@ -73,19 +85,20 @@ class loginController extends Controller
                 $managers = manager::all();
                 foreach ($managers as $manager) {
                     if ($userId == $manager->user_id) {
+                        $manager = manager::where('user_id',$userId)->get();
+                        $image = $manager[0]->manage_image;
+                        $url = Storage::url($image);
+                        session()->put('image', $url);
                         return  redirect()->route('homeManagerView');
                     }
                 }
                 return redirect()->route('inforView');
             }elseif ($dem == 1 && $category == 4) {
                 # code...
+                $image = 'admin.jpg';
+                session()->put('image', $image);
                 return redirect()->route('homeAdminView');
             }
-        	if ($dem == 1) {
-    			return view('home');
-    			
-        	}
-
         	else{
         		# code...
         		$error = "Tài khoản hoặc mật khẩu không chính xác";
